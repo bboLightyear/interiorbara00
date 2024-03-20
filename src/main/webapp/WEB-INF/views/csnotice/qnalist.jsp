@@ -11,7 +11,7 @@
 <h3>qnalist</h3>
 
 <hr />
-		<table class="">
+		<table class="" border="1px">
 		<tr class="">
 			<td class="">NO</td>
 			<td class="">제목</td>
@@ -23,7 +23,7 @@
 			<tr class="">
 				<td class="">${dto.nbno }</td>
 				<td class="">
-					<a href="">${dto.nbtitle }</a>
+					<a href="qnacontent?nbno=${dto.nbno }">${dto.nbtitle }</a>
 				</td>
 				<td class="">${dto.nbwriter }</td>
 				<td class="">${dto.nbdate }</td>

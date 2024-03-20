@@ -9,5 +9,17 @@
 	<select id="Qnalist" resultType="com.tech.ibara.csnotice.dto.QnaDto">
 		SELECT * FROM CS_NOTICEBOARD
 	</select>
+
+	<select id="qnacontentView" resultType="com.tech.ibara.csnotice.dto.QnaDto">
+		SELECT NBNO,NBTITLE,NBCONTENT,NBWRITER,NBHIT,NBDATE,NBFILE
+		FROM CS_NOTICEBOARD
+		WHERE NBNO=#{param1}
+	</select>
+	
+	<update id="qnauphit">
+		UPDATE CS_NOTICEBOARD SET NBHIT=NBHIT+1 WHERE NBNO=#{PARAM1}
+	</update>
+	
+	
 	
 </mapper>

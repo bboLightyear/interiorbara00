@@ -16,5 +16,7 @@
 
 
 	<a href="shopProductList">shopProductList</a>
+	
+	<a href="cshome">고객센터</a>
 </body>
 </html>
