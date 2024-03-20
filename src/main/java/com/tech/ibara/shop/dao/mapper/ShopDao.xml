@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tech.ibara.shop.dao.ShopDao">
+	
+	<select id="selectProductsByCategory" resultType="com.tech.ibara.shop.dto.ProductDto">
+		SELECT
+			PRODUCT_ID, CATEGORY_ID, OPTION_SET_ID, NAME
+		FROM
+			SHOP_PRODUCT
+		WHERE
+			CATEGORY_ID = #{param1}
+	</select>
+	
+	<select id="selectProductsByCategories" resultType="com.tech.ibara.shop.dto.ProductDto">
+		SELECT
+			PRODUCT_ID, CATEGORY_ID, OPTION_SET_ID, NAME
+		FROM
+			SHOP_PRODUCT
+		WHERE
+			CATEGORY_ID IN
+			<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+				#{item.category_id}
+			</foreach>
+	</select>
+	
+	<select id="selectSubCategoriesById" resultType="com.tech.ibara.shop.dto.CategoryDto">
+		SELECT
+			CATEGORY_ID, UP_CATEGORY_ID, NAME
+		FROM
+			SHOP_CATEGORY
+		WHERE
+			UP_CATEGORY_ID = #{param1}
+	</select>
+	
+	<select id="selectUpCategoryById" resultType="com.tech.ibara.shop.dto.CategoryDto">
+		SELECT
+			CATEGORY_ID, UP_CATEGORY_ID, NAME
+		FROM
+			SHOP_CATEGORY
+		WHERE
+			CATEGORY_ID = #{param1}
+	</select>
+	
+	<select id="selectCategoryById" resultType="com.tech.ibara.shop.dto.CategoryDto">
+		SELECT
+			CATEGORY_ID, UP_CATEGORY_ID, NAME
+		FROM
+			SHOP_CATEGORY
+		WHERE
+			CATEGORY_ID = #{param1}
+	</select>
+	
+	<select id="selectAllSubCategoriesById" resultType="com.tech.ibara.shop.dto.CategoryDto">
+		SELECT
+		    NVL(S4.CATEGORY_ID, NVL(S3.CATEGORY_ID, S2.CATEGORY_ID)) CATEGORY_ID,
+		    NVL(S4.UP_CATEGORY_ID, NVL(S3.UP_CATEGORY_ID, S2.UP_CATEGORY_ID)) UP_CATEGORY_ID,
+		    NVL(S4.NAME, NVL(S3.NAME, S2.NAME)) NAME
+		FROM
+		    SHOP_CATEGORY S1
+		INNER JOIN
+		    SHOP_CATEGORY S2
+		ON
+		    S1.CATEGORY_ID = S2.UP_CATEGORY_ID
+		LEFT OUTER JOIN
+		    SHOP_CATEGORY S3
+		ON
+		    S2.CATEGORY_ID = S3.UP_CATEGORY_ID    
+		LEFT OUTER JOIN
+		    SHOP_CATEGORY S4
+		ON
+		    S3.CATEGORY_ID = S4.UP_CATEGORY_ID
+		WHERE
+		    S1.CATEGORY_ID = #{param1}
+		ORDER BY
+		    CATEGORY_ID
+	</select>
+	
+	<!-- <delete id="delemp2">
+		DELETE
+			EMP
+		WHERE
+			EMPNO IN
+		<foreach item="item" index="index" collection="list"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete> -->
+	
+</mapper>
