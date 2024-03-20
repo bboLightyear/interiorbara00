@@ -20,7 +20,6 @@
 		
 		main {
 			float: right;
-			height: 500px;
 			width: 50%;
 			background-color: #f0f0ff;
 		}
