@@ -41,7 +41,6 @@
 				<p>${cat }</p>
 			</c:forEach> --%>
 			
-			
 			<c:forEach items="${levelCategories }" var="cat">
 				<a href="shopProductList?category_id=${cat.category_id }">
 					<c:forEach begin="1" end="${cat.level - 1}">&nbsp;&nbsp;&nbsp;</c:forEach>
@@ -50,11 +49,6 @@
 				<br />
 			</c:forEach>
 			
-			<!-- <a href="shopProductList?category_id=10000">가구</a><br />
-			<a href="shopProductList?category_id=10100">&nbsp;침대</a><br />
-			<a href="shopProductList?category_id=10101">&nbsp;&nbsp;침대프레임</a><br />
-			<a href="shopProductList?category_id=10102">&nbsp;&nbsp;침대+매트리스</a><br />
-			<a href="shopProductList?category_id=10103">&nbsp;&nbsp;침대부속가구</a><br /> -->
 		</nav>
 		<main>
 			<h3>${category.name }</h3>
