@@ -79,6 +79,28 @@
 		    CATEGORY_ID
 	</select>
 	
+	<select id="selectAllCategories" resultType="String">
+		SELECT
+		    LPAD('a  a', 3 * (LEVEL - 1)) || NAME
+		FROM
+		    SHOP_CATEGORY
+		START WITH
+		    UP_CATEGORY_ID = -1
+		CONNECT BY
+		    PRIOR CATEGORY_ID = UP_CATEGORY_ID
+	</select>
+	
+	<select id="selectAllLevelCategories" resultType="com.tech.ibara.shop.dto.LevelCategoryDto">
+		SELECT
+		    LEVEL, CATEGORY_ID, UP_CATEGORY_ID, NAME
+		FROM
+		    SHOP_CATEGORY
+		START WITH
+		    UP_CATEGORY_ID = -1
+		CONNECT BY
+		    PRIOR CATEGORY_ID = UP_CATEGORY_ID
+	</select>
+	
 	<!-- <delete id="delemp2">
 		DELETE
 			EMP
