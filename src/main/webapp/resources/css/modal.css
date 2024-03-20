@@ -1,36 +1,111 @@
-@charset "UTF-8";
-
-.modal{
-	display: none;
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgba(0,0,0,0.4);
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.2);
 }
-/* 모달 창 내용 스타일 */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 상하 15%, 가운데 정렬 */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 30%; /* 모달 창 너비 */
-}
-
-/* 닫기 버튼 스타일 */
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal_content{
+    display: flex;
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 0px;
+    border: 0px solid #888;
+    width: 80%;
+    max-width: 800px;
+}
+.modal_leftside{
+	text-align: center;
+	flex: 0 0 200px;
+    padding: 20px;
+    background-color: #fffbf3;
+}
+.modal_center {
+	display:flex;
+	flex-direction: column;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 0px solid #888;
+    width: 80%;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.modal_leftside_progress ul li{
+	list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    gap: 10px;
 }
+.modal_leftside_progress li{
+	list-style: none;
+    display: block;
+    flex: 0;
+    margin: 0;
+    padding: 0;
+}
+.modal_leftside_question{
+	margin-top: 20px;
+}
+.modal_center{
+	flex:1;
+	padding: 20px;
+}
+.modal_center_header{
+	display: flex;
+	flex:0 0 auto;
+    justify-content: space-between;
+    text-align:left;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+.modal_center_body{
+	display:flex;
+	flex:1 1 auto;
+	overflow-y:auto;
+	text-align: center;
+}
+.row{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.item{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 10px;
+}
+.item img {
+    width: 50px;
+    height: 50px;
+}
+
+.item span {
+    margin-top: 5px;
+}
+
+.modal_center_footer {
+    padding: 10px;
+    border-top: 1px solid rgba(0, 0, 0, .05);
+    display: flex;
+	justify-content: space-between;
+    flex:0 0 auto;
+    background-color: #fff;
+}
+
+
+

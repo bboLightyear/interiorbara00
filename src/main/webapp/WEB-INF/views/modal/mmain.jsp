@@ -1,40 +1,125 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<<<<<<< HEAD
-</head>
-<body>
-<h3>mmain.jsp</h3>
-=======
-<link rel="stylesheet" href="resources/css/modal.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>modalmain</title>
+    
+   <link rel="stylesheet" href="resources/css/modal.css">
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <script>
-	const modal = document.getElementById('modal');
-	const clooseBtn = document.querySelector('.close');
-	
-	function openModal(){
-		modal.style.display = 'block';
-	}
-	closeBtn.addEventListener('click', () => {		
-		modal.style.display = 'none';
-		});
+    $(document).ready(function() {
+        var modal = $('#myModal');
+        var btn = $('#openModal');
+        var span = $('.close');
+
+        btn.click(function() {
+            modal.css('display', 'block');
+        });
+
+        span.click(function() {
+            modal.css('display', 'none');
+        });
+
+        $(window).click(function(event) {
+            if (event.target == modal[0]) {
+                modal.css('display', 'none');
+            }
+        });
+    });
 </script>
-<h3>mmain.jsp</h3>
-<div id="modal" class="modal">
-	<div class="modal_content">
-		<span class="close">&times;</span>
-		모달내용입니다.
+
+
+<!-- 모달 창 영역 -->
+<div id="myModal" class="modal">
+		<div class="modal_content">
+			<div class="modal_leftside">
+				<div class=modal_leftside_progress>
+					<ul>
+						<li data-step-name="services" class="">
+							<div>
+								<span>어떤 서비스가 필요하신가요?</span>
+							</div>
+						</li>
+						<li data-step-name="service_select" class="">
+							<div>
+								<span>원하는 서비스 선택하기</span>
+							</div>
+						</li>
+						<li data-step-name="ask" class="">
+							<div>
+								<span>추가질문</span>
+							</div>
+						</li>
+						<li data-step-name="biz" class="">
+							<div>
+								<span>업체추천</span>
+							</div>
+						</li>
+						<li data-step-name="info" class="">
+							<div>
+								<span>정보입력</span>
+							</div>
+						</li>
+						<li data-step-name="date" class="">
+							<div>
+								<span>날짜선택</span>
+							</div>
+						</li>
+						<li data-step-name="complete" class="">
+							<div>
+								<span>견적완료</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="modal_leftside_content">
+					<h4>어떤 서비스가 필요하신가요?</h4>
+					<div>필요한 서비스를 선택해 주세요.</div>
+				</div>
+				<div class="modal_leftside_question">
+					<h5>바로문의</h5>
+					"123-456-7890"
+				</div>
+			</div>
+			<div class="modal_center">
+				<div class="modal_center_header">
+					<h2>모달 창 제목</h2>
+					<span class="close">&times;</span>
+				</div>
+				<div class="modal_center_body">
+					<div class="row">
+						<div class="item">
+							<img src="images/icon1.png" alt="Icon 1"> <span>Custom</span>
+						</div>
+						<div class="item">
+							<img src="images/icon2.png" alt="Icon 2"> <span>Package</span>
+						</div>
+						<div class="item">
+							<img src="images/icon3.png" alt="Icon 3"> <span>Kitchen</span>
+						</div>
+						<div class="item">
+							<img src="images/icon4.png" alt="Icon 4"> <span>Bath</span>
+						</div>
+						<div class="item">
+							<img src="images/icon5.png" alt="Icon 5"> <span>Self</span>
+						</div>
+						<div class="item">
+							<img src="images/icon6.png" alt="Icon 6"> <span>Care</span>
+						</div>
+					</div>
+				</div>
+					<div class="modal_center_footer">
+						<button id="privBtn">이전</button>
+						<button id="nextBtn">다음</button>
+					</div>
+			</div>
+			
+		</div>
 	</div>
-</div>
->>>>>>> e6a5b0e9fd19703f44282e96e185a29d06dd9353
+
+
+ 
 </body>
 </html>
