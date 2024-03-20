@@ -13,5 +13,9 @@ public interface OHInterfaceDao {
 									String pb_category, String pb_residence,
 									String pb_room, String pb_style, 
 									String pb_skill);
+	public int getRecentPb_no();
+	
+	
+	
 	
 }

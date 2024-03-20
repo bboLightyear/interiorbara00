@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.oreilly.servlet.MultipartRequest;
 import com.tech.ibara.oh.dao.OHInterfaceDao;
 import com.tech.ibara.oh.dto.OHPhotoBoard;
 
@@ -71,9 +72,14 @@ public class OHController {
 		// ohPhotoWriteExecute() 함수 실행
 		dao.ohPhotoWriteExecute(pb_title, pb_content, pb_category,
 								pb_residence, pb_room, pb_style, pb_skill);
+		// 가장 최근 작성된 게시글 번호 
+		int pb_no = dao.getRecentPb_no();
+		System.out.println("가장 최근 작성된 게시글 번호: " + pb_no);
+		// 경로 변수
+		String path = "C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\upload\\oh";
+		// MultipartRequest req
 		
 		
-		// /interiorbara
 		
 		// pa_attach
 		

@@ -23,4 +23,10 @@
 		    #{param3}, #{param4}, #{param5}, #{param6}, #{param7}
 		)
 	</insert>
+	<select id="getRecentPb_no" resultType="Integer">
+		SELECT 
+			MAX(PB_NO) 
+		FROM 
+			OH_PHOTO_BOARD
+	</select>
 </mapper>
