@@ -8,10 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>cshome</h3>
-
-<a href="qnalist">QnA</a>
-<a href="noticelist">공지사항</a>
-<a href="chat">채팅상담</a>
+<h3>chat</h3>
 </body>
 </html>
