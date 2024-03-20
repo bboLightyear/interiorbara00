@@ -3,6 +3,7 @@ package com.tech.ibara.shop.dao;
 import java.util.ArrayList;
 
 import com.tech.ibara.shop.dto.CategoryDto;
+import com.tech.ibara.shop.dto.LevelCategoryDto;
 import com.tech.ibara.shop.dto.ProductDto;
 
 public interface ShopDao {
@@ -15,5 +16,9 @@ public interface ShopDao {
 	
 	public CategoryDto selectCategoryById(int category_id);
 	public CategoryDto selectUpCategoryById(int category_id);
+	
+	public ArrayList<String> selectAllCategories();
+	
+	public ArrayList<LevelCategoryDto> selectAllLevelCategories();
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.CategoryDto;
+import com.tech.ibara.shop.dto.LevelCategoryDto;
 import com.tech.ibara.shop.dto.ProductDto;
 
 public class ProductListService implements ShopService {
@@ -41,7 +42,11 @@ public class ProductListService implements ShopService {
 			productList = dao.selectProductsByCategories(subCategoryList);
 		}
 		
+		ArrayList<String> categoryList = dao.selectAllCategories();
+		ArrayList<LevelCategoryDto> levelCategoryList = dao.selectAllLevelCategories();
 		
+		model.addAttribute("levelCategories", levelCategoryList);
+		model.addAttribute("categories", categoryList);
 		model.addAttribute("category", categoryDto);
 		model.addAttribute("productCnt", productList.size());
 		model.addAttribute("productList", productList);
