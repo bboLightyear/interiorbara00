@@ -8,15 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.tech.ibara.csnotice.service.NoticeListService;
-import com.tech.ibara.csnotice.service.NoticeServiceInter;
+import com.tech.ibara.csnotice.service.QnaListService;
+import com.tech.ibara.csnotice.service.QnaServiceInter;
 
 
 @Controller
 public class CsNoticeController {
 	
 	//서비스 선언
-	NoticeServiceInter noticeServiceInter;
+	QnaServiceInter qnaServiceInter;
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -29,12 +29,12 @@ public class CsNoticeController {
 	
 	@RequestMapping("/qnalist") //리스트 컨트롤러 
 	public String qnalist(HttpServletRequest request,Model model) {
-		System.out.println("qmaList()");	
+		System.out.println("qnaList()controller");	
 		
 		model.addAttribute("request",request);
 
-		noticeServiceInter=new NoticeListService(sqlSession);
-		noticeServiceInter.execute(model);
+		qnaServiceInter=new QnaListService(sqlSession);
+		qnaServiceInter.execute(model);
 		
 		return "csnotice/qnalist";
 	}

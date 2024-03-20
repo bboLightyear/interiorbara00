@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.tech.ibara.csnotice.dto.QnaDto;
 
-public interface NoticeBoardIDao {
+public interface QnaBoardIDao {
 
-	public ArrayList<QnaDto> noticelist();
+	public ArrayList<QnaDto> Qnalist();
 	
 }
