@@ -6,11 +6,21 @@
 
 <mapper namespace="com.tech.ibara.oh.dao.OHInterfaceDao">
 	
-	<!-- OHPhotoWriteView.jsp -->
+	<!-- OHPhotoView.jsp -->
 	<select id="ohPhotoView" resultType="com.tech.ibara.oh.dto.OHPhotoBoard">
 		SELECT
 			* 
 		FROM 
 			OH_PHOTO_BOARD
 	</select>
+	<!-- OHPhotoWriteExecute -->
+	<insert id="ohPhotoWriteExecute">
+		INSERT INTO 
+		    OH_PHOTO_BOARD
+		VALUES (
+			OH_PHOTO_BOARD_SEQ.NEXTVAL, NULL, #{param1}, #{param2}, SYSDATE, 
+		    0, 0, 0, 0, 0, 
+		    #{param3}, #{param4}, #{param5}, #{param6}, #{param7}
+		)
+	</insert>
 </mapper>
