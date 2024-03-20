@@ -17,6 +17,7 @@
 			background-color: powderblue;
 			padding: 20px;
 			margin: auto;
+			height: 800px;
 			width: 200px
 		}
 		#sideBar ul {
@@ -36,7 +37,32 @@
 		}
 		#contents {
 			float: left;
+			text-align: center;
 		}
+		.flexContainer {
+	        display:flex;
+	        justify-content: center;
+	        align-content: center;
+	        flex-direction: row;
+	        flex-wrap: wrap;
+	        background-color:#adbbf7;
+	        border:1px solid #222;
+	        /* margin-bottom:30px;	 */	
+		}
+		.box {
+	        padding: 5px;
+	        margin: 5px;   
+		    width: 500px;
+		    height: 500px;
+	        background-color: #f6f7ad; 		
+			/* 	        
+			flex-basis: auto;
+	        flex-grow: 1;
+	        flex-shrink: 1; 
+	        */
+		}
+		
+		
 		footer {
 			clear: both;
 			border: 1px solid #333;
@@ -45,32 +71,37 @@
 		}				
 	</style>	
 </head>
+
 <body>
+
 	<div id="container">
-		<header>
-			<h1>header</h1>
-		</header>
-		<div id="sideBar">
-			<ul >
-				<li><a href="oh/OHMainView">우리집 자랑하기</a></li>
-				<li><a href="oh/OHPhotoView">집사진</a></li>
-				<li><a href="">집영상</a></li>
-				<li><a href="">#category</a></li>
-			</ul>
-		</div>	
-		<div id="contents">						
-					
+	
+	<header>
+		<h1>header</h1>
+	</header>
+		
+		<div id="contents">
+	
+			<div id="sideBar">
+				<ul >
+					<li><a href="OHMainView">우리집 자랑하기</a></li>
+					<li><a href="OHPhotoView">집사진</a></li>
+					<li><a href="">집영상</a></li>
+					<li><a href="">#category</a></li>
+				</ul>
+			</div>							
+						
 			<h3>집사진</h3>
-			
-			<button><a href="oh/OHPhotoWriteView">글쓰기</a></button>
-			
+				
+			<button><a href="OHPhotoWriteView">글쓰기</a></button>
+				
 			<hr />				
-			
+				
 			<form action="">
 				
 				<label for="sorting">정렬</label>
 				<select name="sorting" id="sorting">
-					<option value="">선택하세요</option>
+					<option value="">선택</option>
 					<option value="latest">최신순</option>
 					<option value="popular">인기순</option>
 					<option value="views">조회순</option>
@@ -78,7 +109,7 @@
 				
 				<label for="sortingMethod">정렬방식</label>
 				<select name="sortingMethod" id="sortingMethod">
-					<option value="">선택하세요</option>
+					<option value="">선택</option>
 					<option value="ascending">오름차순</option>
 					<option value="descending">내림차순</option>
 				</select>
@@ -88,7 +119,7 @@
 				
 				<label for="residence">주거형태</label>
 				<select name="residence" id="residence">
-					<option value="">선택하세요</option>
+					<option value="">선택</option>
 					<option value="">원룸&오피스텔</option>
 					<option value="">아파트</option>
 					<option value="">빌라&연립</option>
@@ -100,7 +131,7 @@
 				
 				<label for="room">공간</label>
 				<select name="room" id="room">
-					<option value="">선택하세요</option>
+					<option value="">선택</option>
 					<option value="">원룸</option>
 					<option value="">거실</option>
 					<option value="">침실</option>
@@ -119,7 +150,7 @@
 				
 				<label for="style">스타일</label>
 				<select name="style" id="style">
-					<option value="">선택하세요</option>
+					<option value="">선택</option>
 					<option value="">모던</option>
 					<option value="">북유럽</option>
 					<option value="">빈티지</option>
@@ -132,7 +163,7 @@
 				
 				<label for="skill">셀프/전문가</label>
 				<select name="skill" id="skill">
-					<option value="">선택하세요</option>
+					<option value="">선택</option>
 					<option value="">셀프</option>
 					<option value="">전문가</option>
 				</select>								
@@ -142,7 +173,7 @@
 				
 				<label for="search">검색기준</label>
 				<select name="search" id="search">
-					<option value="">선택하세요</option>
+					<option value="">선택</option>
 					<option value="">제목</option>
 					<option value="">내용</option>
 					<option value="">#category</option>
@@ -153,11 +184,38 @@
 			
 			</form>
 			
+			<div class = "flexContainer">
+				<div class="box">
+					<table width="500" border="1">
+						<!-- 테이블 제목 -->
+						<tr>
+							<th>번호</th>
+							<th>사용자</th>
+							<th>제목</th>
+							<th>내용</th>
+						</tr>
+						<!-- 테이블 내용 -->
+						<c:forEach items="${ohPhotoView }" var="dto">
+							<tr>
+								<td>${dto.pb_no }</td>
+								<td>${dto.pb_user }</td>
+								<td>${dto.pb_title }</td>
+								<td>${dto.pb_content }</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+				<div class="box"><p>2</p></div>
+				<div class="box"><p>3</p></div>
+				<div class="box"><p>4</p></div>
+				<div class="box"><p>5</p></div>
+				<div class="box"><p>6</p></div>
+				<div class="box"><p>7</p></div>
+				<div class="box"><p>8</p></div>
+				<div class="box"><p>9</p></div>
+				<div class="box"><p>10</p></div>
+			</div>
 			
-			
-			
-			
-
 		</div>
 			
 		<footer>

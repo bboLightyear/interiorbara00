@@ -57,10 +57,9 @@
 				<li><a href="">집영상</a></li>
 				<li><a href="">#category</a></li>
 			</ul>
-				
 						
-			<button><a href="oh/OHPhotoWriteView">글쓰기</a></button> <br />
-			<button><a href="oh/OHPhotoView">집사진</a></button>
+			<button><a href="OHPhotoWriteView">글쓰기</a></button> <br />
+			<button><a href="OHPhotoView">집사진</a></button>
 			<button>집사진 더보기</button> <br />
 			<button>집영상</button>
 			<button>집영상 더보기</button> <br />
