@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.oreilly.servlet.MultipartRequest;
 import com.tech.ibara.oh.dao.OHInterfaceDao;
 import com.tech.ibara.oh.dto.OHPhotoBoard;
 
@@ -18,14 +19,14 @@ public class OHController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// OHMainView.jsp
+	// ---------- OHMainView.jsp ---------- 
 	@RequestMapping("oh/OHMainView")
 	public String OHMainView(Model model) {
 		// Console 출력
 		System.out.println("OHMainView Controller");
 		return "oh/OHMainView";
 	}
-	// OHPhotoView.jsp
+	// ---------- OHPhotoView.jsp ---------- 
 	@RequestMapping("oh/OHPhotoView")
 	public String OHPhotoView(Model model) {
 		// Console 출력
@@ -38,14 +39,14 @@ public class OHController {
 		model.addAttribute("ohPhotoView", dtoList);		
 		return "oh/OHPhotoView";
 	}
-	// OHPhotoWriteView.jsp
+	// ---------- OHPhotoWriteView.jsp ---------- 
 	@RequestMapping("oh/OHPhotoWriteView")
 	public String OHPhotoWriteView(Model model) {
 		// Console 출력
 		System.out.println("OHPhotoWriteView Controller");
 		return "oh/OHPhotoWriteView";
 	}
-	// OHPhotoWriteExecute
+	// ---------- OHPhotoWriteExecute ---------- 
 	@RequestMapping("oh/OHPhotoWriteExecute")
 	public String OHPhotoWriteExecute(MultipartHttpServletRequest mftRequest, Model model) {
 		// Console 출력
@@ -57,10 +58,7 @@ public class OHController {
 		String pb_residence = mftRequest.getParameter("pb_residence");
 		String pb_room = mftRequest.getParameter("pb_room");
 		String pb_style = mftRequest.getParameter("pb_style");
-		String pb_skill = mftRequest.getParameter("pb_skill");
-		
-		// pa_attach
-		
+		String pb_skill = mftRequest.getParameter("pb_skill");		
 		// 변수 값 출력
 		System.out.println("pb_title: " + pb_title);
 		System.out.println("pb_content: " + pb_content);
@@ -69,12 +67,23 @@ public class OHController {
 		System.out.println("pb_room: " + pb_room);
 		System.out.println("pb_style: " + pb_style);
 		System.out.println("pb_skill: " + pb_skill);
+		// OHInterfaceDao, SqlSession 연결
+		OHInterfaceDao dao = sqlSession.getMapper(OHInterfaceDao.class);
+		// ohPhotoWriteExecute() 함수 실행
+		dao.ohPhotoWriteExecute(pb_title, pb_content, pb_category,
+								pb_residence, pb_room, pb_style, pb_skill);
+		// 가장 최근 작성된 게시글 번호 
+		int pb_no = dao.getRecentPb_no();
+		System.out.println("가장 최근 작성된 게시글 번호: " + pb_no);
+		// 경로 변수
+		String path = "C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\upload\\oh";
+		// MultipartRequest req
 		
 		
 		
+		// pa_attach
 		
 		
-		
-		return "oh/OHPhotoView";
+		return "redirect:OHPhotoView";
 	}	
 }
