@@ -11,7 +11,9 @@
 	<h3>product.jsp</h3>
 	
 	id: ${product.product_id } <br />
-	이름: ${product.name }
+	이름: ${product.name } <br />
 	
+	옵션셋id: ${optionSet1.option_set_id } <br />
+	옵션이름: ${optionSet1.name }
 </body>
 </html>

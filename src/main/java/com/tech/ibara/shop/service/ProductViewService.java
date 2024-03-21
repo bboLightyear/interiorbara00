@@ -1,11 +1,15 @@
 package com.tech.ibara.shop.service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.tech.ibara.shop.dao.ShopDao;
+import com.tech.ibara.shop.dto.OptionDto;
+import com.tech.ibara.shop.dto.OptionSetDto;
 import com.tech.ibara.shop.dto.ProductDto;
 
 public class ProductViewService implements ShopService {
@@ -27,10 +31,19 @@ public class ProductViewService implements ShopService {
 			product_id = Integer.parseInt(product_idStr);
 		}
 		
-		ProductDto dto = dao.selectProductById(product_id);
+		ProductDto productDto = dao.selectProductById(product_id);
+		OptionSetDto optionSetDto = dao.selectOptionSetByProductId(product_id);
 		
+		int optionSetId = optionSetDto.getOption_set_id();
+		
+		ArrayList<OptionDto> optionDtoList = dao.selectOptionsByOptionSetId(optionSetId);
+		
+		System.out.println(optionSetDto.getOption_set_id());
+		System.out.println(optionSetDto.getName());
+		
+		model.addAttribute("optionSet1", optionSetDto);
 		model.addAttribute("result", product_id);
-		model.addAttribute("product", dto);
+		model.addAttribute("product", productDto);
 	}
 
 }
