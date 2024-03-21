@@ -15,7 +15,9 @@
 <a href="modal">퀵견적</a>
 
 
-	<a href="shopProductList">shopProductList</a>
+	<br />
+	<a href="shop/list">list</a>
+	<br />
 	
 	<a href="cshome">고객센터</a>
 </body>

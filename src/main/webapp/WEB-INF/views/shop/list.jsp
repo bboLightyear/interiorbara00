@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 	<style>
 		#wrap {
-			width: 500px;
+			width: 800px;
 			margin: auto;
 		}
 		
@@ -31,24 +31,27 @@
 		a {
 			text-decoration: none;
 		}
+		
+		.cell {
+			display: inline-block;
+			width: 33%;
+			height: 100px;
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
-	<h3>shopProductList.jsp</h3>
+	<h3>list.jsp</h3>
 	<div id="wrap">
-		<nav>
-			<%-- <c:forEach items="${categories }" var="cat">
-				<p>${cat }</p>
-			</c:forEach> --%>
-			
+		<nav>			
 			<c:forEach items="${levelCategories }" var="cat">
-				<a href="shopProductList?category_id=${cat.category_id }">
+				<a href="list?category_id=${cat.category_id }">
 					<c:forEach begin="1" end="${cat.level - 1}">&nbsp;&nbsp;&nbsp;</c:forEach>
 					${cat.name }
 				</a>
+				<button>O</button>
 				<br />
 			</c:forEach>
-			
 		</nav>
 		<main>
 			<h3>${category.name }</h3>
@@ -61,16 +64,12 @@
 			<br />
 	
 			<h4>상품 개수: ${productCnt }</h4>
-			<c:forEach items="${productList }" var="product">
-				${product.name } <br />
-			</c:forEach>
-			
 			<table>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+				<c:forEach items="${productList }" var="product" varStatus="status">
+					<div class="cell">
+						<a href="product?product_id=${product.product_id }">${product.name }</a>
+					</div>
+				</c:forEach>
 			</table>
 		</main>
 	</div>

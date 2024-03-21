@@ -21,4 +21,5 @@ public interface ShopDao {
 	
 	public ArrayList<LevelCategoryDto> selectAllLevelCategories();
 	
+	public ProductDto selectProductById(int product_id);
 }
