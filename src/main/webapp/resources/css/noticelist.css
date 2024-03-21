@@ -131,8 +131,8 @@ header{
 	cursor: pointer;
 }
 
-/* QnA 내용 */
-.qna_body{
+/* notice_list 내용 */
+.notice_list_body{
 	width: 80%;
 	margin-left: 13%;
 	text-align: center;
@@ -141,17 +141,17 @@ header{
 	padding-bottom: 130px;
 }
 
-/* QnA 타이틀 */
-.qna_title{
+/* notice_list 타이틀 */
+.notice_list_title{
 	margin-right: 800px;
 }
 
 /* 게시판 검색 */
-.qna_body_search_wrap{
+.notice_list_body_search_wrap{
 	display: flex;
 	justify-content: right;
 }
-.qna_body_search_option{
+.notice_list_body_search_option{
 	margin-top: 1px;
 	margin-right: 10px;
 	display: inline-block;
@@ -160,7 +160,7 @@ header{
 	height: 25px;
 }
 /* 검색 창 */
-.qna_body_search_box{
+.notice_list_body_search_box{
 	display: inline-block;
 	margin-right: 100px;
 	width: 180px;
@@ -170,7 +170,7 @@ header{
 	background-color: lightgray;
 }
 /* 검색 부분 */
-.qna_body_search_box_input{
+.notice_list_body_search_box_input{
 	margin-top: 5px;
 	margin-right: 5px;
 	border: none;
@@ -185,7 +185,7 @@ header{
 }
 
 /* 공통옵션 */
-.qna_board{
+.notice_list_board{
 	margin: 0;
 	padding: 0;
 }
@@ -194,7 +194,7 @@ ul li {list-style:none; }
 	float:left;
 	text-align:center;
 }
-.qna_board_list {width:90%; }
+.notice_list_board_list {width:90%; }
 
 /* 게시판 목록 */
 body ul li{
