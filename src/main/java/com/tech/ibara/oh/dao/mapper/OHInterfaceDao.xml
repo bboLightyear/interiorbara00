@@ -5,13 +5,57 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tech.ibara.oh.dao.OHInterfaceDao">
-	
+	<!-- resultMap OHPhotoBoard -->
+	<resultMap type="com.tech.ibara.oh.dto.OHPhotoBoard" id="OHPhotoBoard">
+		<result column="PB_NO" property="pb_no" />
+		<result column="PB_USER" property="pb_user" />
+		<result column="PB_TITLE" property="pb_title" />
+		<result column="PB_CONTENT" property="pb_content" />
+		<result column="PB_DATE" property="pb_date" />
+		<result column="PB_LIKE" property="pb_like" />
+		<result column="PB_SCRAP" property="pb_scrap" />
+		<result column="PB_REPLY" property="pb_reply" />
+		<result column="PB_LINK" property="pb_link" />
+		<result column="PB_HIT" property="pb_hit" />
+		<result column="PB_CATEGORY" property="pb_category" />
+		<result column="PB_RESIDENCE" property="pb_residence" />
+		<result column="PB_ROOM" property="pb_room" />
+		<result column="PB_STYLE" property="pb_style" />
+		<result column="PB_SKILL" property="pb_skill" />
+		<!-- collection -->
+		<collection property="ohPhotoAttach" resultMap="OHPhotoAttach"/>
+	</resultMap>
+	<!-- resultMap OHPhotoAttach -->
+	<resultMap type="com.tech.ibara.oh.dto.OHPhotoAttach" id="OHPhotoAttach">
+		<result column="PA_NO" property="pa_no" />
+		<result column="PA_ATTACH" property="pa_attach" />
+		<result column="PB_NO" property="pb_no" />
+	</resultMap>	
 	<!-- OHPhotoView.jsp -->
-	<select id="ohPhotoView" resultType="com.tech.ibara.oh.dto.OHPhotoBoard">
-		SELECT
-			* 
+	<select id="ohPhotoView" resultType="com.tech.ibara.oh.dto.OHPhotoBoard" resultMap="OHPhotoBoard">
+		SELECT 
+		    * 
 		FROM 
-			OH_PHOTO_BOARD
+		    OH_PHOTO_BOARD OH1 
+		LEFT OUTER JOIN 
+			(SELECT 
+                * 
+             FROM 
+                OH_PHOTO_ATTACH 
+             WHERE 
+             PA_NO IN (
+                       SELECT 
+                           MIN(PA_NO) 
+                       FROM 
+                           OH_PHOTO_ATTACH 
+                       GROUP BY 
+                           PB_NO
+                      ) 
+             ORDER BY 
+                PA_NO
+            ) OH2
+		ON
+			OH1.PB_NO = OH2.PB_NO		
 	</select>
 	<!-- OHPhotoWriteExecute -->
 	<insert id="ohPhotoWriteExecute">
@@ -29,4 +73,11 @@
 		FROM 
 			OH_PHOTO_BOARD
 	</select>
+	<insert id="setFileUpload">
+		INSERT INTO 
+		    OH_PHOTO_ATTACH 
+		VALUES (
+		    OH_PHOTO_ATTACH_SEQ.NEXTVAL, #{param2}, #{param1} 
+		)
+	</insert>
 </mapper>

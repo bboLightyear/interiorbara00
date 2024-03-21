@@ -1,15 +1,18 @@
 package com.tech.ibara.oh.controller;
 
+
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.oreilly.servlet.MultipartRequest;
 import com.tech.ibara.oh.dao.OHInterfaceDao;
 import com.tech.ibara.oh.dto.OHPhotoBoard;
 
@@ -36,7 +39,7 @@ public class OHController {
 		// ohPhotoView() 함수 실행
 		ArrayList<OHPhotoBoard> dtoList = dao.ohPhotoView();
 		// model 값 전달
-		model.addAttribute("ohPhotoView", dtoList);		
+		model.addAttribute("ohPhotoView", dtoList);
 		return "oh/OHPhotoView";
 	}
 	// ---------- OHPhotoWriteView.jsp ---------- 
@@ -72,18 +75,35 @@ public class OHController {
 		// ohPhotoWriteExecute() 함수 실행
 		dao.ohPhotoWriteExecute(pb_title, pb_content, pb_category,
 								pb_residence, pb_room, pb_style, pb_skill);
-		// 가장 최근 작성된 게시글 번호 
+		// getRecentPb_no() 함수 실행 -> 가장 최근 작성된 게시글 번호 
 		int pb_no = dao.getRecentPb_no();
 		System.out.println("가장 최근 작성된 게시글 번호: " + pb_no);
 		// 경로 변수
 		String path = "C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\upload\\oh";
-		// MultipartRequest req
-		
-		
-		
-		// pa_attach
-		
-		
+		// 업로드 파일, List 저장
+		List<MultipartFile> pa_attachList = mftRequest.getFiles("pa_attach");
+		// 파일 저장
+		for(MultipartFile mf : pa_attachList) {
+			// 원본 파일명
+			String originFile = mf.getOriginalFilename();
+			System.out.println("원본 파일명: " + originFile);
+			// 수정 파일명
+			long longtime = System.currentTimeMillis();
+			String changeFile = longtime + "_" + mf.getOriginalFilename();
+			System.out.println("수정 파일명: " + changeFile);
+			// 경로 변수 + 수정 파일명
+			String pathfile = path + "\\" + changeFile;
+			try {
+				if(!originFile.equals("")) {
+					mf.transferTo(new File(pathfile));
+					System.out.println("다중 파일 업로드 성공");
+					// setFileUpload() 함수 실행 -> DB에 파일명 INSERT
+					dao.setFileUpload(pb_no, changeFile);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
 		return "redirect:OHPhotoView";
 	}	
 }

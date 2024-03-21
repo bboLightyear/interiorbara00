@@ -20,6 +20,16 @@ public class OHPhotoBoard {
 	private String pb_style;
 	private String pb_skill;
 	
+	private OHPhotoAttach ohPhotoAttach;
+	
+	public OHPhotoAttach getOhPhotoAttach() {
+		return ohPhotoAttach;
+	}
+
+	public void setOhPhotoAttach(OHPhotoAttach ohPhotoAttach) {
+		this.ohPhotoAttach = ohPhotoAttach;
+	}
+
 	public OHPhotoBoard() {
 		// TODO Auto-generated constructor stub
 	}
