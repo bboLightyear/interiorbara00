@@ -133,6 +133,8 @@ header{
 
 /* QnA 내용 */
 .qna_body{
+	width: 80%;
+	margin-left: 13%;
 	text-align: center;
 }
 
@@ -141,6 +143,7 @@ header{
 	margin-right: 800px;
 }
 
+/* 게시판 검색 */
 .qna_body_search_wrap{
 	display: flex;
 	justify-content: right;
@@ -178,45 +181,44 @@ header{
 	cursor: pointer;
 }
 
+/* 공통옵션 */
 .qna_board{
 	margin: 0;
 	padding: 0;
 }
-/* 공통옵션 */
 ul li {list-style:none; }
-.pblist {
+.board_list {
 	float:left;
 	text-align:center;
 }
+.qna_board_list {width:90%; }
 
 /* 게시판 목록 */
 body ul li{
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
-.police_board_list {width:90%; }
-.pbid {width:10%; }
-.pbtitle {width:50%; }
-.pbname {width:12%; }
-.pbdate {width:15%; }
-.pbhit {width:10%; }
-.title {
+/* 게시판 범주 */
+.board_category {
 	height: 50px;
 	line-height: 50px;
 	background: #dddddd;
 	font-weight: bold;
 }
-.t_line {border-right:solid 1px gray;}
-.lt_line {border-bottom:solid 1px gray;}
-.list {
+/* 각 세부사항 */
+.w10 {width:10%; }
+.w50 {width:50%; }
+.w12 {width:12%; }
+.w15 {width:15%; }
+.w10 {width:10%; }
+.border_right {border-right:solid 1px gray;}
+.border_bottom {border-bottom:solid 1px gray;}
+.list_height {
 	height: 40px;
 	line-height: 40px;
 }
-.pbtitle_list{
-	color:blue;
-	font-weight: bold;
-}
 
+/* page numbering */
 .page_number{
 	clear: both;
 	padding-top: 40px;
@@ -225,7 +227,6 @@ body ul li{
 	list-style: none;
 	display: inline-block;
 }
-
 .page_number_list_1{
 	margin-left: 10px;
 	margin-right: 10px;
@@ -250,11 +251,15 @@ body ul li{
 .page_number_list_5{
 	margin-right: 10px;
 }
+
+/* 글쓰기 버튼 */
 .write_button{
 	width: 80px;
 	float: right;
 	margin-right: 100px;
 }
+
+/* 푸터 */
 footer{
 	margin: 0;
 	padding: 0;
@@ -263,6 +268,8 @@ footer{
 	border-top: 1px solid gray;
 	display: flex;
 }
+
+/* 푸터 로고 */
 .footer_logo{
 	margin-top: 15px;
 	margin-left: 30px;
@@ -270,11 +277,15 @@ footer{
 	height: 100px;
 	border: 1px solid gray;
 }
+
+/* 푸터 내용 */
 .footer_content{
 	margin-left: 50px;
 	width: 60%;
 	white-space: pre-line;
 }
+
+/* sns 아이콘 */
 .footer_sns{
 	text-align: right;
 	margin-top: 100px;
