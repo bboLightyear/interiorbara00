@@ -14,5 +14,10 @@ public class MController {
 		
 		return "/modal/mmain";
 	}
+	@RequestMapping(value = "/modal/mSize", method = RequestMethod.GET)
+	public String mSize(Model model) {
+		
+		return "/modal/mSize";
+	}
 
 }
