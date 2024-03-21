@@ -80,40 +80,47 @@
 				</div>
 				<div class="modal_leftside_question">
 					<h5>바로문의</h5>
-					"123-456-7890"
+					123-456-7890
 				</div>
 			</div>
 			<div class="modal_center">
 				<div class="modal_center_header">
-					<h2>모달 창 제목</h2>
+					<h3>서비스 선택</h3>
 					<span class="close">&times;</span>
 				</div>
 				<div class="modal_center_body">
 					<div class="row">
-						<div class="item">
-							<img src="images/icon1.png" alt="Icon 1"> <span>Custom</span>
+						<a href="">
+						<div class="item1">
+							<img src="resources/img/company.png" alt="Icon 1" class="icon1"> <span>업체 먼저 둘러보기</span>
 						</div>
-						<div class="item">
-							<img src="images/icon2.png" alt="Icon 2"> <span>Package</span>
+						</a>
+						<a href="modal/mSize">
+						<div class="item2">
+							<img src="resources/img/custom.png" alt="Icon 2" class="icon2"> <span>스탠다드 커스텀 인테리어 시공하기</span>
 						</div>
-						<div class="item">
-							<img src="images/icon3.png" alt="Icon 3"> <span>Kitchen</span>
+						</a>
+						<a href="modal/mSize">
+						<div class="item3">
+							<img src="resources/img/premium.png" alt="Icon 3" class="icon3"> <span>프리미엄 커스텀 인테리어 시공하기</span>
 						</div>
-						<div class="item">
-							<img src="images/icon4.png" alt="Icon 4"> <span>Bath</span>
+						</a>
+						<a href="">
+						<div class="item4">
+							<img src="resources/img/kitchen.jpg" alt="Icon 4" class="icon4"> <span>주방만 시공하기</span>
 						</div>
-						<div class="item">
-							<img src="images/icon5.png" alt="Icon 5"> <span>Self</span>
-						</div>
-						<div class="item">
-							<img src="images/icon6.png" alt="Icon 6"> <span>Care</span>
-						</div>
+						</a>
+						<a href="">
+						<div class="item5">
+							<img src="resources/img/bath.jpg" alt="Icon 5" class="icon5"> <span>욕실만 시공하기</span>
+						</div>	
+						</a>					
 					</div>
 				</div>
-					<div class="modal_center_footer">
+					<!-- <div class="modal_center_footer">
 						<button id="privBtn">이전</button>
 						<button id="nextBtn">다음</button>
-					</div>
+					</div> -->
 			</div>
 			
 		</div>
