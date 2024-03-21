@@ -39,7 +39,7 @@ public class ShopController {
 		shopService = new ProductViewService(sqlSession);
 		shopService.execute(model);
 		
-		int result = (int) model.asMap().get("result");
+		int result = (Integer) model.asMap().get("result");
 		if (result == -1) {
 			return "redirect:/shop/list";
 		}
