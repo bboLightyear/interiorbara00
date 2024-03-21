@@ -14,7 +14,7 @@ public interface OHInterfaceDao {
 									String pb_room, String pb_style, 
 									String pb_skill);
 	public int getRecentPb_no();
-	
+	public void setFileUpload(int pb_no, String changeFile);
 	
 	
 	

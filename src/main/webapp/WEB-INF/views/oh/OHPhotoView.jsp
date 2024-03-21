@@ -61,8 +61,6 @@
 	        flex-shrink: 1; 
 	        */
 		}
-		
-		
 		footer {
 			clear: both;
 			border: 1px solid #333;
@@ -185,6 +183,7 @@
 			</form>
 			
 			<div class = "flexContainer">
+				<!-- 1번 <div class="box"> 테이블 표현 -->			
 				<div class="box">
 					<table width="500" border="1">
 						<!-- 테이블 제목 -->
@@ -205,15 +204,20 @@
 						</c:forEach>
 					</table>
 				</div>
-				<div class="box"><p>2</p></div>
-				<div class="box"><p>3</p></div>
-				<div class="box"><p>4</p></div>
-				<div class="box"><p>5</p></div>
-				<div class="box"><p>6</p></div>
-				<div class="box"><p>7</p></div>
-				<div class="box"><p>8</p></div>
-				<div class="box"><p>9</p></div>
-				<div class="box"><p>10</p></div>
+				<!-- 전체 <div class="box"> 반복문 사용, 게시물 표현 -->
+				<c:forEach items="${ohPhotoView }" var="dto">
+					<div class="box">
+						<div>${dto.pb_no }</div>
+						<div>${dto.pb_user }</div>	
+						<div>${dto.pb_title }</div>	
+						<div>${dto.pb_content }</div>
+						<div>${dto.ohPhotoAttach.pa_no }</div>
+						<div>${dto.ohPhotoAttach.pa_attach }</div>
+						<div>${dto.ohPhotoAttach.pb_no }</div>
+						<img src="../resources/upload/oh/${dto.ohPhotoAttach.pa_attach }" alt="해당 게시글 대표사진" />
+					</div>
+				</c:forEach>
+				
 			</div>
 			
 		</div>
