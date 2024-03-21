@@ -29,4 +29,5 @@ public interface ShopDao {
 	public OptionSetDto selectOptionSetById(int option_set_id);
 	
 	public ArrayList<OptionDto> selectOptionsByOptionSetId(int option_set_id);
+	public OptionDto selectOptionById(int option_id);
 }

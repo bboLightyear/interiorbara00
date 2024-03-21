@@ -85,11 +85,11 @@
 	
 	<select id="selectAllCategories" resultType="String">
 		SELECT
-		    LPAD('a  a', 3 * (LEVEL - 1)) || NAME
+		    LPAD(' ', 3 * (LEVEL - 1)) || NAME
 		FROM
 		    SHOP_CATEGORY
 		START WITH
-		    UP_CATEGORY_ID = -1
+		    UP_CATEGORY_ID IS NULL
 		CONNECT BY
 		    PRIOR CATEGORY_ID = UP_CATEGORY_ID
 	</select>
@@ -100,7 +100,7 @@
 		FROM
 		    SHOP_CATEGORY
 		START WITH
-		    UP_CATEGORY_ID = -1
+		    UP_CATEGORY_ID IS NULL
 		CONNECT BY
 		    PRIOR CATEGORY_ID = UP_CATEGORY_ID
 	</select>
@@ -145,6 +145,15 @@
 		    SHOP_OPTION
 		WHERE
 		    OPTION_SET_ID = #{param1}
+	</select>
+	
+	<select id="selectOptionById" resultType="com.tech.ibara.shop.dto.OptionDto">
+		SELECT
+		    OPTION_ID, OPTION_SET_ID, SUB_OPTION_SET_ID, PRODUCT_DATA_ID, NAME
+		FROM
+		    SHOP_OPTION
+		WHERE
+		    OPTION_ID = #{param1}
 	</select>
 	
 </mapper>

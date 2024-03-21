@@ -37,10 +37,15 @@ public class ProductViewService implements ShopService {
 		int optionSetId = optionSetDto.getOption_set_id();
 		
 		ArrayList<OptionDto> optionDtoList = dao.selectOptionsByOptionSetId(optionSetId);
+		OptionDto optionDto = optionDtoList.get(0);
+		OptionSetDto subOptionSetDto = null;
+		if (optionDto.getSub_option_set_id() != null) {
+			subOptionSetDto = dao.selectOptionSetById(optionDto.getSub_option_set_id());
+		}
 		
-		System.out.println(optionSetDto.getOption_set_id());
-		System.out.println(optionSetDto.getName());
 		
+		model.addAttribute("subOptionSet", subOptionSetDto);
+		model.addAttribute("options", optionDtoList);
 		model.addAttribute("optionSet1", optionSetDto);
 		model.addAttribute("result", product_id);
 		model.addAttribute("product", productDto);
