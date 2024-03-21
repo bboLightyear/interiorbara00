@@ -53,6 +53,125 @@
 	<br>
 
 	<div class="body_section">
+
+		<!--carousel_main : 최상위 클래스로 캐러셀의 전체 구조를 잡아줍니다.
+        carousel_wrapper : 캐러셀 슬라이드의 전체 구조를 잡아줍니다.
+        carousel_slide : 캐러셀 이미지를 설정합니다.
+        carousel_button_container : 슬라이드를 넘기기 위한 사이드 버튼의 전체 구조를 잡아줍니다.
+        carousel_prev / carousel_next : 캐러셀 사이드 버튼을 설정하고 svg 태그를 사용했습니다.
+        carousel_pagination : 캐러셀 중앙 버튼의 전체 구조를 잡아줍니다.
+        carousel_circle : 캐러셀 중앙 버튼을 설정합니다.-->
+		<div class="carousel_whole_wrap">
+			<!-- 캐러셀 왼쪽 버튼 -->
+			<div class="carousel_prev_button_container">
+				<button type="button" class="carousel_prev">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+						fill="currentColor" class="bi bi-chevron-double-left"
+						viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+							d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                        <path fill-rule="evenodd"
+							d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                    </svg>
+				</button>
+			</div>
+			<div class="carousel_main">
+				<div class="carousel_wrapper">
+					<div class="carousel_slide">
+						<img src="resources/img/mainimg/0.gif" alt="#" />
+					</div>
+					<div class="carousel_slide">
+						<img src="resources/img/mainimg/1.gif" alt="#" />
+					</div>
+					<div class="carousel_slide">
+						<img src="resources/img/mainimg/2.gif" alt="#" />
+					</div>
+					<div class="carousel_slide">
+						<img src="resources/img/mainimg/3.gif" alt="#" />
+					</div>
+					<div class="carousel_slide">
+						<img src="resources/img/mainimg/4.gif" alt="#" />
+					</div>
+				</div>
+			</div>
+			<!-- 캐러셀 오른쪽 버튼 -->
+			<div class="carousel_next_button_container">
+				<button type="button" class="carousel_next">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+						fill="currentColor" class="bi bi-chevron-double-right"
+						viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+							d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                        <path fill-rule="evenodd"
+							d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+				</button>
+			</div>
+			<!-- 캐러셀 중앙 버튼 -->
+			<div class="carousel_pagination">
+				<div class="carousel_circle"></div>
+				<div class="carousel_circle"></div>
+				<div class="carousel_circle"></div>
+				<div class="carousel_circle"></div>
+			</div>
+		</div>
+		<!-- 캐러셀 작동 js -->
+<script>
+    <%-- JSP scriptlet to generate JavaScript code dynamically --%>
+
+    var swiper = document.querySelector('.carousel_wrapper');
+    var prevButtons = document.querySelectorAll('.carousel_prev');
+    var nextButtons = document.querySelectorAll('.carousel_next');
+    var bullets = document.querySelectorAll('.carousel_circle');
+
+    var currentSlide = 0;
+
+    function showSlide(slideIndex) {
+        swiper.style.transform = "translateX(-" + slideIndex * 300 + "px)";
+        currentSlide = slideIndex;
+
+        bullets.forEach(function (bullet, index) {
+            if (index === currentSlide) {
+                bullet.classList.add('active');
+            } else {
+                bullet.classList.remove('active');
+            }
+        });
+    }
+
+    prevButtons.forEach(function (prevButton) {
+        prevButton.addEventListener('click', function () {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        });
+    });
+
+    nextButtons.forEach(function (nextButton) {
+        nextButton.addEventListener('click', function () {
+            if (currentSlide < 3) {
+                showSlide(currentSlide + 1);
+            }
+        });
+    });
+
+    bullets.forEach(function (bullet, index) {
+        bullet.addEventListener('click', function () {
+            showSlide(index);
+        });
+    });
+
+    showSlide(0);
+</script>
+
+		<br>
+		<div class="category_button_wrap">
+			<img src="resources/img/mainimg/gray_circle.png" alt="" class="category_button">
+			<img src="resources/img/mainimg/gray_circle.png" alt="" class="category_button">
+			<img src="resources/img/mainimg/gray_circle.png" alt="" class="category_button">
+			<img src="resources/img/mainimg/gray_circle.png" alt="" class="category_button">
+		</div>
+		<br>
 		<h1>INTERIORBARA</h1>
 
 		<P>&#x1F606; TeamProject CheerUp &#x1F44D;</P>
@@ -60,20 +179,12 @@
 		<p>test</p>
 		<p>test</p>
 		<a href="modal">퀵견적</a> <a href="shopProductList">shopProductList</a>
-		<br />
-		<br />
+		<br /> <br />
 		<p>아래 푸터 있음</p>
-		<i class="fas fa-arrow-down"></i>
-		<br />
-		<i class="fas fa-arrow-down"></i>
-		<br />
-		<i class="fas fa-arrow-down"></i>
-		<br />
-		<i class="fas fa-arrow-down"></i>
-		<br />
-		<i class="fas fa-arrow-down"></i>
-		<br />
-		<i class="fas fa-arrow-down"></i>
+		<i class="fas fa-arrow-down"></i> <br /> <i class="fas fa-arrow-down"></i>
+		<br /> <i class="fas fa-arrow-down"></i> <br /> <i
+			class="fas fa-arrow-down"></i> <br /> <i class="fas fa-arrow-down"></i>
+		<br /> <i class="fas fa-arrow-down"></i>
 	</div>
 	<br>
 	<br>
