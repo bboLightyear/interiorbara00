@@ -45,6 +45,18 @@ public class CsQnaController {
 		
 		return "csnotice/qnacontent";
 	}
+
+	@RequestMapping("/qnaeditview") //리스트 컨트롤러 
+	public String qnaeditview(HttpServletRequest request,Model model) {
+		System.out.println("qnaeditview()controller");	
+		
+		model.addAttribute("request",request);
+		
+		qnaServiceInter=new QnaContentService(sqlSession);
+		qnaServiceInter.execute(model);
+		
+		return "csnotice/qnaeditview";
+	}
 	
 	
 }

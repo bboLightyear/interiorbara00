@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>qna content</h3>
+<h3>qna edit view</h3>
 
 <table>
 	<tr>
@@ -25,11 +25,11 @@
 	</tr>
 	<tr>
 		<td class="left">제목</td>
-		<td>${qna_content.nbtitle }</td>
+		<td><input type="text" value="${qna_content.nbtitle }"/></td>
 	</tr>
 	<tr>
 		<td class="left">내용</td>
-		<td>${qna_content.nbcontent }</td>
+		<td><textarea rows="6" cols="60">${qna_content.nbcontent }</textarea></td>
 	</tr>
 	<tr>
 		<td class="left">날짜</td>
@@ -40,10 +40,8 @@
 		<td><a href=""></a></td>
 	</tr>
 	<tr>
-		<td colspan="2">
-		<a href="qnaeditview?nbno=${qna_content.nbno }">수정</a>
-		<a href="qnadelete">삭제</a> 
-		<a href="qnalist">목록으로</a> <br />
+		<td>
+		<a href="">수정</a>
 		</td> 
 	</tr>
 </table>
