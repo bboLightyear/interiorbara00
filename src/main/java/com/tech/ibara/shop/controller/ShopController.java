@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tech.ibara.shop.service.ProductListService;
+import com.tech.ibara.shop.service.ProductViewService;
 import com.tech.ibara.shop.service.ShopService;
 
 @Controller
@@ -19,14 +20,30 @@ public class ShopController {
 	
 	private ShopService shopService;
 	
-	@RequestMapping("shopProductList")
-	public String shopProductList(HttpServletRequest request, Model model) {
+	@RequestMapping("/shop/list")
+	public String productList(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request", request);
 		
 		shopService = new ProductListService(sqlSession);
 		shopService.execute(model);
 		
-		return "shop/shopProductList";
+		return "shop/list";
+	}
+	
+	@RequestMapping("/shop/product")
+	public String productView(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		shopService = new ProductViewService(sqlSession);
+		shopService.execute(model);
+		
+		int result = (int) model.asMap().get("result");
+		if (result == -1) {
+			return "redirect:/shop/list";
+		}
+		
+		return "shop/product";
 	}
 }
