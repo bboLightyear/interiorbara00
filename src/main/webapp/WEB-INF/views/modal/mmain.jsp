@@ -92,27 +92,27 @@
 					<div class="row">
 						<a href="">
 						<div class="item1">
-							<img src="resources/img/company.png" alt="Icon 1" class="icon1"> <span>업체 먼저 둘러보기</span>
+							<img src="resources/img/modalimg/company.png" alt="Icon 1" class="icon1"> <span>업체 먼저 둘러보기</span>
 						</div>
 						</a>
 						<a href="modal/mSize">
 						<div class="item2">
-							<img src="resources/img/custom.png" alt="Icon 2" class="icon2"> <span>스탠다드 커스텀 인테리어 시공하기</span>
+							<img src="resources/img/modalimg/custom.png" alt="Icon 2" class="icon2"> <span>스탠다드 커스텀 인테리어 시공하기</span>
 						</div>
 						</a>
 						<a href="modal/mSize">
 						<div class="item3">
-							<img src="resources/img/premium.png" alt="Icon 3" class="icon3"> <span>프리미엄 커스텀 인테리어 시공하기</span>
+							<img src="resources/img/modalimg/premium.png" alt="Icon 3" class="icon3"> <span>프리미엄 커스텀 인테리어 시공하기</span>
 						</div>
 						</a>
 						<a href="">
 						<div class="item4">
-							<img src="resources/img/kitchen.jpg" alt="Icon 4" class="icon4"> <span>주방만 시공하기</span>
+							<img src="resources/img/modalimg/kitchen.jpg" alt="Icon 4" class="icon4"> <span>주방만 시공하기</span>
 						</div>
 						</a>
 						<a href="">
 						<div class="item5">
-							<img src="resources/img/bath.jpg" alt="Icon 5" class="icon5"> <span>욕실만 시공하기</span>
+							<img src="resources/img/modalimg/bath.jpg" alt="Icon 5" class="icon5"> <span>욕실만 시공하기</span>
 						</div>	
 						</a>					
 					</div>
