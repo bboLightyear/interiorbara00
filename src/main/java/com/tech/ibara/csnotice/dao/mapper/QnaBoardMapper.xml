@@ -19,6 +19,12 @@
 	<update id="qnauphit">
 		UPDATE CS_NOTICEBOARD SET NBHIT=NBHIT+1 WHERE NBNO=#{PARAM1}
 	</update>
+
+	<update id="qnaEdit">
+		UPDATE CS_NOTICEBOARD SET NBTITLE=#{param2},NBCONTENT=#{param3}
+		WHERE NBNO=#{param1}
+	</update>
+	
 	
 	
 	

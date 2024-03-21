@@ -11,5 +11,7 @@ public interface QnaBoardIDao {
 	public QnaDto qnacontentView(String nbno);
 
 	public void qnauphit(String nbno);
+
+	public void qnaEdit(String nbno, String nbtitle, String nbcontent);
 	
 }

@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tech.ibara.csnotice.service.QnaContentService;
+import com.tech.ibara.csnotice.service.QnaEditService;
 import com.tech.ibara.csnotice.service.QnaListService;
 import com.tech.ibara.csnotice.service.QnaServiceInter;
 
@@ -57,6 +59,20 @@ public class CsQnaController {
 		
 		return "csnotice/qnaeditview";
 	}
+
+	@RequestMapping(method = RequestMethod.POST,value = "/qnaeditproc") //리스트 컨트롤러 
+	public String qnaeditproc(HttpServletRequest request,Model model) {
+		System.out.println("qnaeditproc()controller");	
+		
+		model.addAttribute("request",request);
+		
+		qnaServiceInter=new QnaEditService(sqlSession);
+		qnaServiceInter.execute(model);
+		
+		return "redirect:qnalist";
+	}
+	
+	
 	
 	
 }
