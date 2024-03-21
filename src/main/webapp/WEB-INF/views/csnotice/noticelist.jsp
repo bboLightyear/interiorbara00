@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="resources/css/noticelist.css" />
+<link rel="stylesheet" type="text/css"
+	href="resources/css/noticelist.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <title>Notice List</title>
@@ -127,12 +128,14 @@
 		<!-- page numbering -->
 		<div class="page_number">
 			<i class="fas fa-angle-double-left"></i>
-			<li class="page_number_list page_number_list_1">1</li>
-			<li class="page_number_list page_number_list_2">2</li>
-			<li class="page_number_list page_number_list_3">3</li>
-			<li class="page_number_list page_number_list_4">4</li>
-			<li class="page_number_list page_number_list_5">5</li> <i
-				class="fas fa-angle-double-right"></i>
+			<ul>
+				<li class="page_number_list page_number_list_1">1</li>
+				<li class="page_number_list page_number_list_2">2</li>
+				<li class="page_number_list page_number_list_3">3</li>
+				<li class="page_number_list page_number_list_4">4</li>
+				<li class="page_number_list page_number_list_5">5</li>
+			</ul>
+			<i class="fas fa-angle-double-right"></i>
 			<!-- 글쓰기 버튼 -->
 			<button type="button" onclick="" class="write_button">글쓰기</button>
 		</div>
