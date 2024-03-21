@@ -42,7 +42,7 @@
 	<tr>
 		<td colspan="2">
 		<a href="qnaeditview?nbno=${qna_content.nbno }">수정</a>
-		<a href="qnadelete">삭제</a> 
+		<a href="qnadelete?nbno=${qna_content.nbno }">삭제</a> 
 		<a href="qnalist">목록으로</a> <br />
 		</td> 
 	</tr>
