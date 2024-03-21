@@ -17,6 +17,12 @@
 	<jsp:include page="modal/mmain.jsp"/>
 
 
-	<a href="shopProductList">shopProductList</a>
+	<br />
+	<a href="shop/list">list</a>
+	<br />
+	
+	<a href="cshome">고객센터</a>
+	
+	<img src="resources/upload/oh/star.png" alt="f" />
 </body>
 </html>

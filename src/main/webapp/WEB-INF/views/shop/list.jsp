@@ -8,38 +8,50 @@
 <title>Insert title here</title>
 	<style>
 		#wrap {
-			width: 500px;
+			width: 800px;
 			margin: auto;
 		}
 		
 		nav {
 			float: left;
-			height: 500px;
-			width: 30%;
+			width: 50%;
 			background-color: #fff0f0;
 		}
 		
 		main {
 			float: right;
-			height: 500px;
-			width: 70%;
+			width: 50%;
 			background-color: #f0f0ff;
 		}
 		
 		.clear {
 			clear: both;
 		}
+		
+		a {
+			text-decoration: none;
+		}
+		
+		.cell {
+			display: inline-block;
+			width: 33%;
+			height: 100px;
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
-	<h3>shopProductList.jsp</h3>
+	<h3>list.jsp</h3>
 	<div id="wrap">
-		<nav>
-			<a href="shopProductList?category_id=10000">가구</a><br />
-			<a href="shopProductList?category_id=10100">&nbsp;침대</a><br />
-			<a href="shopProductList?category_id=10101">&nbsp;&nbsp;침대프레임</a><br />
-			<a href="shopProductList?category_id=10102">&nbsp;&nbsp;침대+매트리스</a><br />
-			<a href="shopProductList?category_id=10103">&nbsp;&nbsp;침대부속가구</a><br />
+		<nav>			
+			<c:forEach items="${levelCategories }" var="cat">
+				<a href="list?category_id=${cat.category_id }">
+					<c:forEach begin="1" end="${cat.level - 1}">&nbsp;&nbsp;&nbsp;</c:forEach>
+					${cat.name }
+				</a>
+				<button>O</button>
+				<br />
+			</c:forEach>
 		</nav>
 		<main>
 			<h3>${category.name }</h3>
@@ -52,16 +64,12 @@
 			<br />
 	
 			<h4>상품 개수: ${productCnt }</h4>
-			<c:forEach items="${productList }" var="product">
-				${product.name } <br />
-			</c:forEach>
-			
 			<table>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+				<c:forEach items="${productList }" var="product" varStatus="status">
+					<div class="cell">
+						<a href="product?product_id=${product.product_id }">${product.name }</a>
+					</div>
+				</c:forEach>
 			</table>
 		</main>
 	</div>

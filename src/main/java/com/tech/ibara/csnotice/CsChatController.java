@@ -13,7 +13,7 @@ import com.tech.ibara.csnotice.service.QnaServiceInter;
 
 
 @Controller
-public class CsNoticeController {
+public class CsChatController {
 	
 	//서비스 선언
 	QnaServiceInter qnaServiceInter;
@@ -21,10 +21,15 @@ public class CsNoticeController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping("/noticelist")
-	public String noticelist() {
+	@RequestMapping("/cshome")
+	public String cshome() {
 		
-		return "csnotice/noticelist";
+		return "csnotice/cshome";
 	}
 	
+	@RequestMapping("/chat")
+	public String chat() {
+		
+		return "csnotice/chat";
+	}
 }
