@@ -59,8 +59,6 @@ public class CsQnaController {
 		
 		return "redirect:qnalist";
 	}
-	
-	
 
 	//리스트 컨트롤러 
 	@RequestMapping("/qnacontent") 

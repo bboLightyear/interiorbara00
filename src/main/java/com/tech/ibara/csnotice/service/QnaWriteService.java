@@ -30,6 +30,7 @@ public class QnaWriteService implements QnaServiceInter{
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
 		String path="C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\img\\csimg";
+		
 		MultipartRequest req;
 		String nbtitle="",nbcontent="",nbwriter="",nbfile="";
 		try {
@@ -39,7 +40,7 @@ public class QnaWriteService implements QnaServiceInter{
 			nbwriter=req.getParameter("nbwriter");
 			nbfile=req.getFilesystemName("nbfile");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("error");
 			e.printStackTrace();
 		}
 
