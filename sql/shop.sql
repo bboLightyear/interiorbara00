@@ -1,6 +1,6 @@
 --delete shop_product;
---drop table shop_product purge;
---drop sequence seq_shop_product;
+drop table shop_product purge;
+drop sequence seq_shop_product;
 
 create table shop_product (
     product_id number,
@@ -23,6 +23,8 @@ from (
 where
     rownum = 1;
     
+select * from shop_product;
+    
 /
 begin
     for i in 1..30000 loop
@@ -39,8 +41,8 @@ begin
                     dbms_random.value)
             where
                 rownum = 1),
-                round(dbms_random.value) * 4 + 1,
-                '»óÇ° ÀÌ¸§ ' || dbms_random.string('L', 10));
+                6,
+                'ìƒí’ˆ ì´ë¦„ ' || dbms_random.string('L', 10));
     end loop;
     commit;
 end;
@@ -53,15 +55,15 @@ commit;
 --insert into shop_product_data values (seq_shop_product_data.nextval, 10, 589000, 199000);
 --insert into shop_product_data values (seq_shop_product_data.nextval, 10, 739000, 249000);
 
---insert into shop_product values (seq_shop_product.nextval, 10104, 0, '»óÇ°ÀÌ¸§1');
---insert into shop_product values (seq_shop_product.nextval, 10105, 0, '»óÇ°ÀÌ¸§2');
---insert into shop_product values (seq_shop_product.nextval, 10106, 0, '»óÇ°ÀÌ¸§3');
---insert into shop_product values (seq_shop_product.nextval, 10107, 0, '»óÇ°ÀÌ¸§2');
---insert into shop_product values (seq_shop_product.nextval, 10108, 0, '»óÇ°ÀÌ¸§3');
---insert into shop_product values (seq_shop_product.nextval, 10109, 0, '»óÇ°ÀÌ¸§4');
---insert into shop_product values (seq_shop_product.nextval, 10103, 0, '»óÇ°ÀÌ¸§77');
+--insert into shop_product values (seq_shop_product.nextval, 10104, 0, 'ìƒí’ˆì´ë¦„1');
+--insert into shop_product values (seq_shop_product.nextval, 10105, 0, 'ìƒí’ˆì´ë¦„2');
+--insert into shop_product values (seq_shop_product.nextval, 10106, 0, 'ìƒí’ˆì´ë¦„3');
+--insert into shop_product values (seq_shop_product.nextval, 10107, 0, 'ìƒí’ˆì´ë¦„2');
+--insert into shop_product values (seq_shop_product.nextval, 10108, 0, 'ìƒí’ˆì´ë¦„3');
+--insert into shop_product values (seq_shop_product.nextval, 10109, 0, 'ìƒí’ˆì´ë¦„4');
+--insert into shop_product values (seq_shop_product.nextval, 10103, 0, 'ìƒí’ˆì´ë¦„77');
 --
---insert into shop_product values (seq_shop_product.nextval, 13, 1, '¾ÆÀÌºñ ¿ø¸ñ Ä§´ë ÇÁ·¹ÀÓ (¼ø¸é¸ÅÆ®¸®½º ¼±ÅÃ) (½´ÆÛ½Ì±Û/Äı)');
---insert into shop_product values (seq_shop_product.nextval, 3, 1, '¾ÆÀÌºñ ¿ø¸ñ Ä§´ë ÇÁ·¹ÀÓ (¼ø¸é¸ÅÆ®¸®½º ¼±ÅÃ) (½´ÆÛ½Ì±Û/Äı)');
+--insert into shop_product values (seq_shop_product.nextval, 13, 1, 'ì•„ì´ë¹„ ì›ëª© ì¹¨ëŒ€ í”„ë ˆì„ (ìˆœë©´ë§¤íŠ¸ë¦¬ìŠ¤ ì„ íƒ) (ìŠˆí¼ì‹±ê¸€/í€¸)');
+--insert into shop_product values (seq_shop_product.nextval, 3, 1, 'ì•„ì´ë¹„ ì›ëª© ì¹¨ëŒ€ í”„ë ˆì„ (ìˆœë©´ë§¤íŠ¸ë¦¬ìŠ¤ ì„ íƒ) (ìŠˆí¼ì‹±ê¸€/í€¸)');
 --insert into shop_product values (seq_shop_product.nextval, 14, 1, 'asdfasdf');
 --insert into shop_product values (seq_shop_product.nextval, 18, 1, '112321312');

@@ -176,11 +176,12 @@ from
 
 commit;
 
-insert into shop_option_set values (1, '»çÀÌÁî');
-insert into shop_option_set values (2, '»ö»ó');
-insert into shop_option_set values (3, '»ö»ó');
-insert into shop_option_set values (4, '»ö»ó');
-insert into shop_option_set values (5, '±æÀÌ');
+insert into shop_option_set values (1, 'ì‚¬ì´ì¦ˆ');
+insert into shop_option_set values (2, 'ìƒ‰ìƒ');
+insert into shop_option_set values (3, 'ìƒ‰ìƒ');
+insert into shop_option_set values (4, 'ìƒ‰ìƒ');
+insert into shop_option_set values (5, 'ê¸¸ì´');
+insert into shop_option_set values (6, null);
 
 insert into shop_product_data values (1, 10, 20000, 10000);
 insert into shop_product_data values (2, 10, 20000, 10000);
@@ -193,20 +194,24 @@ insert into shop_product_data values (7, 100, 3000, null);
 insert into shop_product_data values (8, 100, 4000, null);
 insert into shop_product_data values (9, 100, 5000, null);
 
-insert into shop_option values (1, 1, 2, null, '¼Ò');
-insert into shop_option values (2, 1, 3, null, 'Áß');
-insert into shop_option values (3, 1, 4, null, '´ë');
+insert into shop_product_data values (10, 100, 10000, null);
 
-insert into shop_option values (4, 2, null, 1, '°ËÁ¤');
-insert into shop_option values (5, 2, null, 2, 'ÇÏ¾ç');
-insert into shop_option values (6, 3, null, 3, '°ËÁ¤');
-insert into shop_option values (7, 3, null, 4, 'ÇÏ¾ç');
-insert into shop_option values (8, 4, null, 5, '°ËÁ¤');
-insert into shop_option values (9, 4, null, 6, 'ÇÏ¾ç');
+insert into shop_option values (1, 1, 2, null, 'ì†Œ');
+insert into shop_option values (2, 1, 3, null, 'ì¤‘');
+insert into shop_option values (3, 1, 4, null, 'ëŒ€');
+
+insert into shop_option values (4, 2, null, 1, 'ê²€ì •');
+insert into shop_option values (5, 2, null, 2, 'í•˜ì–‘');
+insert into shop_option values (6, 3, null, 3, 'ê²€ì •');
+insert into shop_option values (7, 3, null, 4, 'í•˜ì–‘');
+insert into shop_option values (8, 4, null, 5, 'ê²€ì •');
+insert into shop_option values (9, 4, null, 6, 'í•˜ì–‘');
 
 insert into shop_option values (10, 5, null, 7, '30cm');
 insert into shop_option values (11, 5, null, 8, '40cm');
 insert into shop_option values (12, 5, null, 9, '50cm');
+
+insert into shop_option values (13, 6, null, 10, 'ì˜µì…˜ì´ ì—†ëŠ” ìƒí’ˆ');
 
 commit;
 
@@ -215,16 +220,16 @@ commit;
 --insert into shop_product_data values (seq_shop_product_data.nextval, 10, 589000, 199000);
 --insert into shop_product_data values (seq_shop_product_data.nextval, 10, 739000, 249000);
 
---insert into shop_option_set values (seq_shop_option_set.nextval, '»çÀÌÁî');
---insert into shop_option_set values (seq_shop_option_set.nextval, '»ö»ó');
---insert into shop_option_set values (seq_shop_option_set.nextval, '»ö»ó');
+--insert into shop_option_set values (seq_shop_option_set.nextval, 'ì‚¬ì´ì¦ˆ');
+--insert into shop_option_set values (seq_shop_option_set.nextval, 'ìƒ‰ìƒ');
+--insert into shop_option_set values (seq_shop_option_set.nextval, 'ìƒ‰ìƒ');
 
---insert into shop_option values (seq_shop_option.nextval, 1, 2, null, '½´ÆÛ½Ì±Û(SS)');
---insert into shop_option values (seq_shop_option.nextval, 1, 3, null, 'Äı(Q)');
---insert into shop_option values (seq_shop_option.nextval, 2, null, 1, '³×Ãß·²(UL01005)');
---insert into shop_option values (seq_shop_option.nextval, 2, null, 2, 'ºê¶ó¿î(UL01007)');
---insert into shop_option values (seq_shop_option.nextval, 3, null, 3, '³×Ãß·²(UL01006)');
---insert into shop_option values (seq_shop_option.nextval, 3, null, 4, 'ºê¶ó¿î(UL01008)');
+--insert into shop_option values (seq_shop_option.nextval, 1, 2, null, 'ìŠˆí¼ì‹±ê¸€(SS)');
+--insert into shop_option values (seq_shop_option.nextval, 1, 3, null, 'í€¸(Q)');
+--insert into shop_option values (seq_shop_option.nextval, 2, null, 1, 'ë„¤ì¶”ëŸ´(UL01005)');
+--insert into shop_option values (seq_shop_option.nextval, 2, null, 2, 'ë¸Œë¼ìš´(UL01007)');
+--insert into shop_option values (seq_shop_option.nextval, 3, null, 3, 'ë„¤ì¶”ëŸ´(UL01006)');
+--insert into shop_option values (seq_shop_option.nextval, 3, null, 4, 'ë¸Œë¼ìš´(UL01008)');
 
 
 
