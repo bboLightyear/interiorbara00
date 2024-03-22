@@ -2,12 +2,15 @@ package com.tech.ibara.csnotice.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -27,31 +30,27 @@ public class QnaWriteService implements QnaServiceInter{
 		
 		System.out.println("QnaWriteService");
 		Map<String, Object> map=model.asMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		MultipartHttpServletRequest mftrequest=(MultipartHttpServletRequest) map.get("mftrequest");
+		
+		String nbwriter=mftrequest.getParameter("nwriter");
+		String nbtitle=mftrequest.getParameter("nbtitle");
+		String nbcontent=mftrequest.getParameter("nbcontent");
 		
 		String path="C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\img\\csimg";
 		
-		MultipartRequest req;
-		String nbtitle="",nbcontent="",nbwriter="",nbfile="";
-		try {
-			req = new MultipartRequest(request, path,1024*1024*10,"utf-8",new DefaultFileRenamePolicy());
-			nbtitle=req.getParameter("nbtitle");
-			nbcontent=req.getParameter("nbcontent");
-			nbwriter=req.getParameter("nbwriter");
-			nbfile=req.getFilesystemName("nbfile");
-		} catch (IOException e) {
-			System.out.println("error");
-			e.printStackTrace();
-		}
+		List<MultipartFile> fileList=mftrequest.getFiles("nbfile");
 
+		
+		
+		
 		System.out.println("nbtitle :"+nbtitle);
 		System.out.println("nbcontent :"+nbcontent);
 		System.out.println("nbwriter :"+nbwriter);
-		System.out.println("nbfile :"+nbfile);
+		System.out.println("fileList :"+fileList);
 		
 		
-		QnaBoardIDao dao=sqlSession.getMapper(QnaBoardIDao.class);
-		dao.qnaWrite(nbtitle,nbcontent,nbwriter,nbfile);
+//		QnaBoardIDao dao=sqlSession.getMapper(QnaBoardIDao.class);
+//		dao.qnaWrite(nbtitle,nbcontent,nbwriter,nbfile);
 		
 	}
 
