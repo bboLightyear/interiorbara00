@@ -91,7 +91,7 @@
 				
 			<button><a href="OHPhotoWriteView">글쓰기</a></button>
 			&nbsp;&nbsp;&nbsp;
-			<button><a href="OHPhotoEditView?">수정</a></button>
+			<button><a href="OHPhotoEditView?pb_no=${pb_dto.pb_no }">수정</a></button>
 			&nbsp;&nbsp;&nbsp;
 			<button><a href="#">삭제</a></button>
 				

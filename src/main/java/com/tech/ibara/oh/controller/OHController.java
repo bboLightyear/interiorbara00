@@ -128,7 +128,7 @@ public class OHController {
 		OHPhotoBoard pb_dto = dao.getDtoOHPhotoBoard(pb_no);
 		// model 값 전달
 		model.addAttribute("pb_dto", pb_dto);
-		// getDtoOHPhotoBoard() 함수 실행
+		// getDtoOHPhotoAttach() 함수 실행
 		ArrayList<OHPhotoAttach> pa_dto = dao.getDtoOHPhotoAttach(pb_no);
 		// model 값 전달
 		model.addAttribute("pa_dto", pa_dto);
@@ -139,23 +139,20 @@ public class OHController {
 	public String OHPhotoEditView(HttpServletRequest request, Model model) {
 		// Console 출력
 		System.out.println("OHPhotoEditView Controller");
-		
 		// 변수 선언, 값 저장		
 		String pb_no = request.getParameter("pb_no");
 		// 변수 값 출력
 		System.out.println("pb_no: " + pb_no);
-		
 		// OHInterfaceDao, SqlSession 연결
 		OHInterfaceDao dao = sqlSession.getMapper(OHInterfaceDao.class);
-		
 		// getDtoOHPhotoBoard() 함수 실행
 		OHPhotoBoard pb_dto = dao.getDtoOHPhotoBoard(pb_no);
 		// model 값 전달
 		model.addAttribute("pb_dto", pb_dto);
-		// getDtoOHPhotoBoard() 함수 실행
-
+		// getDtoOHPhotoAttach() 함수 실행		
+		ArrayList<OHPhotoAttach> pa_dto = dao.getDtoOHPhotoAttach(pb_no);
 		// model 값 전달
-
+		model.addAttribute("pa_dto", pa_dto);
 		return "oh/OHPhotoEditView";
 	}	
 }

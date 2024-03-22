@@ -58,7 +58,7 @@
 					<tr>
 						<td>내용</td>
 						<td>
-							<textarea name="pb_content" rows="10" cols="30" placeholder="내용을 입력하세요."></textarea>
+							<textarea name="pb_content" rows="10" cols="30" placeholder="내용을 입력하세요." ></textarea>
 						</td>
 					</tr>					
 				</table>
