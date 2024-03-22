@@ -49,21 +49,8 @@
 			<div class="header_category_list list_5">고객센터</div>
 		</div>
 	</header>
-
-<<<<<<< HEAD
-<P> &#x1F606; TeamProject CheerUp &#x1F44D; </P>
-<P> &#x1F606; 모두 화이팅!! &#x1F44D; </P>
-<p>test</p>
-<p>test</p>
-	<!-- 모달 창 열기 버튼 -->
-    <button id="openModal">퀵견적</button>
-	<jsp:include page="modal/mmain.jsp"/>
-=======
-	<br>
->>>>>>> a011bea57c6925a5150f014df61d28da91546ceb
-
+	<br /><br />
 	<div class="body_section">
-
 		<!--carousel_main : 최상위 클래스로 캐러셀의 전체 구조를 잡아줍니다.
         carousel_wrapper : 캐러셀 슬라이드의 전체 구조를 잡아줍니다.
         carousel_slide : 캐러셀 이미지를 설정합니다.
@@ -75,9 +62,13 @@
 			<!-- 캐러셀 왼쪽 버튼 -->
 			<div class="carousel_prev_button_container">
 				<button type="button" class="carousel_prev">
-				    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
-				        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-				        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+						fill="currentColor" class="bi bi-chevron-double-left"
+						viewBox="0 0 16 16">
+				        <path fill-rule="evenodd"
+							d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+				        <path fill-rule="evenodd"
+							d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
 				    </svg>
 				</button>
 			</div>
@@ -103,9 +94,13 @@
 			<!-- 캐러셀 오른쪽 버튼 -->
 			<div class="carousel_next_button_container">
 				<button type="button" class="carousel_next">
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
-                        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+						fill="currentColor" class="bi bi-chevron-double-right"
+						viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+							d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                        <path fill-rule="evenodd"
+							d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
                     </svg>
 				</button>
 			</div>
@@ -118,78 +113,63 @@
 			</div>
 		</div>
 		<!-- 캐러셀 작동 js -->
-<script>
-    <%-- JSP scriptlet to generate JavaScript code dynamically --%>
-
-    var swiper = document.querySelector('.carousel_wrapper');
-    var prevButtons = document.querySelectorAll('.carousel_prev');
-    var nextButtons = document.querySelectorAll('.carousel_next');
-    var bullets = document.querySelectorAll('.carousel_circle');
-
-    var currentSlide = 0;
-
-    function showSlide(slideIndex) {
-        swiper.style.transform = "translateX(-" + slideIndex * 300 + "px)";
-        currentSlide = slideIndex;
-
-        bullets.forEach(function (bullet, index) {
-            if (index === currentSlide) {
-                bullet.classList.add('active');
-            } else {
-                bullet.classList.remove('active');
-            }
-        });
-    }
-
-    prevButtons.forEach(function (prevButton) {
-        prevButton.addEventListener('click', function () {
-            if (currentSlide > 0) {
-                showSlide(currentSlide - 1);
-            }
-        });
-    });
-
-    nextButtons.forEach(function (nextButton) {
-        nextButton.addEventListener('click', function () {
-            if (currentSlide < 3) {
-                showSlide(currentSlide + 1);
-            }
-        });
-    });
-
-    bullets.forEach(function (bullet, index) {
-        bullet.addEventListener('click', function () {
-            showSlide(index);
-        });
-    });
-
-    showSlide(0);
-</script>
-
-		<br>
+		<script>
+			
+		<%-- JSP scriptlet to generate JavaScript code dynamically --%>
+			var swiper = document.querySelector('.carousel_wrapper');
+			var prevButtons = document.querySelectorAll('.carousel_prev');
+			var nextButtons = document.querySelectorAll('.carousel_next');
+			var bullets = document.querySelectorAll('.carousel_circle');
+			var currentSlide = 0;
+			function showSlide(slideIndex) {
+				swiper.style.transform = "translateX(-" + slideIndex * 300
+						+ "px)";
+				currentSlide = slideIndex;
+				bullets.forEach(function(bullet, index) {
+					if (index === currentSlide) {
+						bullet.classList.add('active');
+					} else {
+						bullet.classList.remove('active');
+					}
+				});
+			}
+			prevButtons.forEach(function(prevButton) {
+				prevButton.addEventListener('click', function() {
+					if (currentSlide > 0) {
+						showSlide(currentSlide - 1);
+					}
+				});
+			});
+			nextButtons.forEach(function(nextButton) {
+				nextButton.addEventListener('click', function() {
+					if (currentSlide < 3) {
+						showSlide(currentSlide + 1);
+					}
+				});
+			});
+			bullets.forEach(function(bullet, index) {
+				bullet.addEventListener('click', function() {
+					showSlide(index);
+				});
+			});
+			showSlide(0);
+		</script>
+		<br />
 		<div class="category_button_wrap">
-			<img src="resources/img/mainimg/gray_circle.png" alt="" class="category_button">
-			<img src="resources/img/mainimg/gray_circle.png" alt="" class="category_button">
-			<img src="resources/img/mainimg/gray_circle.png" alt="" class="category_button">
-			<img src="resources/img/mainimg/gray_circle.png" alt="" class="category_button">
+			<button id="openModal" class="category_button category_1"> <span>퀵견적</span> </button>
+			<jsp:include page="modal/mmain.jsp" />
+            <button onclick="location.href='shop/list'" class="category_button category_2"> <span>소품 샵</span> </button>
+            <button class="category_button category_3"> <span>업체 <br> 둘러보기 </span> </button>
+            <button class="category_button category_4"> <span>우리 집 <br> 자랑하기</span> </button>
+            <button onclick="location.href='cshome'" class="category_button category_5"> <span>고객센터</span> </button>
+			<br />
+			<a href="shop/list">
+				list
+			</a>
 		</div>
-		<br>
-		<h1>INTERIORBARA</h1>
-
-		<P>&#x1F606; TeamProject CheerUp &#x1F44D;</P>
-		<P>&#x1F606; 모두 화이팅!! &#x1F44D;</P>
-		<p>test</p>
-		<p>test</p>
-		<a href="modal">퀵견적</a> <a href="shopProductList">shopProductList</a>
-		<br /> <br />
-		<p>아래 푸터 있음</p>
-		<i class="fas fa-arrow-down"></i> <br /> <i class="fas fa-arrow-down"></i>
-		<br /> <i class="fas fa-arrow-down"></i> <br /> <i
-			class="fas fa-arrow-down"></i> <br /> <i class="fas fa-arrow-down"></i>
-		<br /> <i class="fas fa-arrow-down"></i>
 	</div>
-	<br>
-	<br>
+	<br />
+	<br />
 	<!-- 푸터 -->
 	<footer>
 		<!-- 푸터 로고 -->
@@ -204,16 +184,5 @@
 			<i class="fab fa-instagram fa-lg"></i>
 		</div>
 	</footer>
-
-<<<<<<< HEAD
-	<br />
-	<a href="shop/list">list</a>
-	<br />
-	
-	<a href="cshome">고객센터</a>
-	
-	<img src="resources/upload/oh/star.png" alt="f" />
-=======
->>>>>>> a011bea57c6925a5150f014df61d28da91546ceb
 </body>
 </html>
