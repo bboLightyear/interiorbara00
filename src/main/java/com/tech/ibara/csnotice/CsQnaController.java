@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tech.ibara.csnotice.service.QnaContentService;
 import com.tech.ibara.csnotice.service.QnaDeleteService;
@@ -50,10 +51,10 @@ public class CsQnaController {
 	}
 
 	@RequestMapping("/qnawrite")
-	public String qnawrite(HttpServletRequest request, Model model){
+	public String qnawrite(MultipartHttpServletRequest mftrequest, Model model){
 		System.out.println("qnawrite()controller");
 		
-		model.addAttribute("request",request);
+		model.addAttribute("mftrequest",mftrequest);
 		qnaServiceInter=new QnaWriteService(sqlSession);
 		qnaServiceInter.execute(model);
 		
