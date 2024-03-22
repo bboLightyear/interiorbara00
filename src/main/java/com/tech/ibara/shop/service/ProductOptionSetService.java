@@ -33,7 +33,7 @@ public class ProductOptionSetService implements ShopService {
 		if (subOptionSetDto == null) {
 			
 		} else {
-			optionDtoList = dao.selectOptionsByOptionSetId(subOptionSetDto.getOption_set_id());	
+			optionDtoList = dao.selectOptionsBySet(subOptionSetDto.getOption_set_id());	
 		}
 		
 		model.addAttribute("subOptions", optionDtoList);

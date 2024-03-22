@@ -26,14 +26,14 @@ public interface ShopDao {
 	
 	public ProductDto selectProductById(int product_id);
 	
-	public OptionSetDto selectOptionSetByProductId(int product_id);
+	public OptionSetDto selectOptionSetByProduct(int product_id);
 	public OptionSetDto selectOptionSetById(int option_set_id);
 	
-	public ArrayList<OptionDto> selectOptionsByOptionSetId(int option_set_id);
+	public ArrayList<OptionDto> selectOptionsBySet(int option_set_id);
 	public OptionDto selectOptionById(int option_id);
 	
 	public ProductDataDto selectProductDataById(int product_data_id);
 	
-	public OptionDto selectOptionJoinProductDataByOptionSetId(int option_set_id);
-	public ArrayList<OptionDto> selectOptionsJoinProductDataByOptionSetId(int option_set_id);
+	public OptionDto selectJoinOptionBySet(int option_set_id);
+	public ArrayList<OptionDto> selectJoinOptionsBySet(int option_set_id);
 }

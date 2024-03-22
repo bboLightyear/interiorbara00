@@ -114,7 +114,7 @@
 			PRODUCT_ID = #{param1}
 	</select>
 	
-	<select id="selectOptionSetByProductId" resultType="com.tech.ibara.shop.dto.OptionSetDto">
+	<select id="selectOptionSetByProduct" resultType="com.tech.ibara.shop.dto.OptionSetDto">
 		SELECT
 		    OPTION_SET_ID, NAME
 		FROM
@@ -138,7 +138,7 @@
 		    OPTION_SET_ID = #{param1}
 	</select>
 	
-	<select id="selectOptionsByOptionSetId" resultType="com.tech.ibara.shop.dto.OptionDto">
+	<select id="selectOptionsBySet" resultType="com.tech.ibara.shop.dto.OptionDto">
 		SELECT
 		    OPTION_ID, OPTION_SET_ID, SUB_OPTION_SET_ID, PRODUCT_DATA_ID, NAME
 		FROM
@@ -181,7 +181,7 @@
 		<collection property="product_data_dto" resultMap="ProductDataDto"></collection>
 	</resultMap>
 	
-	<select id="selectOptionJoinProductDataByOptionSetId" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
+	<select id="selectJoinOptionBySet" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
 		SELECT
 			O.OPTION_ID, O.OPTION_SET_ID, O.NAME, D.STOCK, D.PRICE, D.DISCOUNTED_PRICE
 		FROM
@@ -194,7 +194,7 @@
 			O.OPTION_SET_ID = #{param1}
 	</select>
 	
-	<select id="selectOptionsJoinProductDataByOptionSetId" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
+	<select id="selectJoinOptionsBySet" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
 		SELECT
 			O.OPTION_ID, O.OPTION_SET_ID, O.NAME, D.STOCK, D.PRICE, D.DISCOUNTED_PRICE
 		FROM

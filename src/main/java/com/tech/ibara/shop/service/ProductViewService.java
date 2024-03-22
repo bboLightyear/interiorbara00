@@ -29,7 +29,7 @@ public class ProductViewService implements ShopService {
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		
 		ProductDto productDto = dao.selectProductById(product_id);
-		OptionSetDto optionSetDto = dao.selectOptionSetByProductId(product_id);
+		OptionSetDto optionSetDto = dao.selectOptionSetByProduct(product_id);
 		
 		int optionSetId = optionSetDto.getOption_set_id();
 		
@@ -39,14 +39,14 @@ public class ProductViewService implements ShopService {
 		
 		ArrayList<OptionDto> optionDtoList = null;
 		
-		optionDtoList = dao.selectOptionsByOptionSetId(optionSetId);
+		optionDtoList = dao.selectOptionsBySet(optionSetId);
 		
 		if (optionDtoList.size() == 1) {
-			singleOptionDto = dao.selectOptionJoinProductDataByOptionSetId(optionSetId);
+			singleOptionDto = dao.selectJoinOptionBySet(optionSetId);
 		} else {
 			OptionDto optionDto = optionDtoList.get(0);
 			if (optionDto.getSub_option_set_id() == null) {
-				optionDtoList = dao.selectOptionsJoinProductDataByOptionSetId(optionSetId);
+				optionDtoList = dao.selectJoinOptionsBySet(optionSetId);
 			} else {
 				subOptionSetDto = dao.selectOptionSetById(optionDto.getSub_option_set_id());
 			}
