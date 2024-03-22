@@ -21,12 +21,26 @@ nbfile varchar2(50)      --첨부파일
 
 create sequence cs_noticeboard_seq;
 
+create table cs_noticeboard_img(
+nbno number primary key, 
+nbfile varchar2 (500)
+);
+
+--img 파일과 fk 생성
+ALTER TABLE cs_noticeboard_img
+ADD CONSTRAINTS qnaimg_fk FOREIGN KEY(nbno)
+REFERENCES cs_noticeboard(nbno);
+
 ------------------------------------ select 문
 select * from cs_noticeboard;
 
 select nbno,nbtitle,nbcontent,nbwriter,nbhit,nbdate,nbfile
 from cs_noticeboard
 where nbno='2';
+
+select s.name, p.name 
+from cs_noticeboard b left outer join cs_noticeboard_img i 
+on p.profno=s.profno;
 
 SELECT NBNO,NBWRITER,NBTITLE,NBCONTENT,NBDATE,NBHIT,NBGROUP,NBSTEP,NBINDENT 
 		FROM (SELECT ROWNUM NUM,N.* 

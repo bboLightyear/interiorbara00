@@ -6,6 +6,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+<!-- 	<script>
+		location.reload();
+	</script> -->
 	<style>
 		header {
 			border: 1px solid #333;
@@ -205,19 +208,21 @@
 					</table>
 				</div>
 				<!-- 전체 <div class="box"> 반복문 사용, 게시물 표현 -->
-				<c:forEach items="${ohPhotoView }" var="dto">
+				<c:forEach items="${ohPhotoView }" var="dto" varStatus="status">
 					<div class="box">
-						<div>${dto.pb_no }</div>
-						<div>${dto.pb_user }</div>	
-						<div>${dto.pb_title }</div>	
-						<div>${dto.pb_content }</div>
-						<div>${dto.ohPhotoAttach.pa_no }</div>
-						<div>${dto.ohPhotoAttach.pa_attach }</div>
-						<div>${dto.ohPhotoAttach.pb_no }</div>
-						<img src="../resources/upload/oh/${dto.ohPhotoAttach.pa_attach }" alt="해당 게시글 대표사진" />
+						<div>pb_no: ${dto.pb_no }</div>
+						<div>pb_user: ${dto.pb_user }</div>	
+						<div>pb_title: ${dto.pb_title }</div>	
+						<div>pb_content: ${dto.pb_content }</div>
+						<div>pa_no: ${dto.ohPhotoAttach.pa_no }</div>
+						<div>pa_attach: ${dto.ohPhotoAttach.pa_attach }</div>
+						<div>pb_no: ${dto.ohPhotoAttach.pb_no }</div>
+						<a href="OHPhotoDetailView?pb_no=${dto.pb_no }&pa_no=${dto.ohPhotoAttach.pa_no }">
+							<img src="../resources/upload/oh/${dto.ohPhotoAttach.pa_attach }" alt="해당 게시글 대표사진" height="300px" width="300px"/>
+						</a>
 					</div>
 				</c:forEach>
-				
+	
 			</div>
 			
 		</div>
