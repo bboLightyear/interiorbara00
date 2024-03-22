@@ -80,10 +80,20 @@
 		    OH_PHOTO_ATTACH_SEQ.NEXTVAL, #{param2}, #{param1} 
 		)
 	</insert>
-	<select id="getDtoOHPhotoBoard">
-	
+	<select id="getDtoOHPhotoBoard" resultType="com.tech.ibara.oh.dto.OHPhotoBoard">
+		SELECT
+			*
+		FROM
+			OH_PHOTO_BOARD
+		WHERE
+			PB_NO = #{param1}
 	</select>
-	<select id="getDtoOHPhotoAttach">
-	
+	<select id="getDtoOHPhotoAttach" resultType="com.tech.ibara.oh.dto.OHPhotoAttach">
+		SELECT
+			*
+		FROM
+			OH_PHOTO_ATTACH
+		WHERE
+			PB_NO = #{param1}		
 	</select>
 </mapper>

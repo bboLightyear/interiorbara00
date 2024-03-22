@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>OH - OHMainView.jsp</title>
+	<title>OH - OHPhotoEditView.jsp</title>
 	<link rel="stylesheet" href="../resources/css/oh.css" />	
 </head>
 <body>
@@ -26,16 +26,9 @@
 				</ul>
 			</div>
 						
-				<h3>OHMainView.jsp</h3>
+				<h3>OHPhotoEditView.jsp</h3>
 				
 				<h3>우리집 자랑하기</h3>						
-							
-				<button><a href="OHPhotoWriteView">글쓰기</a></button> <br />
-				<button><a href="OHPhotoView">집사진</a></button>
-				<button>집사진 더보기</button> <br />
-				<button>집영상</button>
-				<button>집영상 더보기</button> <br />
-				<button>#category</button><span>카테고리별로 보고 싶다면 여기!</span>
 								
 		</div>
 		
