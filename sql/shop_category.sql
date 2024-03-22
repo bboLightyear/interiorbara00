@@ -1,9 +1,9 @@
---delete shop_category;
---drop table shop_category purge;
---drop sequence seq_shop_category;
+delete shop_category;
+drop table shop_category purge;
+drop sequence seq_shop_category;
 
--- product_id·Î »óÇ°ÀÇ Ä«Å×°í¸®(»óÀ§Æ÷ÇÔ) ºÒ·¯¿À±â
--- category_id·Î ÇØ´çÇÏ´Â »óÇ° ÀüºÎ ºÒ·¯¿À±â
+-- product_idë¡œ ìƒí’ˆì˜ ì¹´í…Œê³ ë¦¬(ìƒìœ„í¬í•¨) ë¶ˆëŸ¬ì˜¤ê¸°
+-- category_idë¡œ í•´ë‹¹í•˜ëŠ” ìƒí’ˆ ì „ë¶€ ë¶ˆëŸ¬ì˜¤ê¸°
 
 
 create table shop_category (
@@ -39,7 +39,7 @@ join
 on
     c3.up_category_id = c4.category_id;
     
--- ÃÖÇÏ´Ü Ä«Å×°í¸®
+-- ìµœí•˜ë‹¨ ì¹´í…Œê³ ë¦¬
 select
     rownum num1,
     nvl(s4.category_id, nvl(s3.category_id, s2.category_id)) category_id,
@@ -64,13 +64,13 @@ where
 order by
     category_id;
 
--- °èÃş ±¸Á¶
+-- ê³„ì¸µ êµ¬ì¡°
 select
     lpad(' ', 3 * (level - 1)) || name
 from
     shop_category
 start with
-    up_category_id = -1
+    up_category_id is null
 connect by
     prior category_id = up_category_id;
 
@@ -79,7 +79,7 @@ SELECT
 FROM
     SHOP_CATEGORY
 START WITH
-    UP_CATEGORY_ID = -1
+    UP_CATEGORY_ID is null
 CONNECT BY
     PRIOR CATEGORY_ID = UP_CATEGORY_ID;
     
@@ -150,581 +150,581 @@ order by
 select * from shop_category order by category_id;
 
 
-insert into shop_category values (10000, -1, '°¡±¸');
+insert into shop_category values (10000, null, 'ê°€êµ¬');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (10100, 10000, 'Ä§´ë');
-insert into shop_category values (10101, 10100, 'Ä§´ëÇÁ·¹ÀÓ');
-insert into shop_category values (10102, 10100, 'Ä§´ë+¸ÅÆ®¸®½º');
-insert into shop_category values (10103, 10100, 'Ä§´ëºÎ¼Ó°¡±¸');
+insert into shop_category values (10100, 10000, 'ì¹¨ëŒ€');
+insert into shop_category values (10101, 10100, 'ì¹¨ëŒ€í”„ë ˆì„');
+insert into shop_category values (10102, 10100, 'ì¹¨ëŒ€+ë§¤íŠ¸ë¦¬ìŠ¤');
+insert into shop_category values (10103, 10100, 'ì¹¨ëŒ€ë¶€ì†ê°€êµ¬');
 
-insert into shop_category values (10104, 10101, 'ÀÏ¹İÄ§´ë');
-insert into shop_category values (10105, 10101, '¼ö³³Ä§´ë');
-insert into shop_category values (10106, 10101, 'Àú»óÇüÄ§´ë');
-insert into shop_category values (10107, 10101, 'ÆĞ¹Ğ¸®Ä§´ë');
-insert into shop_category values (10108, 10101, 'ÀÌÃş¡¤º¡Ä¿Ä§´ë');
-insert into shop_category values (10109, 10101, 'ÇÏ´Ü¸ÅÆ®¸®½º¡¤ÆÄ¿îµ¥ÀÌ¼Ç');
-insert into shop_category values (10110, 10101, '¸ğ¼Çº£µå');
-insert into shop_category values (10111, 10101, 'µ¹Ä§´ë¡¤ÈëÄ§´ë');
-insert into shop_category values (10112, 10101, 'Á¢ÀÌ½ÄÄ§´ë');
-insert into shop_category values (10113, 10102, 'ÀÏ¹İÄ§´ë');
-insert into shop_category values (10114, 10102, '¼ö³³Ä§´ë');
-insert into shop_category values (10115, 10102, 'Àú»óÇüÄ§´ë');
-insert into shop_category values (10116, 10102, 'ÆĞ¹Ğ¸®Ä§´ë');
-insert into shop_category values (10117, 10102, 'ÀÌÃş¡¤º¡Ä¿Ä§´ë');
-insert into shop_category values (10118, 10102, 'Åõ¸ÅÆ®¸®½º');
-insert into shop_category values (10119, 10102, '¸ğ¼Çº£µå');
+insert into shop_category values (10104, 10101, 'ì¼ë°˜ì¹¨ëŒ€');
+insert into shop_category values (10105, 10101, 'ìˆ˜ë‚©ì¹¨ëŒ€');
+insert into shop_category values (10106, 10101, 'ì €ìƒí˜•ì¹¨ëŒ€');
+insert into shop_category values (10107, 10101, 'íŒ¨ë°€ë¦¬ì¹¨ëŒ€');
+insert into shop_category values (10108, 10101, 'ì´ì¸µÂ·ë²™ì»¤ì¹¨ëŒ€');
+insert into shop_category values (10109, 10101, 'í•˜ë‹¨ë§¤íŠ¸ë¦¬ìŠ¤Â·íŒŒìš´ë°ì´ì…˜');
+insert into shop_category values (10110, 10101, 'ëª¨ì…˜ë² ë“œ');
+insert into shop_category values (10111, 10101, 'ëŒì¹¨ëŒ€Â·í™ì¹¨ëŒ€');
+insert into shop_category values (10112, 10101, 'ì ‘ì´ì‹ì¹¨ëŒ€');
+insert into shop_category values (10113, 10102, 'ì¼ë°˜ì¹¨ëŒ€');
+insert into shop_category values (10114, 10102, 'ìˆ˜ë‚©ì¹¨ëŒ€');
+insert into shop_category values (10115, 10102, 'ì €ìƒí˜•ì¹¨ëŒ€');
+insert into shop_category values (10116, 10102, 'íŒ¨ë°€ë¦¬ì¹¨ëŒ€');
+insert into shop_category values (10117, 10102, 'ì´ì¸µÂ·ë²™ì»¤ì¹¨ëŒ€');
+insert into shop_category values (10118, 10102, 'íˆ¬ë§¤íŠ¸ë¦¬ìŠ¤');
+insert into shop_category values (10119, 10102, 'ëª¨ì…˜ë² ë“œ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (10200, 10000, '¸ÅÆ®¸®½º¡¤ÅäÆÛ');
-insert into shop_category values (10201, 10200, '¸ÅÆ®¸®½º');
-insert into shop_category values (10202, 10200, 'ÅäÆÛ');
-insert into shop_category values (10203, 10201, '½ºÇÁ¸µ¸ÅÆ®¸®½º');
-insert into shop_category values (10204, 10201, '¶óÅØ½º¸ÅÆ®¸®½º');
-insert into shop_category values (10205, 10201, 'Æû¸ÅÆ®¸®½º');
+insert into shop_category values (10200, 10000, 'ë§¤íŠ¸ë¦¬ìŠ¤Â·í† í¼');
+insert into shop_category values (10201, 10200, 'ë§¤íŠ¸ë¦¬ìŠ¤');
+insert into shop_category values (10202, 10200, 'í† í¼');
+insert into shop_category values (10203, 10201, 'ìŠ¤í”„ë§ë§¤íŠ¸ë¦¬ìŠ¤');
+insert into shop_category values (10204, 10201, 'ë¼í…ìŠ¤ë§¤íŠ¸ë¦¬ìŠ¤');
+insert into shop_category values (10205, 10201, 'í¼ë§¤íŠ¸ë¦¬ìŠ¤');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (10300, 10000, 'Å×ÀÌºí¡¤½ÄÅ¹¡¤Ã¥»ó');
+insert into shop_category values (10300, 10000, 'í…Œì´ë¸”Â·ì‹íƒÂ·ì±…ìƒ');
 
-insert into shop_category values (10301, 10300, '°Å½Ç¡¤¼ÒÆÄÅ×ÀÌºí');
-insert into shop_category values (10302, 10300, '»çÀÌµåÅ×ÀÌºí');
-insert into shop_category values (10303, 10300, '½ÄÅ¹');
-insert into shop_category values (10304, 10300, 'Ã¥»ó');
-insert into shop_category values (10305, 10300, 'ÁÂ½ÄÅ×ÀÌºí');
+insert into shop_category values (10301, 10300, 'ê±°ì‹¤Â·ì†ŒíŒŒí…Œì´ë¸”');
+insert into shop_category values (10302, 10300, 'ì‚¬ì´ë“œí…Œì´ë¸”');
+insert into shop_category values (10303, 10300, 'ì‹íƒ');
+insert into shop_category values (10304, 10300, 'ì±…ìƒ');
+insert into shop_category values (10305, 10300, 'ì¢Œì‹í…Œì´ë¸”');
 
-insert into shop_category values (10306, 10303, '½ÄÅ¹¡¤ÀÔ½ÄÅ×ÀÌºí');
-insert into shop_category values (10307, 10303, 'È¨¹Ù¡¤¾ÆÀÏ·£µå½ÄÅ¹');
-insert into shop_category values (10308, 10303, '½ÄÅ¹+ÀÇÀÚ');
+insert into shop_category values (10306, 10303, 'ì‹íƒÂ·ì…ì‹í…Œì´ë¸”');
+insert into shop_category values (10307, 10303, 'í™ˆë°”Â·ì•„ì¼ëœë“œì‹íƒ');
+insert into shop_category values (10308, 10303, 'ì‹íƒ+ì˜ì');
 
-insert into shop_category values (10309, 10304, 'ÀÏ¹İÃ¥»ó');
-insert into shop_category values (10310, 10304, 'ÁÂ½ÄÃ¥»ó');
-insert into shop_category values (10311, 10304, '¸ğ¼Ç¡¤½ºÅÄµùÃ¥»ó');
-insert into shop_category values (10312, 10304, 'µ¶¼­½ÇÃ¥»ó');
-insert into shop_category values (10313, 10304, 'ÇĞ¿ø¡¤»ç¹«¿ëÃ¥»ó');
+insert into shop_category values (10309, 10304, 'ì¼ë°˜ì±…ìƒ');
+insert into shop_category values (10310, 10304, 'ì¢Œì‹ì±…ìƒ');
+insert into shop_category values (10311, 10304, 'ëª¨ì…˜Â·ìŠ¤íƒ ë”©ì±…ìƒ');
+insert into shop_category values (10312, 10304, 'ë…ì„œì‹¤ì±…ìƒ');
+insert into shop_category values (10313, 10304, 'í•™ì›Â·ì‚¬ë¬´ìš©ì±…ìƒ');
 
-insert into shop_category values (10314, 10305, 'Á¢ÀÌ½ÄÅ×ÀÌºí');
-insert into shop_category values (10315, 10305, 'ºñÁ¢ÀÌ½ÄÅ×ÀÌºí');
-insert into shop_category values (10316, 10305, '±³ÀÚ»ó');
+insert into shop_category values (10314, 10305, 'ì ‘ì´ì‹í…Œì´ë¸”');
+insert into shop_category values (10315, 10305, 'ë¹„ì ‘ì´ì‹í…Œì´ë¸”');
+insert into shop_category values (10316, 10305, 'êµììƒ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (10400, 10000, '¼ÒÆÄ');
+insert into shop_category values (10400, 10000, 'ì†ŒíŒŒ');
 
-insert into shop_category values (10401, 10400, 'ÀÏ¹İ¼ÒÆÄ');
-insert into shop_category values (10402, 10400, '¸®Å¬¶óÀÌ³Ê');
-insert into shop_category values (10403, 10400, '¼ÒÆÄº£µå');
-insert into shop_category values (10404, 10400, 'ÁÂ½Ä¼ÒÆÄ');
-insert into shop_category values (10405, 10400, '¼ÒÆÄ½ºÅø');
+insert into shop_category values (10401, 10400, 'ì¼ë°˜ì†ŒíŒŒ');
+insert into shop_category values (10402, 10400, 'ë¦¬í´ë¼ì´ë„ˆ');
+insert into shop_category values (10403, 10400, 'ì†ŒíŒŒë² ë“œ');
+insert into shop_category values (10404, 10400, 'ì¢Œì‹ì†ŒíŒŒ');
+insert into shop_category values (10405, 10400, 'ì†ŒíŒŒìŠ¤íˆ´');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (10500, 10000, '¼­¶ø¡¤¼ö³³Àå');
+insert into shop_category values (10500, 10000, 'ì„œëÂ·ìˆ˜ë‚©ì¥');
 
-insert into shop_category values (10501, 10500, '¼­¶øÀå');
-insert into shop_category values (10502, 10500, '¼ö³³Àå');
-insert into shop_category values (10503, 10500, 'Ä³ºñ´Ö');
-insert into shop_category values (10504, 10500, 'ÁÖ¹æ¼ö³³Àå');
-insert into shop_category values (10505, 10500, 'ÇùÅ¹');
+insert into shop_category values (10501, 10500, 'ì„œëì¥');
+insert into shop_category values (10502, 10500, 'ìˆ˜ë‚©ì¥');
+insert into shop_category values (10503, 10500, 'ìºë¹„ë‹›');
+insert into shop_category values (10504, 10500, 'ì£¼ë°©ìˆ˜ë‚©ì¥');
+insert into shop_category values (10505, 10500, 'í˜‘íƒ');
 
-insert into shop_category values (10506, 10504, '·»Áö´ë');
-insert into shop_category values (10507, 10504, '±×¸©Àå');
-insert into shop_category values (10508, 10504, '»óºÎÀå');
-insert into shop_category values (10509, 10504, 'ÇÏºÎÀå');
-insert into shop_category values (10510, 10504, 'Å°Å«Àå');
-insert into shop_category values (10511, 10504, '»óºÎÀå+ÇÏºÎÀå');
+insert into shop_category values (10506, 10504, 'ë Œì§€ëŒ€');
+insert into shop_category values (10507, 10504, 'ê·¸ë¦‡ì¥');
+insert into shop_category values (10508, 10504, 'ìƒë¶€ì¥');
+insert into shop_category values (10509, 10504, 'í•˜ë¶€ì¥');
+insert into shop_category values (10510, 10504, 'í‚¤í°ì¥');
+insert into shop_category values (10511, 10504, 'ìƒë¶€ì¥+í•˜ë¶€ì¥');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (10600, 10000, '°Å½ÇÀå¡¤TVÀå');
+insert into shop_category values (10600, 10000, 'ê±°ì‹¤ì¥Â·TVì¥');
 
-insert into shop_category values (10601, 10600, 'ÀÏ¹İ°Å½ÇÀå');
-insert into shop_category values (10602, 10600, '³ôÀº°Å½ÇÀå¡¤»çÀÌµåº¸µå');
-insert into shop_category values (10603, 10600, 'TV½ºÅÄµå');
+insert into shop_category values (10601, 10600, 'ì¼ë°˜ê±°ì‹¤ì¥');
+insert into shop_category values (10602, 10600, 'ë†’ì€ê±°ì‹¤ì¥Â·ì‚¬ì´ë“œë³´ë“œ');
+insert into shop_category values (10603, 10600, 'TVìŠ¤íƒ ë“œ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (10700, 10000, '¼±¹İ');
+insert into shop_category values (10700, 10000, 'ì„ ë°˜');
 
-insert into shop_category values (10701, 10700, 'º®¼±¹İ');
-insert into shop_category values (10702, 10700, '½ºÅÄµå¼±¹İ');
-insert into shop_category values (10703, 10700, '¾Ş±Û¡¤Á¶¸³½Ä¼±¹İ');
+insert into shop_category values (10701, 10700, 'ë²½ì„ ë°˜');
+insert into shop_category values (10702, 10700, 'ìŠ¤íƒ ë“œì„ ë°˜');
+insert into shop_category values (10703, 10700, 'ì•µê¸€Â·ì¡°ë¦½ì‹ì„ ë°˜');
 
-insert into shop_category values (10704, 10701, '¹«ÁöÁÖ¼±¹İ');
-insert into shop_category values (10705, 10701, 'ÁöÁÖ¼±¹İ');
-insert into shop_category values (10706, 10701, 'Âù³Ú¼±¹İ');
+insert into shop_category values (10704, 10701, 'ë¬´ì§€ì£¼ì„ ë°˜');
+insert into shop_category values (10705, 10701, 'ì§€ì£¼ì„ ë°˜');
+insert into shop_category values (10706, 10701, 'ì°¬ë„¬ì„ ë°˜');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (10800, 10000, 'Áø¿­Àå¡¤Ã¥Àå');
+insert into shop_category values (10800, 10000, 'ì§„ì—´ì¥Â·ì±…ì¥');
 
-insert into shop_category values (10801, 10800, 'Áø¿­Àå¡¤Àå½ÄÀå');
-insert into shop_category values (10802, 10800, 'Ã¥Àå');
-insert into shop_category values (10803, 10800, '¸Å°ÅÁø·¢');
+insert into shop_category values (10801, 10800, 'ì§„ì—´ì¥Â·ì¥ì‹ì¥');
+insert into shop_category values (10802, 10800, 'ì±…ì¥');
+insert into shop_category values (10803, 10800, 'ë§¤ê±°ì§„ë™');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (10900, 10000, 'ÀÇÀÚ');
+insert into shop_category values (10900, 10000, 'ì˜ì');
 
-insert into shop_category values (10901, 10900, 'ÀÎÅ×¸®¾îÀÇÀÚ');
-insert into shop_category values (10902, 10900, '½ºÅø¡¤º¥Ä¡');
-insert into shop_category values (10903, 10900, 'ºó¹é');
-insert into shop_category values (10904, 10900, '¾È¶ôÀÇÀÚ');
-insert into shop_category values (10905, 10900, 'ÈçµéÀÇÀÚ');
-insert into shop_category values (10906, 10900, 'ÇĞ»ı¡¤»ç¹«¿ëÀÇÀÚ');
-insert into shop_category values (10907, 10900, '°ÔÀÌ¹ÖÀÇÀÚ');
-insert into shop_category values (10908, 10900, 'ÁÂ½ÄÀÇÀÚ¡¤ÀÚ¼¼º¸Á¤ÀÇÀÚ');
-insert into shop_category values (10909, 10900, '¹ÙÃ¼¾î');
-insert into shop_category values (10910, 10900, '¹ß¹ŞÄ§');
+insert into shop_category values (10901, 10900, 'ì¸í…Œë¦¬ì–´ì˜ì');
+insert into shop_category values (10902, 10900, 'ìŠ¤íˆ´Â·ë²¤ì¹˜');
+insert into shop_category values (10903, 10900, 'ë¹ˆë°±');
+insert into shop_category values (10904, 10900, 'ì•ˆë½ì˜ì');
+insert into shop_category values (10905, 10900, 'í”ë“¤ì˜ì');
+insert into shop_category values (10906, 10900, 'í•™ìƒÂ·ì‚¬ë¬´ìš©ì˜ì');
+insert into shop_category values (10907, 10900, 'ê²Œì´ë°ì˜ì');
+insert into shop_category values (10908, 10900, 'ì¢Œì‹ì˜ìÂ·ìì„¸ë³´ì •ì˜ì');
+insert into shop_category values (10909, 10900, 'ë°”ì²´ì–´');
+insert into shop_category values (10910, 10900, 'ë°œë°›ì¹¨');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (11000, 10000, 'Çà°Å¡¤¿ÊÀå');
+insert into shop_category values (11000, 10000, 'í–‰ê±°Â·ì˜·ì¥');
 
-insert into shop_category values (11001, 11000, '¿ÊÀå');
-insert into shop_category values (11002, 11000, 'ºÙ¹ÚÀÌÀå');
-insert into shop_category values (11003, 11000, 'µå·¹½º·ë');
-insert into shop_category values (11004, 11000, 'Çà°Å');
+insert into shop_category values (11001, 11000, 'ì˜·ì¥');
+insert into shop_category values (11002, 11000, 'ë¶™ë°•ì´ì¥');
+insert into shop_category values (11003, 11000, 'ë“œë ˆìŠ¤ë£¸');
+insert into shop_category values (11004, 11000, 'í–‰ê±°');
 
-insert into shop_category values (11005, 11004, '°íÁ¤¡¤¼³Ä¡ÇüÇà°Å');
-insert into shop_category values (11006, 11004, 'ÀÌµ¿½ÄÇà°Å');
-insert into shop_category values (11007, 11004, '½ºÅÄµåÇà°Å');
-insert into shop_category values (11008, 11004, '½ºÅÄµåÇü¿Ê°ÉÀÌ');
+insert into shop_category values (11005, 11004, 'ê³ ì •Â·ì„¤ì¹˜í˜•í–‰ê±°');
+insert into shop_category values (11006, 11004, 'ì´ë™ì‹í–‰ê±°');
+insert into shop_category values (11007, 11004, 'ìŠ¤íƒ ë“œí–‰ê±°');
+insert into shop_category values (11008, 11004, 'ìŠ¤íƒ ë“œí˜•ì˜·ê±¸ì´');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (11100, 10000, '°Å¿ï');
+insert into shop_category values (11100, 10000, 'ê±°ìš¸');
 
-insert into shop_category values (11101, 11100, 'Àü½Å°Å¿ï');
-insert into shop_category values (11102, 11100, 'º®°Å¿ï');
-insert into shop_category values (11103, 11100, 'Å¹»ó°Å¿ï');
+insert into shop_category values (11101, 11100, 'ì „ì‹ ê±°ìš¸');
+insert into shop_category values (11102, 11100, 'ë²½ê±°ìš¸');
+insert into shop_category values (11103, 11100, 'íƒìƒê±°ìš¸');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (11200, 10000, 'È­Àå´ë¡¤ÄÜ¼Ö');
+insert into shop_category values (11200, 10000, 'í™”ì¥ëŒ€Â·ì½˜ì†”');
 
-insert into shop_category values (11201, 11200, 'ÀÏ¹İÈ­Àå´ë');
-insert into shop_category values (11202, 11200, '¼ö³³È­Àå´ë');
-insert into shop_category values (11203, 11200, 'ÁÂ½Ä¡¤¹Ì´ÏÈ­Àå´ë');
-insert into shop_category values (11204, 11200, 'Á¢ÀÌ½ÄÈ­Àå´ë');
-insert into shop_category values (11205, 11200, 'ÄÜ¼Ö');
-insert into shop_category values (11206, 11200, 'È­Àå´ë+ÀÇÀÚ');
+insert into shop_category values (11201, 11200, 'ì¼ë°˜í™”ì¥ëŒ€');
+insert into shop_category values (11202, 11200, 'ìˆ˜ë‚©í™”ì¥ëŒ€');
+insert into shop_category values (11203, 11200, 'ì¢Œì‹Â·ë¯¸ë‹ˆí™”ì¥ëŒ€');
+insert into shop_category values (11204, 11200, 'ì ‘ì´ì‹í™”ì¥ëŒ€');
+insert into shop_category values (11205, 11200, 'ì½˜ì†”');
+insert into shop_category values (11206, 11200, 'í™”ì¥ëŒ€+ì˜ì');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (11300, 10000, '¾ß¿Ü°¡±¸');
+insert into shop_category values (11300, 10000, 'ì•¼ì™¸ê°€êµ¬');
 
-insert into shop_category values (11301, 11300, '¾ß¿ÜÅ×ÀÌºí');
-insert into shop_category values (11302, 11300, '¾ß¿ÜÅ×ÀÌºí+ÀÇÀÚ');
-insert into shop_category values (11303, 11300, '¾ß¿ÜÀÇÀÚ');
-insert into shop_category values (11304, 11300, 'Ã¢°í¡¤ÆÄ¶ó¼Ö¡¤±âÅ¸');
+insert into shop_category values (11301, 11300, 'ì•¼ì™¸í…Œì´ë¸”');
+insert into shop_category values (11302, 11300, 'ì•¼ì™¸í…Œì´ë¸”+ì˜ì');
+insert into shop_category values (11303, 11300, 'ì•¼ì™¸ì˜ì');
+insert into shop_category values (11304, 11300, 'ì°½ê³ Â·íŒŒë¼ì†”Â·ê¸°íƒ€');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (11400, 10000, '°¡º®¡¤ÆÄÆ¼¼Ç');
+insert into shop_category values (11400, 10000, 'ê°€ë²½Â·íŒŒí‹°ì…˜');
 
-insert into shop_category values (11401, 11400, 'ÀÎÅ×¸®¾îÆÄÆ¼¼Ç');
-insert into shop_category values (11402, 11400, '»ç¹«¿ëÆÄÆ¼¼Ç');
+insert into shop_category values (11401, 11400, 'ì¸í…Œë¦¬ì–´íŒŒí‹°ì…˜');
+insert into shop_category values (11402, 11400, 'ì‚¬ë¬´ìš©íŒŒí‹°ì…˜');
 
 
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-insert into shop_category values (20000, -1, 'ÆĞºê¸¯');
+insert into shop_category values (20000, null, 'íŒ¨ë¸Œë¦­');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (20100, 20000, 'Ä¿Æ°¡¤ºÎÀÚÀç');
+insert into shop_category values (20100, 20000, 'ì»¤íŠ¼Â·ë¶€ìì¬');
 
-insert into shop_category values (20101, 20100, '¾Ï¸·Ä¿Æ°');
-insert into shop_category values (20102, 20100, 'ÀÏ¹İÄ¿Æ°');
-insert into shop_category values (20103, 20100, '·¹ÀÌ½º¡¤¼ÓÄ¿Æ°');
-insert into shop_category values (20104, 20100, '°¡¸®°³Ä¿Æ°');
-insert into shop_category values (20105, 20100, '¹Ù¶õ½º¡¤ÁÖ¹æÄ¿Æ°');
-insert into shop_category values (20106, 20100, 'Ä¿Æ°ºÎÀÚÀç');
-insert into shop_category values (20107, 20100, 'Ä³³ëÇÇ');
+insert into shop_category values (20101, 20100, 'ì•”ë§‰ì»¤íŠ¼');
+insert into shop_category values (20102, 20100, 'ì¼ë°˜ì»¤íŠ¼');
+insert into shop_category values (20103, 20100, 'ë ˆì´ìŠ¤Â·ì†ì»¤íŠ¼');
+insert into shop_category values (20104, 20100, 'ê°€ë¦¬ê°œì»¤íŠ¼');
+insert into shop_category values (20105, 20100, 'ë°”ë€ìŠ¤Â·ì£¼ë°©ì»¤íŠ¼');
+insert into shop_category values (20106, 20100, 'ì»¤íŠ¼ë¶€ìì¬');
+insert into shop_category values (20107, 20100, 'ìºë…¸í”¼');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (20200, 20000, '·¯±×¡¤Ä«ÆäÆ®');
+insert into shop_category values (20200, 20000, 'ëŸ¬ê·¸Â·ì¹´í˜íŠ¸');
 
-insert into shop_category values (20201, 20200, '±Ø¼¼»ç¡¤´Ü¸ğ·¯±×');
-insert into shop_category values (20202, 20200, '»çÀÌÀß·è·¯±×');
-insert into shop_category values (20203, 20200, '¹Ì´Ï¡¤Æ÷ÀÎÆ®·¯±×');
-insert into shop_category values (20204, 20200, '»ş±â·¯±×');
-insert into shop_category values (20205, 20200, '¸é¡¤ÇÚµå¸ŞÀÌµå·¯±×');
-insert into shop_category values (20206, 20200, 'Æä¸£½Ã¾È·¯±×');
-insert into shop_category values (20207, 20200, '°¡Á×¡¤¾ç¸ğ·¯±×');
-insert into shop_category values (20208, 20200, '¶óÅº¡¤¼öÃÊ·¯±×');
-insert into shop_category values (20209, 20200, '¿ø¸ñ¡¤´ëÀÚ¸®');
-insert into shop_category values (20210, 20200, '±âÅ¸·¯±×');
+insert into shop_category values (20201, 20200, 'ê·¹ì„¸ì‚¬Â·ë‹¨ëª¨ëŸ¬ê·¸');
+insert into shop_category values (20202, 20200, 'ì‚¬ì´ì˜ë£©ëŸ¬ê·¸');
+insert into shop_category values (20203, 20200, 'ë¯¸ë‹ˆÂ·í¬ì¸íŠ¸ëŸ¬ê·¸');
+insert into shop_category values (20204, 20200, 'ìƒ¤ê¸°ëŸ¬ê·¸');
+insert into shop_category values (20205, 20200, 'ë©´Â·í•¸ë“œë©”ì´ë“œëŸ¬ê·¸');
+insert into shop_category values (20206, 20200, 'í˜ë¥´ì‹œì•ˆëŸ¬ê·¸');
+insert into shop_category values (20207, 20200, 'ê°€ì£½Â·ì–‘ëª¨ëŸ¬ê·¸');
+insert into shop_category values (20208, 20200, 'ë¼íƒ„Â·ìˆ˜ì´ˆëŸ¬ê·¸');
+insert into shop_category values (20209, 20200, 'ì›ëª©Â·ëŒ€ìë¦¬');
+insert into shop_category values (20210, 20200, 'ê¸°íƒ€ëŸ¬ê·¸');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (20300, 20000, 'ÀÌºÒ¡¤ÀÌºÒ¼Ø');
+insert into shop_category values (20300, 20000, 'ì´ë¶ˆÂ·ì´ë¶ˆì†œ');
 
-insert into shop_category values (20301, 20300, 'ÀÌºÒ');
-insert into shop_category values (20302, 20300, 'ÀÌºÒ¼Ø¡¤±¸½º');
+insert into shop_category values (20301, 20300, 'ì´ë¶ˆ');
+insert into shop_category values (20302, 20300, 'ì´ë¶ˆì†œÂ·êµ¬ìŠ¤');
 
-insert into shop_category values (20303, 20301, 'Â÷·ÆÀÌºÒ');
-insert into shop_category values (20304, 20301, 'ÀÌºÒÄ¿¹ö');
-insert into shop_category values (20305, 20301, 'È¬ÀÌºÒ¡¤°ãÀÌºÒ');
-insert into shop_category values (20306, 20302, 'ÀÏ¹İ¼Ø');
-insert into shop_category values (20307, 20302, '°ÅÀ§¡¤¿À¸®ÅĞ¼Ø');
+insert into shop_category values (20303, 20301, 'ì°¨ë µì´ë¶ˆ');
+insert into shop_category values (20304, 20301, 'ì´ë¶ˆì»¤ë²„');
+insert into shop_category values (20305, 20301, 'í™‘ì´ë¶ˆÂ·ê²¹ì´ë¶ˆ');
+insert into shop_category values (20306, 20302, 'ì¼ë°˜ì†œ');
+insert into shop_category values (20307, 20302, 'ê±°ìœ„Â·ì˜¤ë¦¬í„¸ì†œ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (20400, 20000, 'º£°³¡¤º£°³Ä¿¹ö');
+insert into shop_category values (20400, 20000, 'ë² ê°œÂ·ë² ê°œì»¤ë²„');
 
-insert into shop_category values (20401, 20400, 'º£°³Ä¿¹ö');
-insert into shop_category values (20402, 20400, 'º£°³¼Ø');
-insert into shop_category values (20403, 20400, '¶óÅØ½ºº£°³');
-insert into shop_category values (20404, 20400, 'Æûº£°³');
-insert into shop_category values (20405, 20400, 'ÀÚ¿¬¼ÒÀçº£°³');
-insert into shop_category values (20406, 20400, '¹ÙµğÇÊ·Î¿ì¡¤·ÕÄí¼Ç');
-insert into shop_category values (20407, 20400, '¸ñÄ§¡¤°æÄ§¡¤Äğº£°³');
+insert into shop_category values (20401, 20400, 'ë² ê°œì»¤ë²„');
+insert into shop_category values (20402, 20400, 'ë² ê°œì†œ');
+insert into shop_category values (20403, 20400, 'ë¼í…ìŠ¤ë² ê°œ');
+insert into shop_category values (20404, 20400, 'í¼ë² ê°œ');
+insert into shop_category values (20405, 20400, 'ìì—°ì†Œì¬ë² ê°œ');
+insert into shop_category values (20406, 20400, 'ë°”ë””í•„ë¡œìš°Â·ë¡±ì¿ ì…˜');
+insert into shop_category values (20407, 20400, 'ëª©ì¹¨Â·ê²½ì¹¨Â·ì¿¨ë² ê°œ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (20500, 20000, 'ÅäÆÛ¡¤ÆĞµå');
+insert into shop_category values (20500, 20000, 'í† í¼Â·íŒ¨ë“œ');
 
-insert into shop_category values (20501, 20500, 'ÆĞµå¡¤½ºÇÁ·¹µå');
-insert into shop_category values (20502, 20500, '¿ä¡¤ÅäÆÛ');
-insert into shop_category values (20503, 20500, 'Äğ¸ÅÆ®');
+insert into shop_category values (20501, 20500, 'íŒ¨ë“œÂ·ìŠ¤í”„ë ˆë“œ');
+insert into shop_category values (20502, 20500, 'ìš”Â·í† í¼');
+insert into shop_category values (20503, 20500, 'ì¿¨ë§¤íŠ¸');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (20600, 20000, '¸ÅÆ®¸®½ºÄ¿¹ö');
+insert into shop_category values (20600, 20000, 'ë§¤íŠ¸ë¦¬ìŠ¤ì»¤ë²„');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (20700, 20000, 'ºí¶óÀÎµå¡¤·Ñ½ºÅ©¸°');
+insert into shop_category values (20700, 20000, 'ë¸”ë¼ì¸ë“œÂ·ë¡¤ìŠ¤í¬ë¦°');
 
-insert into shop_category values (20701, 20700, 'ºí¶óÀÎµå');
-insert into shop_category values (20702, 20700, '·Ñ½ºÅ©¸°');
-insert into shop_category values (20703, 20700, '¹öÆ¼ÄÃ');
-insert into shop_category values (20704, 20700, 'ºö½ºÅ©¸°');
+insert into shop_category values (20701, 20700, 'ë¸”ë¼ì¸ë“œ');
+insert into shop_category values (20702, 20700, 'ë¡¤ìŠ¤í¬ë¦°');
+insert into shop_category values (20703, 20700, 'ë²„í‹°ì»¬');
+insert into shop_category values (20704, 20700, 'ë¹”ìŠ¤í¬ë¦°');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (20800, 20000, '¸ÅÆ®');
+insert into shop_category values (20800, 20000, 'ë§¤íŠ¸');
 
-insert into shop_category values (20801, 20800, 'ÁÖ¹æ¡¤´Ù¿ëµµ¸ÅÆ®');
-insert into shop_category values (20802, 20800, 'PVC¡¤¸®ºù¸ÅÆ®');
-insert into shop_category values (20803, 20800, '³îÀÌ¡¤¾ÈÀü¸ÅÆ®');
-insert into shop_category values (20804, 20800, 'Çö°ü¡¤¹ß¸ÅÆ®');
-insert into shop_category values (20805, 20800, 'ÇÇÅ©´Ğ¸ÅÆ®');
+insert into shop_category values (20801, 20800, 'ì£¼ë°©Â·ë‹¤ìš©ë„ë§¤íŠ¸');
+insert into shop_category values (20802, 20800, 'PVCÂ·ë¦¬ë¹™ë§¤íŠ¸');
+insert into shop_category values (20803, 20800, 'ë†€ì´Â·ì•ˆì „ë§¤íŠ¸');
+insert into shop_category values (20804, 20800, 'í˜„ê´€Â·ë°œë§¤íŠ¸');
+insert into shop_category values (20805, 20800, 'í”¼í¬ë‹‰ë§¤íŠ¸');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (20900, 20000, 'Äí¼Ç¡¤¹æ¼®');
+insert into shop_category values (20900, 20000, 'ì¿ ì…˜Â·ë°©ì„');
 
-insert into shop_category values (20901, 20900, 'Äí¼Ç');
-insert into shop_category values (20902, 20900, '¹æ¼®¡¤´ë¹æ¼®');
-insert into shop_category values (20903, 20900, 'Äí¼Ç¡¤¹æ¼®¼Ø');
+insert into shop_category values (20901, 20900, 'ì¿ ì…˜');
+insert into shop_category values (20902, 20900, 'ë°©ì„Â·ëŒ€ë°©ì„');
+insert into shop_category values (20903, 20900, 'ì¿ ì…˜Â·ë°©ì„ì†œ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (21000, 20000, '¼ÒÆÄ¡¤»ıÈ°Ä¿¹ö');
+insert into shop_category values (21000, 20000, 'ì†ŒíŒŒÂ·ìƒí™œì»¤ë²„');
 
-insert into shop_category values (21001, 21000, '¼ÒÆÄÄ¿¹ö');
-insert into shop_category values (21002, 21000, '¼ÒÆÄÆĞµå');
-insert into shop_category values (21003, 21000, '¼±Ç³±âÄ¿¹ö');
-insert into shop_category values (21004, 21000, '¿¡¾îÄÁ¡¤Á¦½À±âÄ¿¹ö');
-insert into shop_category values (21005, 21000, 'ÀÇÀÚÄ¿¹ö');
-insert into shop_category values (21006, 21000, '±âÅ¸Ä¿¹ö');
+insert into shop_category values (21001, 21000, 'ì†ŒíŒŒì»¤ë²„');
+insert into shop_category values (21002, 21000, 'ì†ŒíŒŒíŒ¨ë“œ');
+insert into shop_category values (21003, 21000, 'ì„ í’ê¸°ì»¤ë²„');
+insert into shop_category values (21004, 21000, 'ì—ì–´ì»¨Â·ì œìŠµê¸°ì»¤ë²„');
+insert into shop_category values (21005, 21000, 'ì˜ìì»¤ë²„');
+insert into shop_category values (21006, 21000, 'ê¸°íƒ€ì»¤ë²„');
 
 
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-insert into shop_category values (30000, -1, 'µ¥ÄÚ¡¤½Ä¹°');
+insert into shop_category values (30000, null, 'ë°ì½”Â·ì‹ë¬¼');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (30100, 30000, 'µğÇ»Àú¡¤Äµµé');
+insert into shop_category values (30100, 30000, 'ë””í“¨ì €Â·ìº”ë“¤');
 
-insert into shop_category values (30101, 30100, 'µğÇ»Á®');
-insert into shop_category values (30102, 30100, 'Äµµé');
-insert into shop_category values (30103, 30100, 'ÄµµéÈ¦´õ¡¤¿ö¸Ó');
-insert into shop_category values (30104, 30100, 'ÀÎ¼¾½º¡¤È¦´õ');
-insert into shop_category values (30105, 30100, 'È¨ÆÛÇ¾¡¤»ç½¦');
-insert into shop_category values (30106, 30100, '¾Æ·Î¸¶¿ÀÀÏ¡¤¿ö¸Ó');
-insert into shop_category values (30107, 30100, '¼®°í¹æÇâÁ¦');
-insert into shop_category values (30108, 30100, '±âÅ¸¾×¼¼¼­¸®');
+insert into shop_category values (30101, 30100, 'ë””í“¨ì ¸');
+insert into shop_category values (30102, 30100, 'ìº”ë“¤');
+insert into shop_category values (30103, 30100, 'ìº”ë“¤í™€ë”Â·ì›Œë¨¸');
+insert into shop_category values (30104, 30100, 'ì¸ì„¼ìŠ¤Â·í™€ë”');
+insert into shop_category values (30105, 30100, 'í™ˆí¼í“¸Â·ì‚¬ì‰');
+insert into shop_category values (30106, 30100, 'ì•„ë¡œë§ˆì˜¤ì¼Â·ì›Œë¨¸');
+insert into shop_category values (30107, 30100, 'ì„ê³ ë°©í–¥ì œ');
+insert into shop_category values (30108, 30100, 'ê¸°íƒ€ì•¡ì„¸ì„œë¦¬');
 
-insert into shop_category values (30109, 30101, 'µğÇ»Á®');
-insert into shop_category values (30110, 30101, '¸®ÇÊ¾×¡¤¸®µå½ºÆ½');
-insert into shop_category values (30111, 30102, '¿ÀºêÁ¦Äµµé');
-insert into shop_category values (30112, 30102, 'Äµµé');
-insert into shop_category values (30113, 30102, 'Æ¼¶óÀÌÆ®');
-insert into shop_category values (30114, 30103, 'ÄµµéÈ¦´õ');
-insert into shop_category values (30115, 30103, 'Äµµé¿ö¸Ó');
-insert into shop_category values (30116, 30104, 'ÀÎ¼¾½º¡¤ÆÈ·Î»êÅä');
-insert into shop_category values (30117, 30104, 'ÀÎ¼¾½ºÈ¦´õ¡¤Æ®·¹ÀÌ');
+insert into shop_category values (30109, 30101, 'ë””í“¨ì ¸');
+insert into shop_category values (30110, 30101, 'ë¦¬í•„ì•¡Â·ë¦¬ë“œìŠ¤í‹±');
+insert into shop_category values (30111, 30102, 'ì˜¤ë¸Œì œìº”ë“¤');
+insert into shop_category values (30112, 30102, 'ìº”ë“¤');
+insert into shop_category values (30113, 30102, 'í‹°ë¼ì´íŠ¸');
+insert into shop_category values (30114, 30103, 'ìº”ë“¤í™€ë”');
+insert into shop_category values (30115, 30103, 'ìº”ë“¤ì›Œë¨¸');
+insert into shop_category values (30116, 30104, 'ì¸ì„¼ìŠ¤Â·íŒ”ë¡œì‚°í† ');
+insert into shop_category values (30117, 30104, 'ì¸ì„¼ìŠ¤í™€ë”Â·íŠ¸ë ˆì´');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (30200, 30000, 'ÇÃ¶ó¿ö¡¤½Ä¹°');
+insert into shop_category values (30200, 30000, 'í”Œë¼ì›ŒÂ·ì‹ë¬¼');
 
-insert into shop_category values (30201, 30200, '½Ä¹°');
-insert into shop_category values (30202, 30200, 'Á¶È­');
-insert into shop_category values (30203, 30200, '»ıÈ­');
-insert into shop_category values (30204, 30200, 'µå¶óÀÌÇÃ¶ó¿ö');
-insert into shop_category values (30205, 30200, '²É´Ù¹ß¡¤ÇÃ¶ó¿ö¹Ú½º');
-insert into shop_category values (30206, 30200, 'È­º´¡¤È­ºĞ');
-insert into shop_category values (30207, 30200, '¸®½º¡¤°¡·£µå');
-insert into shop_category values (30208, 30200, 'ºÎÄÉ¡¤È­°ü¡¤¿şµù');
-insert into shop_category values (30209, 30200, '°¡µå´×¿ëÇ°');
+insert into shop_category values (30201, 30200, 'ì‹ë¬¼');
+insert into shop_category values (30202, 30200, 'ì¡°í™”');
+insert into shop_category values (30203, 30200, 'ìƒí™”');
+insert into shop_category values (30204, 30200, 'ë“œë¼ì´í”Œë¼ì›Œ');
+insert into shop_category values (30205, 30200, 'ê½ƒë‹¤ë°œÂ·í”Œë¼ì›Œë°•ìŠ¤');
+insert into shop_category values (30206, 30200, 'í™”ë³‘Â·í™”ë¶„');
+insert into shop_category values (30207, 30200, 'ë¦¬ìŠ¤Â·ê°€ëœë“œ');
+insert into shop_category values (30208, 30200, 'ë¶€ì¼€Â·í™”ê´€Â·ì›¨ë”©');
+insert into shop_category values (30209, 30200, 'ê°€ë“œë‹ìš©í’ˆ');
 
-insert into shop_category values (30210, 30201, '¼ö°æÀç¹è½Ä¹°');
-insert into shop_category values (30211, 30201, '´ÙÀ°½Ä¹°');
-insert into shop_category values (30212, 30201, 'Áß´ëÇü½Ä¹°');
-insert into shop_category values (30213, 30201, '¼ÒÇü½Ä¹°');
-insert into shop_category values (30214, 30201, '¼±ÀÎÀå');
-insert into shop_category values (30215, 30201, 'ÇàÀ×½Ä¹°');
-insert into shop_category values (30216, 30201, '³­¡¤ºĞÀç');
-insert into shop_category values (30217, 30201, '¸ğÁ¾');
-insert into shop_category values (30218, 30201, '¾¾¾Ñ¡¤±¸±Ù');
-insert into shop_category values (30219, 30202, 'Á¶È­²É');
-insert into shop_category values (30220, 30202, 'Á¶È­°¡Áö');
-insert into shop_category values (30221, 30202, 'Á¶È­¡¤È­º´¼¼Æ®');
-insert into shop_category values (30222, 30202, 'Á¶È­½Ä¹°');
-insert into shop_category values (30223, 30202, 'Á¶È­ÇàÀ×ÇÃ·£Æ®');
-insert into shop_category values (30224, 30202, 'Á¶È­²É¹Ù±¸´Ï');
-insert into shop_category values (30225, 30202, 'Á¶È­²É´Ù¹ß');
-insert into shop_category values (30226, 30203, 'ÀıÈ­');
-insert into shop_category values (30227, 30203, '²É´Ù¹ß');
-insert into shop_category values (30228, 30205, '²É´Ù¹ß');
-insert into shop_category values (30229, 30205, '²É¹Ù±¸´Ï');
-insert into shop_category values (30230, 30205, 'ÇÃ¶ó¿ö¹Ú½º');
-insert into shop_category values (30231, 30206, 'È­º´');
-insert into shop_category values (30232, 30206, 'È­ºĞ');
-insert into shop_category values (30233, 30206, 'È­ºĞ¹ŞÄ§´ë');
-insert into shop_category values (30234, 30209, '¿ø¿¹µµ±¸');
-insert into shop_category values (30235, 30209, 'Èë¡¤ºñ·á¡¤ÀÚ°¥');
-insert into shop_category values (30236, 30209, '½Ä¹°Àç¹è±â');
-insert into shop_category values (30237, 30209, '½Ä¹°»ıÀåµî');
+insert into shop_category values (30210, 30201, 'ìˆ˜ê²½ì¬ë°°ì‹ë¬¼');
+insert into shop_category values (30211, 30201, 'ë‹¤ìœ¡ì‹ë¬¼');
+insert into shop_category values (30212, 30201, 'ì¤‘ëŒ€í˜•ì‹ë¬¼');
+insert into shop_category values (30213, 30201, 'ì†Œí˜•ì‹ë¬¼');
+insert into shop_category values (30214, 30201, 'ì„ ì¸ì¥');
+insert into shop_category values (30215, 30201, 'í–‰ì‰ì‹ë¬¼');
+insert into shop_category values (30216, 30201, 'ë‚œÂ·ë¶„ì¬');
+insert into shop_category values (30217, 30201, 'ëª¨ì¢…');
+insert into shop_category values (30218, 30201, 'ì”¨ì•—Â·êµ¬ê·¼');
+insert into shop_category values (30219, 30202, 'ì¡°í™”ê½ƒ');
+insert into shop_category values (30220, 30202, 'ì¡°í™”ê°€ì§€');
+insert into shop_category values (30221, 30202, 'ì¡°í™”Â·í™”ë³‘ì„¸íŠ¸');
+insert into shop_category values (30222, 30202, 'ì¡°í™”ì‹ë¬¼');
+insert into shop_category values (30223, 30202, 'ì¡°í™”í–‰ì‰í”ŒëœíŠ¸');
+insert into shop_category values (30224, 30202, 'ì¡°í™”ê½ƒë°”êµ¬ë‹ˆ');
+insert into shop_category values (30225, 30202, 'ì¡°í™”ê½ƒë‹¤ë°œ');
+insert into shop_category values (30226, 30203, 'ì ˆí™”');
+insert into shop_category values (30227, 30203, 'ê½ƒë‹¤ë°œ');
+insert into shop_category values (30228, 30205, 'ê½ƒë‹¤ë°œ');
+insert into shop_category values (30229, 30205, 'ê½ƒë°”êµ¬ë‹ˆ');
+insert into shop_category values (30230, 30205, 'í”Œë¼ì›Œë°•ìŠ¤');
+insert into shop_category values (30231, 30206, 'í™”ë³‘');
+insert into shop_category values (30232, 30206, 'í™”ë¶„');
+insert into shop_category values (30233, 30206, 'í™”ë¶„ë°›ì¹¨ëŒ€');
+insert into shop_category values (30234, 30209, 'ì›ì˜ˆë„êµ¬');
+insert into shop_category values (30235, 30209, 'í™Â·ë¹„ë£ŒÂ·ìê°ˆ');
+insert into shop_category values (30236, 30209, 'ì‹ë¬¼ì¬ë°°ê¸°');
+insert into shop_category values (30237, 30209, 'ì‹ë¬¼ìƒì¥ë“±');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (30300, 30000, 'È¨°¶·¯¸®');
+insert into shop_category values (30300, 30000, 'í™ˆê°¤ëŸ¬ë¦¬');
 
-insert into shop_category values (30301, 30300, 'ÆĞºê¸¯Æ÷½ºÅÍ');
-insert into shop_category values (30302, 30300, '±×¸²¡¤»çÁø');
-insert into shop_category values (30303, 30300, '¾×ÀÚ');
-insert into shop_category values (30304, 30300, 'ÆÇÈ­ ¿¡µğ¼Ç');
+insert into shop_category values (30301, 30300, 'íŒ¨ë¸Œë¦­í¬ìŠ¤í„°');
+insert into shop_category values (30302, 30300, 'ê·¸ë¦¼Â·ì‚¬ì§„');
+insert into shop_category values (30303, 30300, 'ì•¡ì');
+insert into shop_category values (30304, 30300, 'íŒí™” ì—ë””ì…˜');
 
-insert into shop_category values (30305, 30301, 'ÀÏ·¯½ºÆ®¡¤µå·ÎÀ×');
-insert into shop_category values (30306, 30301, '¸íÈ­');
-insert into shop_category values (30307, 30301, '½Ä¹°¡¤²É');
-insert into shop_category values (30308, 30301, 'Ç³°æ¡¤ÀÚ¿¬');
-insert into shop_category values (30309, 30301, 'ÆĞÅÏ');
-insert into shop_category values (30310, 30301, '·¹ÅÍ¸µ');
-insert into shop_category values (30311, 30301, 'ÁÖ¹®Á¦ÀÛ');
-insert into shop_category values (30312, 30302, 'ÀÏ·¯½ºÆ®¡¤µå·ÎÀ×');
-insert into shop_category values (30313, 30302, 'Ãß»óÈ­');
-insert into shop_category values (30314, 30302, '¸íÈ­');
-insert into shop_category values (30315, 30302, 'Ç³°æ¡¤ÀÚ¿¬');
-insert into shop_category values (30316, 30302, '½Ä¹°¡¤²É');
-insert into shop_category values (30317, 30302, 'ÆĞÅÏ');
-insert into shop_category values (30318, 30302, '·¹ÅÍ¸µ');
-insert into shop_category values (30319, 30302, 'ÆË¾ÆÆ®¡¤ºóÆ¼Áö');
-insert into shop_category values (30320, 30302, 'ÁÖ¹®Á¦ÀÛ');
+insert into shop_category values (30305, 30301, 'ì¼ëŸ¬ìŠ¤íŠ¸Â·ë“œë¡œì‰');
+insert into shop_category values (30306, 30301, 'ëª…í™”');
+insert into shop_category values (30307, 30301, 'ì‹ë¬¼Â·ê½ƒ');
+insert into shop_category values (30308, 30301, 'í’ê²½Â·ìì—°');
+insert into shop_category values (30309, 30301, 'íŒ¨í„´');
+insert into shop_category values (30310, 30301, 'ë ˆí„°ë§');
+insert into shop_category values (30311, 30301, 'ì£¼ë¬¸ì œì‘');
+insert into shop_category values (30312, 30302, 'ì¼ëŸ¬ìŠ¤íŠ¸Â·ë“œë¡œì‰');
+insert into shop_category values (30313, 30302, 'ì¶”ìƒí™”');
+insert into shop_category values (30314, 30302, 'ëª…í™”');
+insert into shop_category values (30315, 30302, 'í’ê²½Â·ìì—°');
+insert into shop_category values (30316, 30302, 'ì‹ë¬¼Â·ê½ƒ');
+insert into shop_category values (30317, 30302, 'íŒ¨í„´');
+insert into shop_category values (30318, 30302, 'ë ˆí„°ë§');
+insert into shop_category values (30319, 30302, 'íŒì•„íŠ¸Â·ë¹ˆí‹°ì§€');
+insert into shop_category values (30320, 30302, 'ì£¼ë¬¸ì œì‘');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (30400, 30000, 'ÀÎÅ×¸®¾î¼ÒÇ°');
+insert into shop_category values (30400, 30000, 'ì¸í…Œë¦¬ì–´ì†Œí’ˆ');
 
-insert into shop_category values (30401, 30400, 'Æ®·¹ÀÌ¡¤º¸¼®ÇÔ');
-insert into shop_category values (30402, 30400, '¸ğºô¡¤°¡·£µå');
-insert into shop_category values (30403, 30400, 'Àå½Ä¼ÒÇ°');
-insert into shop_category values (30404, 30400, '¸¶±×³İ¡¤µµ¾îº§');
-insert into shop_category values (30405, 30400, '¿öÅÍº¼');
-insert into shop_category values (30406, 30400, '¿À¸£°ñ');
-insert into shop_category values (30407, 30400, 'µµ¾î»çÀÎ');
-insert into shop_category values (30408, 30400, 'ÇÇ±Ô¾î¡¤ÇÁ¶ó¸ğµ¨');
-insert into shop_category values (30409, 30400, '±âÅ¸Àå½Ä¿ëÇ°');
-insert into shop_category values (30410, 30400, 'ÀÎÅ×¸®¾î ºĞ¼ö');
+insert into shop_category values (30401, 30400, 'íŠ¸ë ˆì´Â·ë³´ì„í•¨');
+insert into shop_category values (30402, 30400, 'ëª¨ë¹ŒÂ·ê°€ëœë“œ');
+insert into shop_category values (30403, 30400, 'ì¥ì‹ì†Œí’ˆ');
+insert into shop_category values (30404, 30400, 'ë§ˆê·¸ë„·Â·ë„ì–´ë²¨');
+insert into shop_category values (30405, 30400, 'ì›Œí„°ë³¼');
+insert into shop_category values (30406, 30400, 'ì˜¤ë¥´ê³¨');
+insert into shop_category values (30407, 30400, 'ë„ì–´ì‚¬ì¸');
+insert into shop_category values (30408, 30400, 'í”¼ê·œì–´Â·í”„ë¼ëª¨ë¸');
+insert into shop_category values (30409, 30400, 'ê¸°íƒ€ì¥ì‹ìš©í’ˆ');
+insert into shop_category values (30410, 30400, 'ì¸í…Œë¦¬ì–´ ë¶„ìˆ˜');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (30500, 30000, '½Ã°è');
+insert into shop_category values (30500, 30000, 'ì‹œê³„');
 
-insert into shop_category values (30501, 30500, 'º®½Ã°è');
-insert into shop_category values (30502, 30500, '¾Ë¶÷¡¤Å¹»ó½Ã°è');
-insert into shop_category values (30503, 30500, '¿å½Ç¹æ¼ö½Ã°è');
-insert into shop_category values (30504, 30500, 'Å¸ÀÌ¸Ó¡¤½ºÅ¾¿öÄ¡');
+insert into shop_category values (30501, 30500, 'ë²½ì‹œê³„');
+insert into shop_category values (30502, 30500, 'ì•ŒëŒÂ·íƒìƒì‹œê³„');
+insert into shop_category values (30503, 30500, 'ìš•ì‹¤ë°©ìˆ˜ì‹œê³„');
+insert into shop_category values (30504, 30500, 'íƒ€ì´ë¨¸Â·ìŠ¤íƒ‘ì›Œì¹˜');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (30600, 30000, '¿ùµ¥ÄÚ¡¤Àå½Ä');
+insert into shop_category values (30600, 30000, 'ì›”ë°ì½”Â·ì¥ì‹');
 
-insert into shop_category values (30601, 30600, 'µ¥ÄÚ½ºÆ¼Ä¿');
-insert into shop_category values (30602, 30600, '¸¶Å©¶ó¸Ş');
-insert into shop_category values (30603, 30600, 'µå¸²¡¤½ãÄ³ÃÄ');
-insert into shop_category values (30604, 30600, '±âÅ¸');
+insert into shop_category values (30601, 30600, 'ë°ì½”ìŠ¤í‹°ì»¤');
+insert into shop_category values (30602, 30600, 'ë§ˆí¬ë¼ë©”');
+insert into shop_category values (30603, 30600, 'ë“œë¦¼Â·ì¬ìºì³');
+insert into shop_category values (30604, 30600, 'ê¸°íƒ€');
 
-insert into shop_category values (30605, 30601, '·¹ÅÍ¸µ¡¤¸Ş½ÃÁö');
-insert into shop_category values (30606, 30601, 'µµ¾î¡¤½ºÀ§Ä¡');
-insert into shop_category values (30607, 30601, 'ÀÔÃ¼');
-insert into shop_category values (30608, 30601, '½Ä¹°¡¤²É');
-insert into shop_category values (30609, 30601, '»ç¹°¡¤µ¿¹°');
-insert into shop_category values (30610, 30601, 'ÆĞÅÏ');
-insert into shop_category values (30611, 30601, 'Å°Àç±â');
+insert into shop_category values (30605, 30601, 'ë ˆí„°ë§Â·ë©”ì‹œì§€');
+insert into shop_category values (30606, 30601, 'ë„ì–´Â·ìŠ¤ìœ„ì¹˜');
+insert into shop_category values (30607, 30601, 'ì…ì²´');
+insert into shop_category values (30608, 30601, 'ì‹ë¬¼Â·ê½ƒ');
+insert into shop_category values (30609, 30601, 'ì‚¬ë¬¼Â·ë™ë¬¼');
+insert into shop_category values (30610, 30601, 'íŒ¨í„´');
+insert into shop_category values (30611, 30601, 'í‚¤ì¬ê¸°');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (30700, 30000, 'µ¥½ºÅ©¡¤µğÀÚÀÎ¹®±¸');
+insert into shop_category values (30700, 30000, 'ë°ìŠ¤í¬Â·ë””ìì¸ë¬¸êµ¬');
 
-insert into shop_category values (30701, 30700, 'µğÀÚÀÎ¹®±¸');
-insert into shop_category values (30702, 30700, 'µ¥½ºÅ©Å×¸®¾î');
-insert into shop_category values (30703, 30700, '±âÅ¸µğÀÚÀÎ¿ëÇ°');
+insert into shop_category values (30701, 30700, 'ë””ìì¸ë¬¸êµ¬');
+insert into shop_category values (30702, 30700, 'ë°ìŠ¤í¬í…Œë¦¬ì–´');
+insert into shop_category values (30703, 30700, 'ê¸°íƒ€ë””ìì¸ìš©í’ˆ');
 
-insert into shop_category values (30704, 30701, '´Ş·Â');
-insert into shop_category values (30705, 30701, '´ÙÀÌ¾î¸®¡¤ÇÃ·¡³Ê');
-insert into shop_category values (30706, 30701, '³ëÆ®¡¤¸Ş¸ğÁö');
-insert into shop_category values (30707, 30701, '¸¶½ºÅ·Å×ÀÌÇÁ');
-insert into shop_category values (30708, 30701, '½ºÆ¼Ä¿');
-insert into shop_category values (30709, 30701, 'Ä«µå¡¤Æ÷½ºÅÍ');
-insert into shop_category values (30710, 30701, 'Æ÷Åä¾Ù¹ü');
-insert into shop_category values (30711, 30701, 'ÇĞ¿ëÇ°¡¤¹Ì¼úµµ±¸');
-insert into shop_category values (30712, 30701, 'º¹»ç¿ëÁö¡¤Áö·ù');
-insert into shop_category values (30713, 30702, 'Å¸°øÆÇ¡¤º¸µå');
-insert into shop_category values (30714, 30702, '¸ğ´ÏÅÍ¹ŞÄ§´ë');
-insert into shop_category values (30715, 30702, 'µ¥½ºÅ©¸ÅÆ®¡¤¸¶¿ì½ºÆĞµå');
-insert into shop_category values (30716, 30702, 'µ¥½ºÅ©¼ö³³¡¤Á¤¸®');
-insert into shop_category values (30717, 30702, '¸ğ´ÏÅÍ¾Ï¡¤°ÅÄ¡´ë');
-insert into shop_category values (30718, 30703, 'ÆÄ¿ìÄ¡¡¤Áö°©');
-insert into shop_category values (30719, 30703, '¿¡ÄÚ¹é');
-insert into shop_category values (30720, 30703, '±âÅ¸µğÀÚÀÎ¿ëÇ°');
+insert into shop_category values (30704, 30701, 'ë‹¬ë ¥');
+insert into shop_category values (30705, 30701, 'ë‹¤ì´ì–´ë¦¬Â·í”Œë˜ë„ˆ');
+insert into shop_category values (30706, 30701, 'ë…¸íŠ¸Â·ë©”ëª¨ì§€');
+insert into shop_category values (30707, 30701, 'ë§ˆìŠ¤í‚¹í…Œì´í”„');
+insert into shop_category values (30708, 30701, 'ìŠ¤í‹°ì»¤');
+insert into shop_category values (30709, 30701, 'ì¹´ë“œÂ·í¬ìŠ¤í„°');
+insert into shop_category values (30710, 30701, 'í¬í† ì•¨ë²”');
+insert into shop_category values (30711, 30701, 'í•™ìš©í’ˆÂ·ë¯¸ìˆ ë„êµ¬');
+insert into shop_category values (30712, 30701, 'ë³µì‚¬ìš©ì§€Â·ì§€ë¥˜');
+insert into shop_category values (30713, 30702, 'íƒ€ê³µíŒÂ·ë³´ë“œ');
+insert into shop_category values (30714, 30702, 'ëª¨ë‹ˆí„°ë°›ì¹¨ëŒ€');
+insert into shop_category values (30715, 30702, 'ë°ìŠ¤í¬ë§¤íŠ¸Â·ë§ˆìš°ìŠ¤íŒ¨ë“œ');
+insert into shop_category values (30716, 30702, 'ë°ìŠ¤í¬ìˆ˜ë‚©Â·ì •ë¦¬');
+insert into shop_category values (30717, 30702, 'ëª¨ë‹ˆí„°ì•”Â·ê±°ì¹˜ëŒ€');
+insert into shop_category values (30718, 30703, 'íŒŒìš°ì¹˜Â·ì§€ê°‘');
+insert into shop_category values (30719, 30703, 'ì—ì½”ë°±');
+insert into shop_category values (30720, 30703, 'ê¸°íƒ€ë””ìì¸ìš©í’ˆ');
 
 
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-insert into shop_category values (40000, -1, 'Á¶¸í');
+insert into shop_category values (40000, null, 'ì¡°ëª…');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (40100, 40000, 'ÃµÀåµî');
+insert into shop_category values (40100, 40000, 'ì²œì¥ë“±');
 
-insert into shop_category values (40101, 40100, 'Á÷ºÎÁ¶¸í');
-insert into shop_category values (40102, 40100, 'Ææ´øÆ®Á¶¸í');
-insert into shop_category values (40103, 40100, '¼¾¼­µî');
-insert into shop_category values (40104, 40100, '·¹ÀÏÁ¶¸í');
-insert into shop_category values (40105, 40100, '¸ÅÀÔµî');
-insert into shop_category values (40106, 40100, '¼§µé¸®¿¡');
-insert into shop_category values (40107, 40100, 'Å°ÁîÁ¶¸í');
-insert into shop_category values (40108, 40100, '½Ç¸µÆÒ');
+insert into shop_category values (40101, 40100, 'ì§ë¶€ì¡°ëª…');
+insert into shop_category values (40102, 40100, 'íœë˜íŠ¸ì¡°ëª…');
+insert into shop_category values (40103, 40100, 'ì„¼ì„œë“±');
+insert into shop_category values (40104, 40100, 'ë ˆì¼ì¡°ëª…');
+insert into shop_category values (40105, 40100, 'ë§¤ì…ë“±');
+insert into shop_category values (40106, 40100, 'ìƒ¹ë“¤ë¦¬ì—');
+insert into shop_category values (40107, 40100, 'í‚¤ì¦ˆì¡°ëª…');
+insert into shop_category values (40108, 40100, 'ì‹¤ë§íŒ¬');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (40200, 40000, 'Àå½ºÅÄµå');
+insert into shop_category values (40200, 40000, 'ì¥ìŠ¤íƒ ë“œ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (40300, 40000, '´Ü½ºÅÄµå');
+insert into shop_category values (40300, 40000, 'ë‹¨ìŠ¤íƒ ë“œ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (40400, 40000, '¹«µåµî¡¤Àå½ÄÁ¶¸í');
+insert into shop_category values (40400, 40000, 'ë¬´ë“œë“±Â·ì¥ì‹ì¡°ëª…');
 
-insert into shop_category values (40401, 40400, '¹«µåµî¡¤¼öÀ¯µî');
-insert into shop_category values (40402, 40400, 'ÁÙÁ¶¸í');
-insert into shop_category values (40403, 40400, 'ÄÃ·¯¡¤³×¿ÂÁ¶¸í');
-insert into shop_category values (40404, 40400, '°£Á¢Á¶¸í');
-insert into shop_category values (40405, 40400, '¼¾¼­¹«µåµî');
+insert into shop_category values (40401, 40400, 'ë¬´ë“œë“±Â·ìˆ˜ìœ ë“±');
+insert into shop_category values (40402, 40400, 'ì¤„ì¡°ëª…');
+insert into shop_category values (40403, 40400, 'ì»¬ëŸ¬Â·ë„¤ì˜¨ì¡°ëª…');
+insert into shop_category values (40404, 40400, 'ê°„ì ‘ì¡°ëª…');
+insert into shop_category values (40405, 40400, 'ì„¼ì„œë¬´ë“œë“±');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (40500, 40000, 'LEDµî');
+insert into shop_category values (40500, 40000, 'LEDë“±');
 
-insert into shop_category values (40501, 40500, 'LED°Å½Çµî');
-insert into shop_category values (40502, 40500, 'LED¹æµî');
-insert into shop_category values (40503, 40500, 'LEDÁÖ¹æµî');
-insert into shop_category values (40504, 40500, 'LED¿å½Çµî');
-insert into shop_category values (40505, 40500, 'LEDÇö°ü¡¤º£¶õ´Ùµî');
-insert into shop_category values (40506, 40500, 'ÆòÇüº°¼¼Æ®');
+insert into shop_category values (40501, 40500, 'LEDê±°ì‹¤ë“±');
+insert into shop_category values (40502, 40500, 'LEDë°©ë“±');
+insert into shop_category values (40503, 40500, 'LEDì£¼ë°©ë“±');
+insert into shop_category values (40504, 40500, 'LEDìš•ì‹¤ë“±');
+insert into shop_category values (40505, 40500, 'LEDí˜„ê´€Â·ë² ë€ë‹¤ë“±');
+insert into shop_category values (40506, 40500, 'í‰í˜•ë³„ì„¸íŠ¸');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (40600, 40000, 'µ¥½ºÅ©½ºÅÄµå');
+insert into shop_category values (40600, 40000, 'ë°ìŠ¤í¬ìŠ¤íƒ ë“œ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (40700, 40000, 'º®Á¶¸í');
+insert into shop_category values (40700, 40000, 'ë²½ì¡°ëª…');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (40800, 40000, '¼¾¼­µî');
+insert into shop_category values (40800, 40000, 'ì„¼ì„œë“±');
 
-insert into shop_category values (40801, 40800, 'Á÷ºÎÇü¼¾¼­µî');
-insert into shop_category values (40802, 40800, 'ºÎÂøÇü¼¾¼­µî');
+insert into shop_category values (40801, 40800, 'ì§ë¶€í˜•ì„¼ì„œë“±');
+insert into shop_category values (40802, 40800, 'ë¶€ì°©í˜•ì„¼ì„œë“±');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (40900, 40000, 'Çü±¤µî¡¤Á¶¸íºÎ¼ÓÇ°');
+insert into shop_category values (40900, 40000, 'í˜•ê´‘ë“±Â·ì¡°ëª…ë¶€ì†í’ˆ');
 
-insert into shop_category values (40901, 40900, 'Àü±¸¡¤Çü±¤µî');
-insert into shop_category values (40902, 40900, '½ºÀ§Ä¡¡¤ÄÜ¼¾Æ®¡¤ºÎ¼ÓÇ°');
-insert into shop_category values (40903, 40900, 'ÈÄ·»Ä¡¡¤¼ÒÄÏ¡¤±âÅ¸ºÎ¼ÓÇ°');
+insert into shop_category values (40901, 40900, 'ì „êµ¬Â·í˜•ê´‘ë“±');
+insert into shop_category values (40902, 40900, 'ìŠ¤ìœ„ì¹˜Â·ì½˜ì„¼íŠ¸Â·ë¶€ì†í’ˆ');
+insert into shop_category values (40903, 40900, 'í›„ë Œì¹˜Â·ì†Œì¼“Â·ê¸°íƒ€ë¶€ì†í’ˆ');
 
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
-insert into shop_category values (50000, -1, '°ø±¸¡¤DIY');
+insert into shop_category values (50000, null, 'ê³µêµ¬Â·DIY');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (50100, 50000, '°ø±¸');
+insert into shop_category values (50100, 50000, 'ê³µêµ¬');
 
-insert into shop_category values (50101, 50100, '°ø±¸¼¼Æ®¡¤°ø±¸ÇÔ');
-insert into shop_category values (50102, 50100, 'Àüµ¿°ø±¸');
-insert into shop_category values (50103, 50100, '³ª»ç¡¤¸ø');
-insert into shop_category values (50104, 50100, '°æÃ¸¡¤²©¼è');
-insert into shop_category values (50105, 50100, 'µå¶óÀÌ¹ö');
-insert into shop_category values (50106, 50100, '¸ÁÄ¡¡¤½ºÆĞ³Ê');
-insert into shop_category values (50107, 50100, 'Åé¡¤´ÏÆÛ');
-insert into shop_category values (50108, 50100, '»ç´Ù¸®');
-insert into shop_category values (50109, 50100, 'Ä«Æ®');
-insert into shop_category values (50110, 50100, '±âÅ¸°ø±¸');
-insert into shop_category values (50111, 50102, 'Àüµ¿µå¸±');
-insert into shop_category values (50112, 50102, 'Àü±âÅé');
-insert into shop_category values (50113, 50102, '±âÅ¸Àüµ¿°ø±¸');
+insert into shop_category values (50101, 50100, 'ê³µêµ¬ì„¸íŠ¸Â·ê³µêµ¬í•¨');
+insert into shop_category values (50102, 50100, 'ì „ë™ê³µêµ¬');
+insert into shop_category values (50103, 50100, 'ë‚˜ì‚¬Â·ëª»');
+insert into shop_category values (50104, 50100, 'ê²½ì²©Â·êº½ì‡ ');
+insert into shop_category values (50105, 50100, 'ë“œë¼ì´ë²„');
+insert into shop_category values (50106, 50100, 'ë§ì¹˜Â·ìŠ¤íŒ¨ë„ˆ');
+insert into shop_category values (50107, 50100, 'í†±Â·ë‹ˆí¼');
+insert into shop_category values (50108, 50100, 'ì‚¬ë‹¤ë¦¬');
+insert into shop_category values (50109, 50100, 'ì¹´íŠ¸');
+insert into shop_category values (50110, 50100, 'ê¸°íƒ€ê³µêµ¬');
+insert into shop_category values (50111, 50102, 'ì „ë™ë“œë¦´');
+insert into shop_category values (50112, 50102, 'ì „ê¸°í†±');
+insert into shop_category values (50113, 50102, 'ê¸°íƒ€ì „ë™ê³µêµ¬');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (50200, 50000, 'Àü±â');
+insert into shop_category values (50200, 50000, 'ì „ê¸°');
 
-insert into shop_category values (50201, 50200, '¸ÖÆ¼ÅÇ¡¤Àü±âÄÚµå');
-insert into shop_category values (50202, 50200, 'µµ¾î¶ô¡¤ÀÎÅÍÆù');
-insert into shop_category values (50203, 50200, '½ºÀ§Ä¡¡¤ÄÜ¼¾Æ®');
+insert into shop_category values (50201, 50200, 'ë©€í‹°íƒ­Â·ì „ê¸°ì½”ë“œ');
+insert into shop_category values (50202, 50200, 'ë„ì–´ë½Â·ì¸í„°í°');
+insert into shop_category values (50203, 50200, 'ìŠ¤ìœ„ì¹˜Â·ì½˜ì„¼íŠ¸');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (50300, 50000, '°ÇÀüÁö¡¤¹èÅÍ¸®');
+insert into shop_category values (50300, 50000, 'ê±´ì „ì§€Â·ë°°í„°ë¦¬');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (50400, 50000, '¼öµµ');
+insert into shop_category values (50400, 50000, 'ìˆ˜ë„');
 
-insert into shop_category values (50401, 50400, '¾çº¯±â');
-insert into shop_category values (50402, 50400, '¼¼¸é´ë');
-insert into shop_category values (50403, 50400, 'ÁÖ¹æ¼öÀü');
-insert into shop_category values (50404, 50400, '¿å½Ç»ş¿ö¼öÀü');
-insert into shop_category values (50405, 50400, '¼öµµ²ÀÁöÇÊÅÍ');
+insert into shop_category values (50401, 50400, 'ì–‘ë³€ê¸°');
+insert into shop_category values (50402, 50400, 'ì„¸ë©´ëŒ€');
+insert into shop_category values (50403, 50400, 'ì£¼ë°©ìˆ˜ì „');
+insert into shop_category values (50404, 50400, 'ìš•ì‹¤ìƒ¤ì›Œìˆ˜ì „');
+insert into shop_category values (50405, 50400, 'ìˆ˜ë„ê¼­ì§€í•„í„°');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (50500, 50000, 'º®Áö¡¤½ÃÆ®Áö');
+insert into shop_category values (50500, 50000, 'ë²½ì§€Â·ì‹œíŠ¸ì§€');
 
-insert into shop_category values (50501, 50500, 'º®Áö¡¤µµ¹è¿ëÇ°');
-insert into shop_category values (50502, 50500, '½ÃÆ®Áö¡¤ÇÊ¸§Áö');
+insert into shop_category values (50501, 50500, 'ë²½ì§€Â·ë„ë°°ìš©í’ˆ');
+insert into shop_category values (50502, 50500, 'ì‹œíŠ¸ì§€Â·í•„ë¦„ì§€');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (50600, 50000, '¹Ù´ÚÀç');
+insert into shop_category values (50600, 50000, 'ë°”ë‹¥ì¬');
 
-insert into shop_category values (50601, 50600, 'µ¥ÄÚÅ¸ÀÏ');
-insert into shop_category values (50602, 50600, 'µ¥Å©¡¤¸¶·çÅ¸ÀÏ');
-insert into shop_category values (50603, 50600, 'Å¸ÀÏÄ«ÆäÆ®');
-insert into shop_category values (50604, 50600, '·ÑÄ«ÆäÆ®');
-insert into shop_category values (50605, 50600, 'ÄÚÀÏ¸ÅÆ®');
-insert into shop_category values (50606, 50600, 'ÀÜµğ¸ÅÆ®');
-insert into shop_category values (50607, 50600, '±âÅ¸¸ÅÆ®');
-insert into shop_category values (50608, 50600, 'ÀåÆÇ');
+insert into shop_category values (50601, 50600, 'ë°ì½”íƒ€ì¼');
+insert into shop_category values (50602, 50600, 'ë°í¬Â·ë§ˆë£¨íƒ€ì¼');
+insert into shop_category values (50603, 50600, 'íƒ€ì¼ì¹´í˜íŠ¸');
+insert into shop_category values (50604, 50600, 'ë¡¤ì¹´í˜íŠ¸');
+insert into shop_category values (50605, 50600, 'ì½”ì¼ë§¤íŠ¸');
+insert into shop_category values (50606, 50600, 'ì”ë””ë§¤íŠ¸');
+insert into shop_category values (50607, 50600, 'ê¸°íƒ€ë§¤íŠ¸');
+insert into shop_category values (50608, 50600, 'ì¥íŒ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (50700, 50000, 'Å¸ÀÏ¡¤ÆÄº®µ¹');
+insert into shop_category values (50700, 50000, 'íƒ€ì¼Â·íŒŒë²½ëŒ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (50800, 50000, '¸ñÀç');
+insert into shop_category values (50800, 50000, 'ëª©ì¬');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (50900, 50000, 'ÆäÀÎÆ®¡¤ºÎÀÚÀç');
+insert into shop_category values (50900, 50000, 'í˜ì¸íŠ¸Â·ë¶€ìì¬');
 
-insert into shop_category values (50901, 51000, 'ÆäÀÎÆ®');
-insert into shop_category values (50902, 51000, 'ÆäÀÎÆ®º¸Á¶Á¦');
-insert into shop_category values (50903, 51000, 'ÆäÀÎÆ®¿ëÇ°');
+insert into shop_category values (50901, 51000, 'í˜ì¸íŠ¸');
+insert into shop_category values (50902, 51000, 'í˜ì¸íŠ¸ë³´ì¡°ì œ');
+insert into shop_category values (50903, 51000, 'í˜ì¸íŠ¸ìš©í’ˆ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (51000, 50000, '¸ôµù¡¤°É·¹¹ŞÀÌ');
+insert into shop_category values (51000, 50000, 'ëª°ë”©Â·ê±¸ë ˆë°›ì´');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (51100, 50000, '°¡±¸ºÎ¼ÓÇ°');
+insert into shop_category values (51100, 50000, 'ê°€êµ¬ë¶€ì†í’ˆ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (51200, 50000, '¼ÕÀâÀÌ¡¤¹æ¹®¡¤À¯¸®');
+insert into shop_category values (51200, 50000, 'ì†ì¡ì´Â·ë°©ë¬¸Â·ìœ ë¦¬');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (51300, 50000, 'Á¢ÂøÁ¦¡¤º¸¼ö¿ëÇ°');
+insert into shop_category values (51300, 50000, 'ì ‘ì°©ì œÂ·ë³´ìˆ˜ìš©í’ˆ');
 
 --------------------------------------------------------------------------------
-insert into shop_category values (51400, 50000, '¾ÈÀü¡¤¹æ¹ü¿ëÇ°');
+insert into shop_category values (51400, 50000, 'ì•ˆì „Â·ë°©ë²”ìš©í’ˆ');
 
-insert into shop_category values (51401, 51400, 'Àá±İ°íÁ¤¡¤¹æ¹ü¿ëÇ°');
-insert into shop_category values (51402, 51400, '¾ÈÀü°¡µå¡¤¾ÈÀüÅ×ÀÌÇÁ');
-insert into shop_category values (51403, 51400, '¼ÒÈ­±â¡¤Àç³­¿ëÇ°');
+insert into shop_category values (51401, 51400, 'ì ê¸ˆê³ ì •Â·ë°©ë²”ìš©í’ˆ');
+insert into shop_category values (51402, 51400, 'ì•ˆì „ê°€ë“œÂ·ì•ˆì „í…Œì´í”„');
+insert into shop_category values (51403, 51400, 'ì†Œí™”ê¸°Â·ì¬ë‚œìš©í’ˆ');
 
 commit;

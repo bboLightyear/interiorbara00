@@ -1,7 +1,5 @@
 package com.tech.ibara.shop.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tech.ibara.shop.dto.OptionDto;
 import com.tech.ibara.shop.service.ProductOptionSetService;
 import com.tech.ibara.shop.service.ShopService;
 

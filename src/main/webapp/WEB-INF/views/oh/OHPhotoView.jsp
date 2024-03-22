@@ -5,85 +5,20 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
-<!-- 	<script>
-		location.reload();
-	</script> -->
-	<style>
-		header {
-			border: 1px solid #333;
-			height: 130px;
-			text-align: center;
-		}
-		#sideBar {
-			float: left;
-			background-color: powderblue;
-			padding: 20px;
-			margin: auto;
-			height: 800px;
-			width: 200px
-		}
-		#sideBar ul {
-			text-align: center;
-			padding: 0px;
-		}
-		#sideBar ul li {
-			list-style-type: none;
-			background-color: #FF6347;
-			border: 1px solid #333;
-		}
-		#sideBar ul li a {
-			text-decoration: none;
-		}
-		#sideBar ul li a:hover {
-		
-		}
-		#contents {
-			float: left;
-			text-align: center;
-		}
-		.flexContainer {
-	        display:flex;
-	        justify-content: center;
-	        align-content: center;
-	        flex-direction: row;
-	        flex-wrap: wrap;
-	        background-color:#adbbf7;
-	        border:1px solid #222;
-	        /* margin-bottom:30px;	 */	
-		}
-		.box {
-	        padding: 5px;
-	        margin: 5px;   
-		    width: 500px;
-		    height: 500px;
-	        background-color: #f6f7ad; 		
-			/* 	        
-			flex-basis: auto;
-	        flex-grow: 1;
-	        flex-shrink: 1; 
-	        */
-		}
-		footer {
-			clear: both;
-			border: 1px solid #333;
-			height: 130px;
-			text-align: center;
-		}				
-	</style>	
+	<title>OH - OHPhotoView.jsp</title>
+	<link rel="stylesheet" href="../resources/css/oh.css" />	
 </head>
-
 <body>
 
-	<div id="container">
-	
-	<header>
-		<h1>header</h1>
-	</header>
+	<div class="container">
 		
-		<div id="contents">
+		<header>
+			<h1>header</h1>
+		</header>
+		
+		<div class="contents">
 	
-			<div id="sideBar">
+			<div class="sideBar">
 				<ul >
 					<li><a href="OHMainView">우리집 자랑하기</a></li>
 					<li><a href="OHPhotoView">집사진</a></li>
@@ -185,7 +120,7 @@
 			
 			</form>
 			
-			<div class = "flexContainer">
+			<div class="OHPhotoViewflexContainer">
 				<!-- 1번 <div class="box"> 테이블 표현 -->			
 				<div class="box">
 					<table width="500" border="1">
@@ -217,7 +152,7 @@
 						<div>pa_no: ${dto.ohPhotoAttach.pa_no }</div>
 						<div>pa_attach: ${dto.ohPhotoAttach.pa_attach }</div>
 						<div>pb_no: ${dto.ohPhotoAttach.pb_no }</div>
-						<a href="OHPhotoDetailView?pb_no=${dto.pb_no }&pa_no=${dto.ohPhotoAttach.pa_no }">
+						<a href="OHPhotoDetailView?pb_no=${dto.pb_no }">
 							<img src="../resources/upload/oh/${dto.ohPhotoAttach.pa_attach }" alt="해당 게시글 대표사진" height="300px" width="300px"/>
 						</a>
 					</div>
@@ -231,5 +166,6 @@
 			<h1>footer</h1>
 		</footer>
 	</div>	
+	
 </body>
 </html>

@@ -8,6 +8,8 @@ public class OptionDto {
 	private Integer product_data_id;
 	private String name;
 
+	private ProductDataDto product_data_dto;
+
 	public OptionDto() {
 
 	}
@@ -19,6 +21,24 @@ public class OptionDto {
 		this.sub_option_set_id = sub_option_set_id;
 		this.product_data_id = product_data_id;
 		this.name = name;
+	}
+
+	public OptionDto(int option_id, int option_set_id, Integer sub_option_set_id, Integer product_data_id, String name,
+			ProductDataDto product_data_dto) {
+		this.option_id = option_id;
+		this.option_set_id = option_set_id;
+		this.sub_option_set_id = sub_option_set_id;
+		this.product_data_id = product_data_id;
+		this.name = name;
+		this.product_data_dto = product_data_dto;
+	}
+
+	public ProductDataDto getProduct_data_dto() {
+		return product_data_dto;
+	}
+
+	public void setProduct_data_dto(ProductDataDto product_data_dto) {
+		this.product_data_dto = product_data_dto;
 	}
 
 	public int getOption_id() {

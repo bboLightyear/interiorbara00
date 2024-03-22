@@ -159,14 +159,220 @@
 			<button id="openModal" class="category_button category_1"> <span>퀵견적</span> </button>
 			<jsp:include page="modal/mmain.jsp" />
             <button onclick="location.href='shop/list'" class="category_button category_2"> <span>소품 샵</span> </button>
-            <button class="location.href='biz/search/bizAddrSearch'" class="category_button category_3"> <span>업체 <br> 둘러보기 </span> </button>
-            <button class="category_button category_4"> <span>우리 집 <br> 자랑하기</span> </button>
+            <button class="category_button category_3"> <span>업체 <br> 둘러보기 </span> </button>
+            <button onclick="location.href='oh/OHMainView'" class="category_button category_4"> <span>우리 집 <br> 자랑하기</span> </button>
             <button onclick="location.href='cshome'" class="category_button category_5"> <span>고객센터</span> </button>
 			<br />
-			<a href="shop/list">
-				list
-			</a>
 		</div>
+        <div class="main_preview">
+            <h1 class="main_preview_title">입점 업체 보기</h1>
+            <hr />
+            <div class="main_preview_biz">
+                <ul>
+                    <li class="main_preview_biz_img">사진1</li>
+                    <li class="main_preview_biz_img">사진1</li>
+                    <li class="main_preview_biz_img">사진1</li>
+                    <li class="main_preview_biz_img">사진1</li>
+                </ul>
+                <ul>
+                    <li class="main_preview_biz_name">이름1</li>
+                    <li class="main_preview_biz_name">이름1</li>
+                    <li class="main_preview_biz_name">이름1</li>
+                    <li class="main_preview_biz_name">이름1</li>
+                </ul>
+                <ul>
+                    <li class="main_preview_biz_addr">주소1</li>
+                    <li class="main_preview_biz_addr">주소1</li>
+                    <li class="main_preview_biz_addr">주소1</li>
+                    <li class="main_preview_biz_addr">주소1</li>
+                </ul>
+                <ul>
+                    <li class="main_preview_biz_chat">
+                        <a href="https://www.naver.com" class="main_preview_biz_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                    <li class="main_preview_biz_chat">
+                        <a href="https://www.naver.com" class="main_preview_biz_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                    <li class="main_preview_biz_chat">
+                        <a href="https://www.naver.com" class="main_preview_biz_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                    <li class="main_preview_biz_chat">
+                        <a href="https://www.naver.com" class="main_preview_biz_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_preview">
+            <h1 class="main_preview_title">인테리어 소품</h1>
+            <hr />
+            <div class="main_preview_shop">
+                <ul>
+                    <li class="main_preview_shop_img">사진1</li>
+                    <li class="main_preview_shop_img">사진1</li>
+                    <li class="main_preview_shop_img">사진1</li>
+                    <li class="main_preview_shop_img">사진1</li>
+                </ul>
+                <ul>
+                    <li class="main_preview_shop_name">이름1</li>
+                    <li class="main_preview_shop_name">이름1</li>
+                    <li class="main_preview_shop_name">이름1</li>
+                    <li class="main_preview_shop_name">이름1</li>
+                </ul>
+                <ul>
+                    <li class="main_preview_shop_addr">주소1</li>
+                    <li class="main_preview_shop_addr">주소1</li>
+                    <li class="main_preview_shop_addr">주소1</li>
+                    <li class="main_preview_shop_addr">주소1</li>
+                </ul>
+                <ul>
+                    <li class="main_preview_shop_chat">
+                        <a href="https://www.naver.com" class="main_preview_shop_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                    <li class="main_preview_shop_chat">
+                        <a href="https://www.naver.com" class="main_preview_shop_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                    <li class="main_preview_shop_chat">
+                        <a href="https://www.naver.com" class="main_preview_shop_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                    <li class="main_preview_shop_chat">
+                        <a href="https://www.naver.com" class="main_preview_shop_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_preview">
+            <h1 class="main_preview_title">우리집 자랑하기</h1>
+            <hr />
+            <div class="main_preview_OH">
+                <ul>
+                    <li class="main_preview_OH_img">사진1</li>
+                    <li class="main_preview_OH_img">사진1</li>
+                    <li class="main_preview_OH_img">사진1</li>
+                    <li class="main_preview_OH_img">사진1</li>
+                </ul>
+                <ul>
+                    <li class="main_preview_OH_name">이름1</li>
+                    <li class="main_preview_OH_name">이름1</li>
+                    <li class="main_preview_OH_name">이름1</li>
+                    <li class="main_preview_OH_name">이름1</li>
+                </ul>
+                <ul>
+                    <li class="main_preview_OH_addr">주소1</li>
+                    <li class="main_preview_OH_addr">주소1</li>
+                    <li class="main_preview_OH_addr">주소1</li>
+                    <li class="main_preview_OH_addr">주소1</li>
+                </ul>
+                <ul>
+                    <li class="main_preview_OH_chat">
+                        <a href="https://www.naver.com" class="main_preview_OH_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                    <li class="main_preview_OH_chat">
+                        <a href="https://www.naver.com" class="main_preview_OH_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                    <li class="main_preview_OH_chat">
+                        <a href="https://www.naver.com" class="main_preview_OH_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                    <li class="main_preview_OH_chat">
+                        <a href="https://www.naver.com" class="main_preview_OH_chat_link">채팅 바로가기
+                            <i class="far fa-comment-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_preview_cs">
+            <div class="main_preview_cs_notice">
+                <h1 class="main_preview_title">공지사항</h1>
+                <hr>
+                <div class="main_preview_cs_notice_board">
+                    <ul>
+                        <li class="main_preview_cs_notice_category w10 bb">번호</li>
+                        <li class="main_preview_cs_notice_category w39 bb">제목</li>
+                        <li class="main_preview_cs_notice_category w20 bb">작성자</li>
+                        <li class="main_preview_cs_notice_category w10 bb">조회수</li>
+                        <li class="main_preview_cs_notice_category w20 bb">작성일</li>
+                    </ul>
+                    <ul>
+                        <li class="main_preview_cs_notice_category w10">1</li>
+                        <li class="main_preview_cs_notice_category w39">제aa목</li>
+                        <li class="main_preview_cs_notice_category w20">작a성a자</li>
+                        <li class="main_preview_cs_notice_category w10">1</li>
+                        <li class="main_preview_cs_notice_category w20">1</li>
+                    </ul>
+                    <ul>
+                        <li class="main_preview_cs_notice_category w10">1</li>
+                        <li class="main_preview_cs_notice_category w39">제aa목</li>
+                        <li class="main_preview_cs_notice_category w20">작a성a자</li>
+                        <li class="main_preview_cs_notice_category w10">1</li>
+                        <li class="main_preview_cs_notice_category w20">1</li>
+                    </ul>
+                    <ul>
+                        <li class="main_preview_cs_notice_category w10">1</li>
+                        <li class="main_preview_cs_notice_category w39">제aa목</li>
+                        <li class="main_preview_cs_notice_category w20">작a성a자</li>
+                        <li class="main_preview_cs_notice_category w10">1</li>
+                        <li class="main_preview_cs_notice_category w20">1</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main_preview_cs_qna">
+                <h1 class="main_preview_title">QnA</h1>
+                <hr>
+                <div class="main_preview_cs_qna_board">
+                    <ul>
+                        <li class="main_preview_cs_qna_category w10 bb">번호</li>
+                        <li class="main_preview_cs_qna_category w39 bb">제목</li>
+                        <li class="main_preview_cs_qna_category w20 bb">작성자</li>
+                        <li class="main_preview_cs_qna_category w10 bb">조회수</li>
+                        <li class="main_preview_cs_qna_category w20 bb">작성일</li>
+                    </ul>
+                    <ul>
+                        <li class="main_preview_cs_qna_category w10">1</li>
+                        <li class="main_preview_cs_qna_category w39">제aa목</li>
+                        <li class="main_preview_cs_qna_category w20">작a성a자</li>
+                        <li class="main_preview_cs_qna_category w10">1</li>
+                        <li class="main_preview_cs_qna_category w20">1</li>
+                    </ul>
+                    <ul>
+                        <li class="main_preview_cs_qna_category w10">1</li>
+                        <li class="main_preview_cs_qna_category w39">제aa목</li>
+                        <li class="main_preview_cs_qna_category w20">작a성a자</li>
+                        <li class="main_preview_cs_qna_category w10">1</li>
+                        <li class="main_preview_cs_qna_category w20">1</li>
+                    </ul>
+                    <ul>
+                        <li class="main_preview_cs_qna_category w10">1</li>
+                        <li class="main_preview_cs_qna_category w39">제aa목</li>
+                        <li class="main_preview_cs_qna_category w20">작a성a자</li>
+                        <li class="main_preview_cs_qna_category w10">1</li>
+                        <li class="main_preview_cs_qna_category w20">1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+		<hr />
 	</div>
 	<br />
 	<br />
