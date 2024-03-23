@@ -97,6 +97,19 @@
 				
 			<hr />				
 			
+			<!-- 게시물, 이미지 출력 Start -->
+			<c:forEach items="${pa_dto }" var="dto">			
+				<div>
+					<div>pa_no: ${dto.pa_no }</div>
+					<div>pa_attach: ${dto.pa_attach }</div>
+					<div>pb_no: ${dto.pb_no }</div>
+					<img src="../resources/upload/oh/${dto.pa_attach }" alt="해당 게시글 사진" height="300px" width="300px"/>					
+				</div>
+			</c:forEach>		
+			<!-- 게시물, 이미지 출력 End -->							
+			
+			<hr />
+			
 		</div>
 			
 		<footer>

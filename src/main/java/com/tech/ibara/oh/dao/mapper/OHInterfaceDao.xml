@@ -80,6 +80,15 @@
 		    OH_PHOTO_ATTACH_SEQ.NEXTVAL, #{param2}, #{param1} 
 		)
 	</insert>
+	<!-- OHPhotoDetailView -->
+	<update id="updatePb_hit">
+		UPDATE
+			OH_PHOTO_BOARD
+		SET
+			PB_HIT = PB_HIT + 1
+		WHERE
+			PB_NO = #{param1}
+	</update>
 	<select id="getDtoOHPhotoBoard" resultType="com.tech.ibara.oh.dto.OHPhotoBoard">
 		SELECT
 			*
@@ -96,4 +105,40 @@
 		WHERE
 			PB_NO = #{param1}		
 	</select>
+	<!-- OHPhotoEditExecute -->
+	<update id="ohPBEditUpdate">
+		UPDATE
+			OH_PHOTO_BOARD
+		SET
+			PB_TITLE = #{param2},
+			PB_CONTENT = #{param3},
+			PB_CATEGORY = #{param4},
+			PB_RESIDENCE = #{param5},
+			PB_ROOM = #{param6},
+			PB_STYLE = #{param7},
+			PB_SKILL = #{param8}
+		WHERE
+			PB_NO = #{param1}
+	</update>	
+	<delete id="ohPAEditDelete">
+		DELETE FROM 
+			OH_PHOTO_ATTACH
+		WHERE
+			PB_NO = #{param1}
+	</delete>	
+	<insert id="ohPAEditFileUpload">
+		INSERT INTO 
+		    OH_PHOTO_ATTACH 
+		VALUES (
+		    OH_PHOTO_ATTACH_SEQ.NEXTVAL, #{param2}, #{param1} 
+		)
+	</insert>
+	<select id="getPAFileNames" resultType="string">
+		SELECT
+			PA_ATTACH
+		FROM
+			OH_PHOTO_ATTACH
+		WHERE
+			PB_NO = #{param1}
+	</select>	
 </mapper>

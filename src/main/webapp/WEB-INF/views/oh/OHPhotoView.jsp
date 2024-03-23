@@ -142,6 +142,7 @@
 						</c:forEach>
 					</table>
 				</div>
+				
 				<!-- 전체 <div class="box"> 반복문 사용, 게시물 표현 -->
 				<c:forEach items="${ohPhotoView }" var="dto" varStatus="status">
 					<div class="box">

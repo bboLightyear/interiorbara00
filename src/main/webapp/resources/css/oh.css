@@ -76,7 +76,9 @@ footer {
 /* ----- OHPhotoView.jsp ----- */
 
 
-
+.clear {
+	clear: both;
+}
 
 		
 		

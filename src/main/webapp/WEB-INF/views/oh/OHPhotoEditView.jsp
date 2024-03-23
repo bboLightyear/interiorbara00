@@ -69,6 +69,23 @@
 	
 	<!-- 데이터 표시 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+	<!-- 	
+		<div class="contents" id="abb" data-abc="111">
+		<div class="list" data-abc="111">
+		<div class="list" data-abc="654">
+		<div class="list" data-abc="56">
+		<div class="list" data-abc="1171">
+		<div class="list" data-abc="11761">
+		<script>
+			var list = document.getElementsByClass("list");
+			for (list f)
+				f.dataset.abc;
+			var el = document.getElementById("abb");
+			var aa = el.dataset.abc;
+			console.log(aa);
+		</script>	 
+	-->
+
 	<div class="container">
 	
 		<header>
@@ -85,7 +102,6 @@
 					<li><a href="">#category</a></li>
 				</ul>
 			</div>
-						
 				<h3>OHPhotoEditView.jsp</h3>
 				
 				<h3>글수정</h3>			
@@ -99,6 +115,8 @@
 			<button>집영상</button>
 			
 			<form action="OHPhotoEditExecute" method="post" enctype="multipart/form-data">
+				<!-- hidden, pb_no, pa_dto 값 전달 -->
+				<input type="hidden" name="pb_no" value="${pb_dto.pb_no }" /> 
 				
 				<input type="submit" value="수정하기" />
 				
@@ -181,8 +199,24 @@
 					<option value="전문가" <c:if test="${pb_dto.pb_skill eq '전문가'}">selected</c:if>>전문가</option>
 				</select>	
 				
-			</form>					
-								
+			</form>	
+			
+			
+			<hr />				
+			
+			<!-- 게시물, 이미지 출력 Start -->
+			<c:forEach items="${pa_dto }" var="dto">			
+				<div>
+					<div>pa_no: ${dto.pa_no }</div>
+					<div>pa_attach: ${dto.pa_attach }</div>
+					<div>pb_no: ${dto.pb_no }</div>
+					<img src="../resources/upload/oh/${dto.pa_attach }" alt="해당 게시글 사진" height="300px" width="300px"/>					
+				</div>
+			</c:forEach>		
+			<!-- 게시물, 이미지 출력 End -->							
+			
+			<hr />			
+									
 		</div>
 		
 		<footer>
@@ -190,5 +224,6 @@
 		</footer>
 		
 	</div>	
+	
 </body>
 </html>
