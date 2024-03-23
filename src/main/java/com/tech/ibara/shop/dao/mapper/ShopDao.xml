@@ -40,15 +40,6 @@
 			UP_CATEGORY_ID = #{param1}
 	</select>
 	
-	<select id="selectUpCategoryById" resultType="com.tech.ibara.shop.dto.CategoryDto">
-		SELECT
-			CATEGORY_ID, UP_CATEGORY_ID, NAME
-		FROM
-			SHOP_CATEGORY
-		WHERE
-			CATEGORY_ID = #{param1}
-	</select>
-	
 	<select id="selectCategoryById" resultType="com.tech.ibara.shop.dto.CategoryDto">
 		SELECT
 			CATEGORY_ID, UP_CATEGORY_ID, NAME
@@ -207,4 +198,27 @@
 			O.OPTION_SET_ID = #{param1}
 	</select>
 	
+	<select id="selectJoinOptionById" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
+		SELECT
+			O.OPTION_ID, O.OPTION_SET_ID, O.NAME, D.STOCK, D.PRICE, D.DISCOUNTED_PRICE
+		FROM
+			SHOP_OPTION O
+		JOIN
+			SHOP_PRODUCT_DATA D
+		ON
+			O.PRODUCT_DATA_ID = D.PRODUCT_DATA_ID
+		WHERE
+			O.OPTION_ID = #{param1}
+	</select>
+	
+	<select id="selectProductImgsByProduct" resultType="com.tech.ibara.shop.dto.ProductImgDto">
+		SELECT
+		    PRODUCT_IMG_ID, PRODUCT_ID, FILE_SRC
+		FROM
+		    SHOP_PRODUCT_IMG
+		WHERE
+		    PRODUCT_ID = #{param1}
+		ORDER BY
+			PRODUCT_IMG_ID
+	</select>
 </mapper>

@@ -8,6 +8,7 @@ import com.tech.ibara.shop.dto.OptionDto;
 import com.tech.ibara.shop.dto.OptionSetDto;
 import com.tech.ibara.shop.dto.ProductDataDto;
 import com.tech.ibara.shop.dto.ProductDto;
+import com.tech.ibara.shop.dto.ProductImgDto;
 
 public interface ShopDao {
 
@@ -18,7 +19,6 @@ public interface ShopDao {
 	public ArrayList<CategoryDto> selectSubCategoriesById(int category_id);
 	
 	public CategoryDto selectCategoryById(int category_id);
-	public CategoryDto selectUpCategoryById(int category_id);
 	
 	public ArrayList<String> selectAllCategories();
 	
@@ -31,9 +31,11 @@ public interface ShopDao {
 	
 	public ArrayList<OptionDto> selectOptionsBySet(int option_set_id);
 	public OptionDto selectOptionById(int option_id);
+	public OptionDto selectJoinOptionById(int option_id);
+	public OptionDto selectJoinOptionBySet(int option_set_id);
+	public ArrayList<OptionDto> selectJoinOptionsBySet(int option_set_id);
 	
 	public ProductDataDto selectProductDataById(int product_data_id);
 	
-	public OptionDto selectJoinOptionBySet(int option_set_id);
-	public ArrayList<OptionDto> selectJoinOptionsBySet(int option_set_id);
+	public ArrayList<ProductImgDto> selectProductImgsByProduct(int product_id);
 }

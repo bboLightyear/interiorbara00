@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tech.ibara.shop.dto.OptionDto;
+import com.tech.ibara.shop.dto.ProductDataDto;
+import com.tech.ibara.shop.service.ProductDataLoadService;
 import com.tech.ibara.shop.service.ProductSubOptionSetService;
 import com.tech.ibara.shop.service.ShopService;
 
@@ -32,5 +34,16 @@ public class ShopRestController {
 		shopService.execute(model);
 		
 		return (ArrayList<OptionDto>) model.asMap().get("subOptions");
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/shop/loadProductData")
+	public OptionDto loadProductData(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		shopService = new ProductDataLoadService(sqlSession);
+		shopService.execute(model);
+		
+		return (OptionDto) model.asMap().get("selectedOption");
 	}
 }
