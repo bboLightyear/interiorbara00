@@ -34,7 +34,7 @@ public class ProductViewService implements ShopService {
 		int optionSetId = optionSetDto.getOption_set_id();
 		
 		
-		OptionDto singleOptionDto = null;
+		OptionDto nonOptionDto = null;
 		OptionSetDto subOptionSetDto = null;
 		
 		ArrayList<OptionDto> optionDtoList = null;
@@ -42,7 +42,7 @@ public class ProductViewService implements ShopService {
 		optionDtoList = dao.selectOptionsBySet(optionSetId);
 		
 		if (optionDtoList.size() == 1) {
-			singleOptionDto = dao.selectJoinOptionBySet(optionSetId);
+			nonOptionDto = dao.selectJoinOptionBySet(optionSetId);
 		} else {
 			OptionDto optionDto = optionDtoList.get(0);
 			if (optionDto.getSub_option_set_id() == null) {
@@ -56,7 +56,7 @@ public class ProductViewService implements ShopService {
 		model.addAttribute("product", productDto);
 		model.addAttribute("optionSet", optionSetDto);
 
-		model.addAttribute("singleOption", singleOptionDto);
+		model.addAttribute("nonOption", nonOptionDto);
 		
 		model.addAttribute("options", optionDtoList);
 		

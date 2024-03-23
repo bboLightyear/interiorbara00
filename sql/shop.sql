@@ -27,7 +27,7 @@ select * from shop_product;
     
 /
 begin
-    for i in 1..30000 loop
+    for i in 1..300 loop
         insert into shop_product values (
             seq_shop_product.nextval,
             (select
@@ -41,14 +41,15 @@ begin
                     dbms_random.value)
             where
                 rownum = 1),
-                6,
-                '상품 이름 ' || dbms_random.string('L', 10));
+            6,
+            '상품 이름 ' || dbms_random.string('L', 10));
     end loop;
     commit;
 end;
 /
 
 commit;
+
 
 --insert into shop_product_data values (seq_shop_product_data.nextval, 10, 499000, 169000);
 --insert into shop_product_data values (seq_shop_product_data.nextval, 10, 619000, 209000);

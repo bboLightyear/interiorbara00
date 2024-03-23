@@ -9,23 +9,33 @@
 <title>Insert title here</title>
 
 	<script>
-		function selectOption() {
+		function loadSubOptionSet() {
+			var select = event.target;
+			var option_id = select.value;
+			
 			$.ajax({
-				type: "post",
+				type: "get",
 				async: true,
-				url: "optionSet",
+				url: "loadSubOptionSet",
 				data: {
-					"product_id" : "${product.product_id }",
-					"option_id" : event.target.value
+					"option_id" : option_id
 				},
 				success: function(data) {
-					var htmlText = "";
-					for (var i in data) {
-						htmlText = htmlText + '<option value="' + data[i].option_id + '">' + data[i].name + '</option>';
-					}
-					$("#subOptionSet").append(htmlText);
+					$('option', '#finalOptionSet').not(':eq(0)').remove();
+					$('#finalOptionSet').prop('selectedIndex', 0);
+					
+					$.each(data, function (i, option) {
+					    $('#finalOptionSet').append($('<option>', { 
+					        value: option.option_id,
+					        text : option.name + ' ' + option.product_data_dto.price + '원'
+					    }));
+					});
 				}
 			});
+		}
+		
+		function addSelectedProductCard() {
+			
 		}
 	</script>
 	<style>
@@ -43,38 +53,45 @@
 	
 	id: ${product.product_id } <br />
 	이름: ${product.name } <br />
-
-	<c:choose>
-	
-		<c:when test="${singleOption ne null }">
-			<div class="selectedProductCard">
-				${singleOption.name } <br />
-				${singleOption.product_data_dto.price }
-			</div>
-		</c:when>
+	옵션 <br />
+	<form action="">
+		<c:choose>
+			<c:when test="${nonOption ne null }">
+				<div class="selectedProductCard">
+					${nonOption.name } <br />
+					${nonOption.product_data_dto.price }
+				</div>
+			</c:when>
+			
+			<c:when test="${subOptionSet ne null }">
+				<select name="optionSet" id="optionSet" onchange="loadSubOptionSet()">
+					<option selected disabled>${optionSet.name }</option>
+					<c:forEach items="${options }" var="o">
+						<option value="${o.option_id }">${o.name }</option>
+					</c:forEach>
+				</select>
+				<select name="finalOptionSet" id="finalOptionSet" onchange="addSelectedProductCard()">
+					<option selected disabled>${subOptionSet.name }</option>
+					<!-- ajax -->
+				</select>
+			</c:when>
+			
+			<c:otherwise>
+				<select name="finalOptionSet" id="finalOptionSet" onchange="addSelectedProductCard()">
+					<option selected disabled>${optionSet.name }</option>
+					<c:forEach items="${options }" var="o">
+						<option value="${o.option_id }">${o.name }&nbsp;&nbsp;
+						${o.product_data_dto.price }원</option>
+					</c:forEach>
+				</select>
+			</c:otherwise>
+		</c:choose>
 		
-		<c:when test="${subOptionSet ne null }">
-			<select name="optionSet" id="optionSet">
-				<option selected disabled>${optionSet.name }</option>
-				<c:forEach items="${options }" var="o">
-					<option value="${o.option_id }">${o.name }</option>
-				</c:forEach>
-			</select>
-			<select name="subOptionSet" id="subOptionSet">
-				<option selected disabled>${subOptionSet.name }</option>
-			</select>
-		</c:when>
+		<!-- ajax -->
 		
-		<c:otherwise>
-			<select name="optionSet" id="optionSet">
-				<option selected disabled>${optionSet.name }</option>
-				<c:forEach items="${options }" var="o">
-					<option value="${o.option_id }">${o.name }&nbsp;&nbsp;
-					${o.product_data_dto.price }원</option>
-				</c:forEach>
-			</select>
-		</c:otherwise>
-		
-	</c:choose>
+		<br />
+		<input type="button" value="장바구니"/>
+		<input type="button" value="바로구매"/>
+	</form>
 </body>
 </html>

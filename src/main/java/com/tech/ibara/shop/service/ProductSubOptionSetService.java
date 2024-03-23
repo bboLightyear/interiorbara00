@@ -11,11 +11,11 @@ import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.OptionDto;
 import com.tech.ibara.shop.dto.OptionSetDto;
 
-public class ProductOptionSetService implements ShopService {
+public class ProductSubOptionSetService implements ShopService {
 
 	private SqlSession sqlSession;
 	
-	public ProductOptionSetService(SqlSession sqlSession) {
+	public ProductSubOptionSetService(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
 	
@@ -24,23 +24,13 @@ public class ProductOptionSetService implements ShopService {
 		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);
 		
-		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		int option_id = Integer.parseInt(request.getParameter("option_id"));
 		
 		OptionDto optionDto = dao.selectOptionById(option_id);
 		OptionSetDto subOptionSetDto = dao.selectOptionSetById(optionDto.getSub_option_set_id());
-		ArrayList<OptionDto> optionDtoList = null;
-		if (subOptionSetDto == null) {
-			
-		} else {
-			optionDtoList = dao.selectOptionsBySet(subOptionSetDto.getOption_set_id());	
-		}
+		ArrayList<OptionDto> optionDtoList = dao.selectJoinOptionsBySet(subOptionSetDto.getOption_set_id());
 		
 		model.addAttribute("subOptions", optionDtoList);
-		
-		System.out.println(product_id);
-		System.out.println(option_id);
-		
 	}
 
 }
