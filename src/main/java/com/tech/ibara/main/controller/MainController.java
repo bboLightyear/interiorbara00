@@ -1,4 +1,4 @@
-package com.tech.ibara.main;
+package com.tech.ibara.main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +10,12 @@ public class MainController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main() {
 		
-		return "main";
+		return "main/main";
+	}
+	
+	@RequestMapping("mainSearchView")
+	public String mainSearchView() {
+		
+		return "main/mainSearchView";
 	}
 }
