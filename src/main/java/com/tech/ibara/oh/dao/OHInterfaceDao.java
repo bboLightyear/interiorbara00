@@ -25,8 +25,10 @@ public interface OHInterfaceDao {
 							   String pb_content, String pb_category, 
 							   String pb_residence, String pb_room, 
 							   String pb_style, String pb_skill);	
+	public ArrayList<String> getPAFileNames(String pb_no);
 	public void ohPAEditDelete(String pb_no);
 	public void ohPAEditFileUpload(int pb_no, String changeFile);
-	public ArrayList<String> getPAFileNames(String pb_no);
-	
+	// ---------- OHPhotoDeleteExecute ----------
+	// 사용한 함수 - public ArrayList<String> getPAFileNames(String pb_no);
+	public void ohPBDelete(String pb_no);
 }

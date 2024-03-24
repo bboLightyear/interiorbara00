@@ -42,6 +42,10 @@
 				
 				<input type="submit" value="올리기" />
 				
+				&nbsp;&nbsp;&nbsp;
+				
+				<button><a href="OHPhotoView">취소하기</a></button>
+				
 				<hr />
 				
 				<input type="file" name="pa_attach" multiple />

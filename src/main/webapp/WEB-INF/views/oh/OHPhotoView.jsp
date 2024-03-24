@@ -10,6 +10,67 @@
 </head>
 <body>
 
+	<!-- 데이터 표시 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<h3>OHPhotoDetailView.jsp</h3>
+	<table border="1">
+		<tr>
+			<th colspan="15">OHPhotoBoard</th>
+		</tr>
+		<tr>
+			<th>pb_no</th>
+			<th>pb_user</th>
+			<th>pb_title</th>
+			<th>pb_content</th>
+			<th>pb_date</th>
+			<th>pb_like</th>
+			<th>pb_scrap</th>
+			<th>pb_reply</th>
+			<th>pb_link</th>
+			<th>pb_hit</th>
+			<th>pb_category</th>
+			<th>pb_residence</th>
+			<th>pb_room</th>
+			<th>pb_style</th>
+			<th>pb_skill</th>
+		</tr>
+		<c:forEach items="${ohPhotoView }" var="dto">				
+			<tr>
+				<td>${dto.pb_no }</td>
+				<td>${dto.pb_user }</td>
+				<td>${dto.pb_title }</td>
+				<td>${dto.pb_content }</td>
+				<td>${dto.pb_date }</td>
+				<td>${dto.pb_like }</td>
+				<td>${dto.pb_scrap }</td>
+				<td>${dto.pb_reply }</td>
+				<td>${dto.pb_link }</td>
+				<td>${dto.pb_hit }</td>
+				<td>${dto.pb_category }</td>
+				<td>${dto.pb_residence }</td>
+				<td>${dto.pb_room }</td>
+				<td>${dto.pb_style }</td>
+				<td>${dto.pb_skill }</td>
+			</tr>		
+		</c:forEach>			
+		<tr>
+			<th colspan="15">OHPhotoAttach</th>
+		</tr>
+		<tr>
+			<th>pa_no</th>
+			<th>pa_attach</th>
+			<th>pb_no</th>
+		</tr>
+		<c:forEach items="${ohPhotoView }" var="dto">			
+			<tr>
+				<td>${dto.ohPhotoAttach.pa_no }</td>
+				<td>${dto.ohPhotoAttach.pa_attach }</td>
+				<td>${dto.ohPhotoAttach.pb_no }</td>
+			</tr>
+		</c:forEach>			
+	</table>
+	
+	<!-- 데이터 표시 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->	
+
 	<div class="container">
 		
 		<header>
@@ -33,116 +94,99 @@
 				
 			<hr />				
 				
-			<form action="">
+			<form action="OHPhotoView" method="post">
 				
-				<label for="sorting">정렬</label>
-				<select name="sorting" id="sorting">
-					<option value="">선택</option>
+				<!-- sorting -->
+				<label for="orderingBy">정렬기준</label>
+				<select name="orderingBy" id="orderingBy">
+					<option value="default">선택</option>
 					<option value="latest">최신순</option>
 					<option value="popular">인기순</option>
 					<option value="views">조회순</option>
 				</select>
-				
-				<label for="sortingMethod">정렬방식</label>
-				<select name="sortingMethod" id="sortingMethod">
-					<option value="">선택</option>
+				<label for="orderingMethod">정렬방식</label>
+				<select name="orderingMethod" id="orderingMethod">
+					<option value="default">선택</option>
 					<option value="ascending">오름차순</option>
 					<option value="descending">내림차순</option>
 				</select>
+				<!-- sorting End -->
 				
-				<br />
 				<hr />				
 				
-				<label for="residence">주거형태</label>
-				<select name="residence" id="residence">
-					<option value="">선택</option>
-					<option value="">원룸&오피스텔</option>
-					<option value="">아파트</option>
-					<option value="">빌라&연립</option>
-					<option value="">단독주택</option>
-					<option value="">사무공간</option>
-					<option value="">상업공간</option>
-					<option value="">기타</option>
+				<!-- filtering -->
+				<label for="category">#category</label>
+				<select name="pb_category" id="category">
+					<option value="default">선택</option>
+					<option value="#그냥">#그냥</option>
+					<option value="#내돈내산">#내돈내산</option>
 				</select>				
-				
+				<label for="residence">주거형태</label>
+				<select name="pb_residence" id="residence">
+					<option value="default">선택</option>
+					<option value="원룸&오피스텔">원룸&오피스텔</option>
+					<option value="아파트">아파트</option>
+					<option value="빌라&연립">빌라&연립</option>
+					<option value="단독주택">단독주택</option>
+					<option value="사무공간">사무공간</option>
+					<option value="상업공간">상업공간</option>
+					<option value="기타">기타</option>
+				</select>				
 				<label for="room">공간</label>
-				<select name="room" id="room">
-					<option value="">선택</option>
-					<option value="">원룸</option>
-					<option value="">거실</option>
-					<option value="">침실</option>
-					<option value="">주방</option>
-					<option value="">욕실</option>
-					<option value="">아이방</option>
-					<option value="">드레스룸</option>
-					<option value="">서재&작업실</option>
-					<option value="">베란다</option>
-					<option value="">사무공간</option>
-					<option value="">상업공간</option>
-					<option value="">가구&소품</option>
-					<option value="">현관</option>
-					<option value="">외관&기타</option>
+				<select name="pb_room" id="room">
+					<option value="default">선택</option>
+					<option value="원룸">원룸</option>
+					<option value="거실">거실</option>
+					<option value="침실">침실</option>
+					<option value="주방">주방</option>
+					<option value="욕실">욕실</option>
+					<option value="아이방">아이방</option>
+					<option value="드레스룸">드레스룸</option>
+					<option value="서재&작업실">서재&작업실</option>
+					<option value="베란다">베란다</option>
+					<option value="사무공간">사무공간</option>
+					<option value="상업공간">상업공간</option>
+					<option value="가구&소품">가구&소품</option>
+					<option value="현관">현관</option>
+					<option value="외관&기타">외관&기타</option>
 				</select>								
-				
 				<label for="style">스타일</label>
-				<select name="style" id="style">
-					<option value="">선택</option>
-					<option value="">모던</option>
-					<option value="">북유럽</option>
-					<option value="">빈티지</option>
-					<option value="">내추럴</option>
-					<option value="">프로방스&로맨틱</option>
-					<option value="">클래식&앤틱</option>
-					<option value="">한국&아시아</option>
-					<option value="">유니크</option>
+				<select name="pb_style" id="style">
+					<option value="default">선택</option>
+					<option value="모던">모던</option>
+					<option value="북유럽">북유럽</option>
+					<option value="빈티지">빈티지</option>
+					<option value="내추럴">내추럴</option>
+					<option value="프로방스&로맨틱">프로방스&로맨틱</option>
+					<option value="클래식&앤틱">클래식&앤틱</option>
+					<option value="한국&아시아">한국&아시아</option>
+					<option value="유니크">유니크</option>
 				</select>								
-				
 				<label for="skill">셀프/전문가</label>
-				<select name="skill" id="skill">
-					<option value="">선택</option>
-					<option value="">셀프</option>
-					<option value="">전문가</option>
+				<select name="pb_skill" id="skill">
+					<option value="default">선택</option>
+					<option value="셀프">셀프</option>
+					<option value="전문가">전문가</option>
 				</select>								
+				<!-- filtering End -->
 				
-				<br />
 				<hr />					
 				
-				<label for="search">검색기준</label>
-				<select name="search" id="search">
-					<option value="">선택</option>
-					<option value="">제목</option>
-					<option value="">내용</option>
-					<option value="">#category</option>
+				<!-- searching -->
+				<label for="searching">검색기준</label>
+				<select name="searchingType" id="searching">
+					<option value="default">선택</option>
+					<option value="pb_title">제목</option>
+					<option value="pb_content">내용</option>
 				</select>				
-			
-				<input type="text" name="" value="" />
-				<input type="submit" name="" value="검색" />
+				<input type="text" name="searchingWord" placeholder="검색어를 입력하세요." />
+				<!-- searching End -->
+				
+				<input type="submit" value="검색" />
 			
 			</form>
 			
-			<div class="OHPhotoViewflexContainer">
-				<!-- 1번 <div class="box"> 테이블 표현 -->			
-				<div class="box">
-					<table width="500" border="1">
-						<!-- 테이블 제목 -->
-						<tr>
-							<th>번호</th>
-							<th>사용자</th>
-							<th>제목</th>
-							<th>내용</th>
-						</tr>
-						<!-- 테이블 내용 -->
-						<c:forEach items="${ohPhotoView }" var="dto">
-							<tr>
-								<td>${dto.pb_no }</td>
-								<td>${dto.pb_user }</td>
-								<td>${dto.pb_title }</td>
-								<td>${dto.pb_content }</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
-				
+			<div class="OHPhotoViewflexContainer">				
 				<!-- 전체 <div class="box"> 반복문 사용, 게시물 표현 -->
 				<c:forEach items="${ohPhotoView }" var="dto" varStatus="status">
 					<div class="box">
@@ -150,6 +194,7 @@
 						<div>pb_user: ${dto.pb_user }</div>	
 						<div>pb_title: ${dto.pb_title }</div>	
 						<div>pb_content: ${dto.pb_content }</div>
+						<div>pb_category: ${dto.pb_category }</div>
 						<div>pa_no: ${dto.ohPhotoAttach.pa_no }</div>
 						<div>pa_attach: ${dto.ohPhotoAttach.pa_attach }</div>
 						<div>pb_no: ${dto.ohPhotoAttach.pb_no }</div>
@@ -158,7 +203,6 @@
 						</a>
 					</div>
 				</c:forEach>
-	
 			</div>
 			
 		</div>

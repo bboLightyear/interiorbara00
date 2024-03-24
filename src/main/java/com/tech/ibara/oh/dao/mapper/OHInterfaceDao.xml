@@ -141,4 +141,11 @@
 		WHERE
 			PB_NO = #{param1}
 	</select>	
+	<!-- OHPhotoDeleteExecute -->	
+	<delete id="ohPBDelete">
+		DELETE FROM 
+			OH_PHOTO_BOARD
+		WHERE
+			PB_NO = #{param1}
+	</delete>	
 </mapper>

@@ -120,6 +120,10 @@
 				
 				<input type="submit" value="수정하기" />
 				
+				&nbsp;&nbsp;&nbsp;
+				
+				<button><a href="OHPhotoDetailView?pb_no=${pb_dto.pb_no }">취소하기</a></button>				
+				
 				<hr />
 				
 				<input type="file" name="pa_attach" multiple />

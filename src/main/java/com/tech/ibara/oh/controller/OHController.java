@@ -27,18 +27,45 @@ public class OHController {
 	
 	// ---------- OHMainView.jsp ---------- 
 	@RequestMapping("oh/OHMainView")
-	public String OHMainView(Model model) {
+	public String OHMainView(HttpServletRequest request, Model model) {
 		// Console 출력
 		System.out.println("OHMainView Controller");
 		return "oh/OHMainView";
 	}
 	// ---------- OHPhotoView.jsp ---------- 
 	@RequestMapping("oh/OHPhotoView")
-	public String OHPhotoView(Model model) {
+	public String OHPhotoView(HttpServletRequest request, Model model) {
 		// Console 출력
 		System.out.println("OHPhotoView Controller");
 		// OHInterfaceDao, SqlSession 연결
 		OHInterfaceDao dao = sqlSession.getMapper(OHInterfaceDao.class);
+		// --- sorting ---
+		System.out.println("-- sorting ---");
+		String orderingBy = request.getParameter("orderingBy");
+		String orderingMethod = request.getParameter("orderingMethod");
+		System.out.println("orderingBy: " + orderingBy);
+		System.out.println("orderingMethod: " + orderingMethod);
+		// --- filtering ---
+		System.out.println("--- filtering ---");
+		String pb_category = request.getParameter("pb_category");
+		String pb_residence = request.getParameter("pb_residence");
+		String pb_room = request.getParameter("pb_room");
+		String pb_style = request.getParameter("pb_style");
+		String pb_skill = request.getParameter("pb_skill");
+		System.out.println("pb_category: " + pb_category);
+		System.out.println("pb_residence: " + pb_residence);
+		System.out.println("pb_room: " + pb_room);
+		System.out.println("pb_style: " + pb_style);
+		System.out.println("pb_skill: " + pb_skill);
+		// --- searching ---
+		System.out.println("--- searching ---");
+		String searchingType = request.getParameter("searchingType");
+		String searchingWord = request.getParameter("searchingWord");		
+		System.out.println("searchingType: " + searchingType);
+		System.out.println("searchingWord: " + searchingWord);
+		
+		
+		
 		// ohPhotoView() 함수 실행
 		ArrayList<OHPhotoBoard> dtoList = dao.ohPhotoView();
 		// model 값 전달
@@ -47,7 +74,7 @@ public class OHController {
 	}
 	// ---------- OHPhotoWriteView.jsp ---------- 
 	@RequestMapping("oh/OHPhotoWriteView")
-	public String OHPhotoWriteView(Model model) {
+	public String OHPhotoWriteView(HttpServletRequest request, Model model) {
 		// Console 출력
 		System.out.println("OHPhotoWriteView Controller");
 		return "oh/OHPhotoWriteView";
@@ -187,39 +214,31 @@ public class OHController {
 		// ohPhotoWriteExecute() 함수 실행
 		dao.ohPBEditUpdate(pb_no, pb_title, pb_content, pb_category,
 								pb_residence, pb_room, pb_style, pb_skill);	
-		
-		
-		
-		
-		
-		
 		// 업로드 파일 - 저장할 폴더 경로, path 변수에 저장
 		// 스프링 STS - upload 폴더 경로
 		// 글쓰기 후 이미지가 바로 출력되지 않는 문제가 있다.
 		String path = "C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\upload\\oh";
 		// 톰캣 server - upload 폴더 경로
 		// String path = "C:\\23setspring\\springwork23\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\interiorbara\\resources\\upload\\oh";
-		
 		// 업로드 파일, List 저장
 		List<MultipartFile> pa_attachList = mftRequest.getFiles("pa_attach");
-		
-		
-		System.out.println("pa_attachList 값 가져오기" + pa_attachList);
-		
+		// pa_attachList 값 출력
+		System.out.println("pa_attachList: " + pa_attachList);
 		// pa_attachList, Null 값 체크
 		int checkNum = 1;
-		
+		// pa_attachList 반복문
 		for(MultipartFile mf : pa_attachList) {
+			// pa_attachList, 첨부된 파일이 없다면 실행
 			if(mf.isEmpty()) {
 				checkNum = 0;
 			}
 		}
-		
+		// pa_attachList, 첨부된 파일이 존재한다면 실행
 		if(checkNum == 1) {
-	
 			// upload 폴더 - 기존 이미지 파일 삭제
+			// getPAFileNames(pb_no) 함수 실행 - 삭제할 이미지 파일 이름 가져오기
 			ArrayList<String> paDeleteFileList = dao.getPAFileNames(pb_no);
-			
+			// paDeleteFileList 반복문
 			for(String f : paDeleteFileList) {
 				File file = new File(path + "\\" + f);
 				System.out.println(path + "\\" + f);
@@ -230,10 +249,8 @@ public class OHController {
 					System.out.println("이미지 삭제실패: " + f);
 				}
 			}			
-			
 			// DB, OH_PHOTO_ATTACH - 기존 내용 삭제
 			dao.ohPAEditDelete(pb_no);	
-			
 			// 파일 저장
 			for(MultipartFile mf : pa_attachList) {
 				// 원본 파일명
@@ -258,10 +275,53 @@ public class OHController {
 				}
 			}				
 		}
-			
-			
-			
-			
 		return "redirect:OHPhotoDetailView?pb_no=" + pb_no;
+	}
+	
+	// ---------- OHPhotoDeleteExecute ----------
+	@RequestMapping("oh/OHPhotoDeleteExecute")
+	public String OHPhotoDeleteExecute(HttpServletRequest request, Model model) {
+		// Console 출력
+		System.out.println("OHPhotoDeleteExecute Controller");
+		// 변수 선언, 값 저장		
+		String pb_no = request.getParameter("pb_no");
+		// 변수 값 출력
+		System.out.println("pb_no: " + pb_no);
+		// OHInterfaceDao, SqlSession 연결
+		OHInterfaceDao dao = sqlSession.getMapper(OHInterfaceDao.class);
+		// upload 폴더 - 이미지 삭제		
+		// 업로드 파일 - 저장할 폴더 경로, path 변수에 저장
+		// 스프링 STS - upload 폴더 경로
+		// 글쓰기 후 이미지가 바로 출력되지 않는 문제가 있다.
+		String path = "C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\upload\\oh";
+		// 톰캣 server - upload 폴더 경로
+		// String path = "C:\\23setspring\\springwork23\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\interiorbara\\resources\\upload\\oh";	
+		// getPAFileNames(pb_no) 함수 실행 - 삭제할 이미지 파일 이름 가져오기
+		ArrayList<String> paDeleteFileList = dao.getPAFileNames(pb_no);		
+		// paDeleteFileList 반복문
+		for(String f : paDeleteFileList) {
+			File file = new File(path + "\\" + f);
+			System.out.println(path + "\\" + f);
+			// file 존재한다면 True
+			if(file.exists()) {
+				// file 삭제
+				file.delete();
+				System.out.println("이미지 삭제완료: " + f);
+			} else {
+				System.out.println("이미지 삭제실패: " + f);
+			}
+		}					
+		// DB - OH_PHOTO_BOARD 삭제
+		dao.ohPBDelete(pb_no);
+		System.out.println("DB - OH_PHOTO_BOARD, pb_no: " + pb_no + " 삭제완료");
+		// DB - OH_PHOTO_ATTACH, pb_no - Foreign Key, ON DELETE CASCADE 
+		return "redirect:OHPhotoView";
 	}	
+	
 }
+
+
+
+
+
+
