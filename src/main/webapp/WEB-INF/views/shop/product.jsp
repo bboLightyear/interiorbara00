@@ -51,14 +51,14 @@
 					
 					if ($("#optionSet").length) {
 						firstOption = $("#optionSet").find("option:first-child").text() + ": " +
-							$("#optionSet option:selected").text();
+							$("#optionSet option:selected").text() +' / ';
 					}
 					
 					finalOption = $("#finalOptionSet").find("option:first-child").text() + ": "
 						+ data.name;
 					
-					var htmlText = '<div class="selectedProductCard">' + 
-									firstOption +' / ' + finalOption +
+					var htmlText = '<div class="selectedProductCard" data-option-id="' + data.option_id + '">' + 
+									firstOption + finalOption +
 									'<br /><span>' + data.product_data_dto.price + '</span>원' +
 									'</div>';
 					$("#optionWrap").append(htmlText);
@@ -66,6 +66,13 @@
 					$("option", "#finalOptionSet").not(":eq(0)").remove();
 					$("#finalOptionSet").prop("selectedIndex", 0);
 					$("#optionSet").prop("selectedIndex", 0);
+				
+					
+					var price = parseInt($("#totalPrice").data("totalPrice"), 10);
+					price += parseInt(data.product_data_dto.price, 10);
+					
+					$("#totalPrice").data("totalPrice", price);
+					$("#totalPrice").text($("#totalPrice").data("totalPrice"));
 				}
 			});
 			
@@ -123,7 +130,10 @@
 <body>
 	
 	<h3>product.jsp</h3>
-	<main data-adf="dd">
+	<h4>user_id: <%= session.getAttribute("user_id") %></h4>
+	<a href="basket">장바구니</a>
+	<br />
+	<main data-product-id="${product.product_id }">
 		<div>
 			<c:forEach items="${categories }" var="cat" varStatus="s">
 				<a href="list?category_id=${cat.category_id }">${cat.name }</a>
@@ -148,8 +158,8 @@
 			</div>
 		</section>
 		<section id="summary">
-			id: ${product.product_id } <br />
-			이름: ${product.name } <br />
+			product_id: ${product.product_id } <br />
+			name: ${product.name } <br />
 			옵션 <br />
 			<form action="">
 				<div id="optionWrap">
@@ -189,11 +199,12 @@
 				
 					<br />
 				</div>
-				
+				<br />
 				<input type="button" value="장바구니"/>
 				<input type="button" value="바로구매"/>
 			</form>
-			총 금액 : <span id="totalPrice">0</span>원
+			<br />
+			총 금액 : <span id="totalPrice" data-total-price="0">0</span>원
 		</section>
 	</main>
 </body>

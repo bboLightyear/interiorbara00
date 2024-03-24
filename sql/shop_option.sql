@@ -51,6 +51,95 @@ select * from shop_product_data;
 commit;
 
 select
+    p.name
+from
+    shop_option o
+join
+    shop_option o2
+on
+    o2.sub_option_set_id = o.option_set_id
+join
+    shop_product p
+on
+    p.option_set_id = o2.option_set_id
+where
+    o.option_id = 4;
+
+
+select
+    option_set_id
+from
+    shop_option
+where
+    option_id = 4;
+
+
+select
+    *
+from
+    shop_product
+where
+    option_set_id = (
+    select
+        option_set_id
+    from
+        shop_option
+    where
+        option_id = 4);
+
+select
+    name
+from
+    shop_option_set
+where
+    option_set_id = (
+    select
+        option_set_id
+    from
+        shop_option
+    where
+        sub_option_set_id = (
+            select
+                option_set_id
+            from
+                shop_option
+            where
+                option_id = 4));
+
+select
+    name
+from
+    shop_option
+where
+    sub_option_set_id = (
+        select
+            option_set_id
+        from
+            shop_option
+        where
+            option_id = 4);
+
+select
+    name
+from
+    shop_option_set
+where option_set_id = (
+    select
+        option_set_id
+    from
+        shop_option
+    where
+        option_id = 4);
+    
+
+select
+    name
+from
+    shop_option
+where
+    option_id = 4;
+
+select
     *
 from
     shop_product_data

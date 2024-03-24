@@ -39,9 +39,16 @@
 			text-align: center;
 		}
 	</style>
+
 </head>
 <body>
 	<h3>list.jsp</h3>
+	<%
+	if (session.getAttribute("user_id") == null) {
+		session.setAttribute("user_id", "1");
+	}
+	%>
+	<h4>user_id: <%= session.getAttribute("user_id") %></h4>
 	<div id="wrap">
 		<nav>			
 			<c:forEach items="${levelCategories }" var="cat">

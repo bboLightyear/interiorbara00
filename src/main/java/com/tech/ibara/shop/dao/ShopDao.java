@@ -2,6 +2,7 @@ package com.tech.ibara.shop.dao;
 
 import java.util.ArrayList;
 
+import com.tech.ibara.shop.dto.BasketDto;
 import com.tech.ibara.shop.dto.CategoryDto;
 import com.tech.ibara.shop.dto.LevelCategoryDto;
 import com.tech.ibara.shop.dto.OptionDto;
@@ -38,4 +39,6 @@ public interface ShopDao {
 	public ProductDataDto selectProductDataById(int product_data_id);
 	
 	public ArrayList<ProductImgDto> selectProductImgsByProduct(int product_id);
+	
+	public ArrayList<BasketDto> selectBasketsByUser(int user_id);
 }

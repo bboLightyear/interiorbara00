@@ -10,13 +10,6 @@ public class ProductImgDto {
 
 	}
 
-	public ProductImgDto(int product_img_id, int product_id, String file_src) {
-		super();
-		this.product_img_id = product_img_id;
-		this.product_id = product_id;
-		this.file_src = file_src;
-	}
-
 	public int getProduct_img_id() {
 		return product_img_id;
 	}
