@@ -49,16 +49,6 @@
 			<div class="header_category_list list_5">고객센터</div>
 		</div>
 	</header>
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-<P> &#x1F606; TeamProject CheerUp &#x1F44D; </P>
-<P> &#x1F606; 모두 화이팅!! &#x1F44D; </P>
-<p>test</p>
-<p>test</p>
-	<!-- 모달 창 열기 버튼 -->
-    <button id="openModal">퀵견적</button>
-	<jsp:include page="modal/mMain.jsp"/>
 	<br /><br />
 	<div class="body_section">
 		<!--carousel_main : 최상위 클래스로 캐러셀의 전체 구조를 잡아줍니다.
