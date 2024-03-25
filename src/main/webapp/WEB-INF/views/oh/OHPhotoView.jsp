@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<title>OH - OHPhotoView.jsp</title>
 	<link rel="stylesheet" href="../resources/css/oh.css" />	
+	<script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
 </head>
 <body>
 
@@ -99,14 +100,12 @@
 				<!-- sorting -->
 				<label for="orderingBy">정렬기준</label>
 				<select name="orderingBy" id="orderingBy">
-					<option value="default">선택</option>
-					<option value="latest">최신순</option>
-					<option value="popular">인기순</option>
-					<option value="views">조회순</option>
+					<option value="pb_date">날짜</option>
+					<option value="pb_like">좋아요</option>
+					<option value="pb_hit">조회수</option>
 				</select>
 				<label for="orderingMethod">정렬방식</label>
 				<select name="orderingMethod" id="orderingMethod">
-					<option value="default">선택</option>
 					<option value="ascending">오름차순</option>
 					<option value="descending">내림차순</option>
 				</select>
@@ -117,13 +116,13 @@
 				<!-- filtering -->
 				<label for="category">#category</label>
 				<select name="pb_category" id="category">
-					<option value="default">선택</option>
+					<option value="default">전체</option>
 					<option value="#그냥">#그냥</option>
 					<option value="#내돈내산">#내돈내산</option>
 				</select>				
 				<label for="residence">주거형태</label>
 				<select name="pb_residence" id="residence">
-					<option value="default">선택</option>
+					<option value="default">전체</option>
 					<option value="원룸&오피스텔">원룸&오피스텔</option>
 					<option value="아파트">아파트</option>
 					<option value="빌라&연립">빌라&연립</option>
@@ -134,7 +133,7 @@
 				</select>				
 				<label for="room">공간</label>
 				<select name="pb_room" id="room">
-					<option value="default">선택</option>
+					<option value="default">전체</option>
 					<option value="원룸">원룸</option>
 					<option value="거실">거실</option>
 					<option value="침실">침실</option>
@@ -152,7 +151,7 @@
 				</select>								
 				<label for="style">스타일</label>
 				<select name="pb_style" id="style">
-					<option value="default">선택</option>
+					<option value="default">전체</option>
 					<option value="모던">모던</option>
 					<option value="북유럽">북유럽</option>
 					<option value="빈티지">빈티지</option>
@@ -164,7 +163,7 @@
 				</select>								
 				<label for="skill">셀프/전문가</label>
 				<select name="pb_skill" id="skill">
-					<option value="default">선택</option>
+					<option value="default">전체</option>
 					<option value="셀프">셀프</option>
 					<option value="전문가">전문가</option>
 				</select>								
@@ -173,13 +172,21 @@
 				<hr />					
 				
 				<!-- searching -->
+				<!-- jQuery -->
+				<script>
+					/* ${keepSearchingType}의 값이 option의 value와 같으면 selected 속성 추가 */
+					/* $("#searching[name='searchingType'][value=keepSearchingType]").prop("selected", true); */
+					$("select[name=searchingType]").val("<c:out value = '${keepSearchingType}'/>").prop("selected", true);
+				</script>				
+				<!-- 검색기준 - select element -->
 				<label for="searching">검색기준</label>
 				<select name="searchingType" id="searching">
-					<option value="default">선택</option>
+					<option value="default">전체</option>
 					<option value="pb_title">제목</option>
 					<option value="pb_content">내용</option>
-				</select>				
-				<input type="text" name="searchingWord" placeholder="검색어를 입력하세요." />
+				</select>		
+					
+				<input type="text" name="searchingWord" value="${keepSearchingWord }" placeholder="검색어를 입력하세요." />
 				<!-- searching End -->
 				
 				<input type="submit" value="검색" />
@@ -204,6 +211,10 @@
 					</div>
 				</c:forEach>
 			</div>
+			
+			<hr />
+			
+			<!-- Paging -->
 			
 		</div>
 			
