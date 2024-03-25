@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tech.ibara.shop.service.BasketViewService;
+import com.tech.ibara.shop.service.ManagementViewService;
 import com.tech.ibara.shop.service.ProductListService;
 import com.tech.ibara.shop.service.ProductViewService;
 import com.tech.ibara.shop.service.ShopService;
@@ -54,5 +55,14 @@ public class ShopController {
 		shopService.execute(model);
 		
 		return "shop/basket";
+	}
+	
+	@RequestMapping("/shop/management")
+	public String managementView(Model model) {
+		
+		shopService = new ManagementViewService(sqlSession);
+		shopService.execute(model);
+		
+		return "shop/management";
 	}
 }

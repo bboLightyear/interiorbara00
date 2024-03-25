@@ -5,7 +5,7 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tech.ibara.shop.dao.ShopDao">
-
+	
 	<select id="selectProductsByCategory" resultType="com.tech.ibara.shop.dto.ProductDto">
 		SELECT
 			PRODUCT_ID, CATEGORY_ID, OPTION_SET_ID, NAME
@@ -31,7 +31,7 @@
 			PRODUCT_ID	
 	</select>
 	
-	<select id="selectSubCategoriesById" resultType="com.tech.ibara.shop.dto.CategoryDto">
+	<select id="selectCategoriesByUp" resultType="com.tech.ibara.shop.dto.CategoryDto">
 		SELECT
 			CATEGORY_ID, UP_CATEGORY_ID, NAME
 		FROM
@@ -94,6 +94,15 @@
 		    UP_CATEGORY_ID IS NULL
 		CONNECT BY
 		    PRIOR CATEGORY_ID = UP_CATEGORY_ID
+	</select>
+	
+	<select id="selectLv1Categories" resultType="com.tech.ibara.shop.dto.LevelCategoryDto" >
+		SELECT
+		    CATEGORY_ID, UP_CATEGORY_ID, NAME
+		FROM
+		    SHOP_CATEGORY
+		WHERE
+		    UP_CATEGORY_ID IS NULL
 	</select>
 	
 	<select id="selectProductById" resultType="com.tech.ibara.shop.dto.ProductDto">

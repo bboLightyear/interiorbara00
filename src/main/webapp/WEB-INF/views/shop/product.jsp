@@ -178,7 +178,7 @@
 									<option value="${o.option_id }">${o.name }</option>
 								</c:forEach>
 							</select>
-							<select name="finalOptionSet" id="finalOptionSet" onchange="addSelectedProductCard()">
+							<select name="finalOptionSet" id="finalOptionSet" text="asdf" onchange="addSelectedProductCard()">
 								<option selected disabled>${subOptionSet.name }</option>
 								<!-- ajax -->
 							</select>

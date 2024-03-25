@@ -17,7 +17,8 @@ public interface ShopDao {
 	public ArrayList<ProductDto> selectProductsByCategories(ArrayList<CategoryDto> categoryList);
 	
 	public ArrayList<CategoryDto> selectAllSubCategoriesById(int category_id);
-	public ArrayList<CategoryDto> selectSubCategoriesById(int category_id);
+	public ArrayList<CategoryDto> selectCategoriesByUp(int category_id);
+	public ArrayList<CategoryDto> selectLv1Categories();
 	
 	public CategoryDto selectCategoryById(int category_id);
 	
