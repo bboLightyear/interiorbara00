@@ -145,27 +145,27 @@
 					</tr>					
 				</table>
 				
-				<label for="category">#category</label>
-				<select name="pb_category" id="category">
+				<label for="pb_category">#category</label>
+				<select name="pb_category" id="pb_category">
 					<option value=""  >선택</option>
 					<option value="#그냥" <c:if test="${pb_dto.pb_category eq '#그냥'}">selected</c:if>>#그냥</option>
 					<option value="#내돈내산" <c:if test="${pb_dto.pb_category eq '#내돈내산'}">selected</c:if>>#내돈내산</option>
 				</select>				
 				
-				<label for="residence">주거형태</label>
-				<select name="pb_residence" id="residence">
+				<label for="pb_residence">주거형태</label>
+				<select name="pb_residence" id="pb_residence">
 					<option value="">선택</option>
-					<option value="원룸&오피스텔" <c:if test="${pb_dto.pb_residence eq '원룸&오피스텔'}">selected</c:if>>원룸&오피스텔</option>
+					<option value="원룸&오피스텔" <c:if test="${pb_dto.pb_residence eq '원룸&오피스텔'}">selected</c:if>>원룸&amp;오피스텔</option>
 					<option value="아파트" <c:if test="${pb_dto.pb_residence eq '아파트'}">selected</c:if>>아파트</option>
-					<option value="빌라&연립" <c:if test="${pb_dto.pb_residence eq '빌라&연립'}">selected</c:if>>빌라&연립</option>
+					<option value="빌라&연립" <c:if test="${pb_dto.pb_residence eq '빌라&연립'}">selected</c:if>>빌라&amp;연립</option>
 					<option value="단독주택" <c:if test="${pb_dto.pb_residence eq '단독주택'}">selected</c:if>>단독주택</option>
 					<option value="사무공간" <c:if test="${pb_dto.pb_residence eq '사무공간'}">selected</c:if>>사무공간</option>
 					<option value="상업공간" <c:if test="${pb_dto.pb_residence eq '상업공간'}">selected</c:if>>상업공간</option>
 					<option value="기타" <c:if test="${pb_dto.pb_residence eq '기타'}">selected</c:if>>기타</option>
 				</select>					
 				
-				<label for="room">공간</label>
-				<select name="pb_room" id="room">
+				<label for="pb_room">공간</label>
+				<select name="pb_room" id="pb_room">
 					<option value="">선택</option>
 					<option value="원룸" <c:if test="${pb_dto.pb_room eq '원룸'}">selected</c:if>>원룸</option>
 					<option value="거실" <c:if test="${pb_dto.pb_room eq '거실'}">selected</c:if>>거실</option>
@@ -174,30 +174,30 @@
 					<option value="욕실" <c:if test="${pb_dto.pb_room eq '욕실'}">selected</c:if>>욕실</option>
 					<option value="아이방" <c:if test="${pb_dto.pb_room eq '아이방'}">selected</c:if>>아이방</option>
 					<option value="드레스룸" <c:if test="${pb_dto.pb_room eq '드레스룸'}">selected</c:if>>드레스룸</option>
-					<option value="서재&작업실" <c:if test="${pb_dto.pb_room eq '서재&작업실'}">selected</c:if>>서재&작업실</option>
+					<option value="서재&작업실" <c:if test="${pb_dto.pb_room eq '서재&작업실'}">selected</c:if>>서재&amp;작업실</option>
 					<option value="베란다" <c:if test="${pb_dto.pb_room eq '베란다'}">selected</c:if>>베란다</option>
 					<option value="사무공간" <c:if test="${pb_dto.pb_room eq '사무공간'}">selected</c:if>>사무공간</option>
 					<option value="상업공간" <c:if test="${pb_dto.pb_room eq '상업공간'}">selected</c:if>>상업공간</option>
-					<option value="가구&소품" <c:if test="${pb_dto.pb_room eq '가구&소품'}">selected</c:if>>가구&소품</option>
+					<option value="가구&소품" <c:if test="${pb_dto.pb_room eq '가구&소품'}">selected</c:if>>가구&amp;소품</option>
 					<option value="현관" <c:if test="${pb_dto.pb_room eq '현관'}">selected</c:if>>현관</option>
-					<option value="외관&기타" <c:if test="${pb_dto.pb_room eq '외관&기타'}">selected</c:if>>외관&기타</option>
+					<option value="외관&기타" <c:if test="${pb_dto.pb_room eq '외관&기타'}">selected</c:if>>외관&amp;기타</option>
 				</select>					
 				
-				<label for="style">스타일</label>
-				<select name="pb_style" id="style">
+				<label for="pb_style">스타일</label>
+				<select name="pb_style" id="pb_style">
 					<option value="">선택</option>
 					<option value="모던" <c:if test="${pb_dto.pb_style eq '모던'}">selected</c:if>>모던</option>
 					<option value="북유럽" <c:if test="${pb_dto.pb_style eq '북유럽'}">selected</c:if>>북유럽</option>
 					<option value="빈티지" <c:if test="${pb_dto.pb_style eq '빈티지'}">selected</c:if>>빈티지</option>
 					<option value="내추럴" <c:if test="${pb_dto.pb_style eq '내추럴'}">selected</c:if>>내추럴</option>
-					<option value="프로방스&로맨틱" <c:if test="${pb_dto.pb_style eq '프로방스&로맨틱'}">selected</c:if>>프로방스&로맨틱</option>
-					<option value="클래식&앤틱" <c:if test="${pb_dto.pb_style eq '클래식&앤틱'}">selected</c:if>>클래식&앤틱</option>
-					<option value="한국&아시아" <c:if test="${pb_dto.pb_style eq '한국&아시아'}">selected</c:if>>한국&아시아</option>
+					<option value="프로방스&로맨틱" <c:if test="${pb_dto.pb_style eq '프로방스&로맨틱'}">selected</c:if>>프로방스&amp;로맨틱</option>
+					<option value="클래식&앤틱" <c:if test="${pb_dto.pb_style eq '클래식&앤틱'}">selected</c:if>>클래식&amp;앤틱</option>
+					<option value="한국&아시아" <c:if test="${pb_dto.pb_style eq '한국&아시아'}">selected</c:if>>한국&amp;아시아</option>
 					<option value="유니크" <c:if test="${pb_dto.pb_style eq '유니크'}">selected</c:if>>유니크</option>
 				</select>					
 				
-				<label for="skill">셀프/전문가</label>
-				<select name="pb_skill" id="skill">
+				<label for="pb_skill">셀프/전문가</label>
+				<select name="pb_skill" id="pb_skill">
 					<option value="">선택</option>
 					<option value="셀프" <c:if test="${pb_dto.pb_skill eq '셀프'}">selected</c:if>>셀프</option>
 					<option value="전문가" <c:if test="${pb_dto.pb_skill eq '전문가'}">selected</c:if>>전문가</option>

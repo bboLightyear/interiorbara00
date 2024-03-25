@@ -114,25 +114,25 @@
 				<hr />				
 				
 				<!-- filtering -->
-				<label for="category">#category</label>
-				<select name="pb_category" id="category">
+				<label for="pb_category">#category</label>
+				<select name="pb_category" id="pb_category">
 					<option value="default">전체</option>
 					<option value="#그냥">#그냥</option>
 					<option value="#내돈내산">#내돈내산</option>
 				</select>				
-				<label for="residence">주거형태</label>
-				<select name="pb_residence" id="residence">
+				<label for="pb_residence">주거형태</label>
+				<select name="pb_residence" id="pb_residence">
 					<option value="default">전체</option>
-					<option value="원룸&오피스텔">원룸&오피스텔</option>
+					<option value="원룸&오피스텔">원룸&amp;오피스텔</option>
 					<option value="아파트">아파트</option>
-					<option value="빌라&연립">빌라&연립</option>
+					<option value="빌라&연립">빌라&amp;연립</option>
 					<option value="단독주택">단독주택</option>
 					<option value="사무공간">사무공간</option>
 					<option value="상업공간">상업공간</option>
 					<option value="기타">기타</option>
 				</select>				
-				<label for="room">공간</label>
-				<select name="pb_room" id="room">
+				<label for="pb_room">공간</label>
+				<select name="pb_room" id="pb_room">
 					<option value="default">전체</option>
 					<option value="원룸">원룸</option>
 					<option value="거실">거실</option>
@@ -141,28 +141,28 @@
 					<option value="욕실">욕실</option>
 					<option value="아이방">아이방</option>
 					<option value="드레스룸">드레스룸</option>
-					<option value="서재&작업실">서재&작업실</option>
+					<option value="서재&작업실">서재&amp;작업실</option>
 					<option value="베란다">베란다</option>
 					<option value="사무공간">사무공간</option>
 					<option value="상업공간">상업공간</option>
-					<option value="가구&소품">가구&소품</option>
+					<option value="가구&소품">가구&amp;소품</option>
 					<option value="현관">현관</option>
-					<option value="외관&기타">외관&기타</option>
+					<option value="외관&기타">외관&amp;기타</option>
 				</select>								
-				<label for="style">스타일</label>
-				<select name="pb_style" id="style">
+				<label for="pb_style">스타일</label>
+				<select name="pb_style" id="pb_style">
 					<option value="default">전체</option>
 					<option value="모던">모던</option>
 					<option value="북유럽">북유럽</option>
 					<option value="빈티지">빈티지</option>
 					<option value="내추럴">내추럴</option>
-					<option value="프로방스&로맨틱">프로방스&로맨틱</option>
-					<option value="클래식&앤틱">클래식&앤틱</option>
-					<option value="한국&아시아">한국&아시아</option>
+					<option value="프로방스&로맨틱">프로방스&amp;로맨틱</option>
+					<option value="클래식&앤틱">클래식&amp;앤틱</option>
+					<option value="한국&아시아">한국&amp;아시아</option>
 					<option value="유니크">유니크</option>
 				</select>								
-				<label for="skill">셀프/전문가</label>
-				<select name="pb_skill" id="skill">
+				<label for="pb_skill">셀프/전문가</label>
+				<select name="pb_skill" id="pb_skill">
 					<option value="default">전체</option>
 					<option value="셀프">셀프</option>
 					<option value="전문가">전문가</option>
@@ -171,21 +171,15 @@
 				
 				<hr />					
 				
-				<!-- searching -->
-				<!-- jQuery -->
-				<script>
-					/* ${keepSearchingType}의 값이 option의 value와 같으면 selected 속성 추가 */
-					/* $("#searching[name='searchingType'][value=keepSearchingType]").prop("selected", true); */
-					$("select[name=searchingType]").val("<c:out value = '${keepSearchingType}'/>").prop("selected", true);
-				</script>				
+				<!-- searching -->					
 				<!-- 검색기준 - select element -->
-				<label for="searching">검색기준</label>
-				<select name="searchingType" id="searching">
+				<label for="searchingType">검색기준</label>
+				<select name="searchingType" id="searchingType">
 					<option value="default">전체</option>
 					<option value="pb_title">제목</option>
 					<option value="pb_content">내용</option>
-				</select>		
-					
+				</select>					
+				<!-- 검색어 - input element -->		
 				<input type="text" name="searchingWord" value="${keepSearchingWord }" placeholder="검색어를 입력하세요." />
 				<!-- searching End -->
 				
@@ -216,6 +210,9 @@
 			
 			<!-- Paging -->
 			
+			
+			
+			
 		</div>
 			
 		<footer>
@@ -224,4 +221,65 @@
 	</div>	
 	
 </body>
+	<!-- HTML Parsing 순서에 따라 body element 아래에 배치 -->
+	<script>
+		var keepOrderingBy = "${keepOrderingBy}";
+		console.log("keepOrderingBy: " + keepOrderingBy);
+		$("#orderingBy").val(keepOrderingBy).prop("selected", true);
+		
+		var keepOrderingMethod = "${keepOrderingMethod}";
+		console.log("keepOrderingMethod: " + keepOrderingMethod);
+		$("#orderingMethod").val(keepOrderingMethod).prop("selected", true);
+		
+		var keepPb_category = "${keepPb_category}";
+		console.log("keepPb_category: " + keepPb_category);
+		$("#pb_category").val(keepPb_category).prop("selected", true);
+		
+		var keepPb_residence = "${keepPb_residence}";
+		console.log("keepPb_residence: " + keepPb_residence);
+		$("#pb_residence").val(keepPb_residence).prop("selected", true);
+		
+		var keepPb_room = "${keepPb_room}";
+		console.log("keepPb_room: " + keepPb_room);
+		$("#pb_room").val(keepPb_room).prop("selected", true);
+		
+		var keepPb_style = "${keepPb_style}";
+		console.log("keepPb_style: " + keepPb_style);
+		$("#pb_style").val(keepPb_style).prop("selected", true);
+		
+		var keepPb_skill = "${keepPb_skill}";
+		console.log("keepPb_skill: " + keepPb_skill);
+		$("#pb_skill").val(keepPb_skill).prop("selected", true);
+	
+		var keepSearchingType = "${keepSearchingType}";
+		console.log("keepSearchingType: " + keepSearchingType);
+		$("#searchingType").val(keepSearchingType).prop("selected", true);
+		
+		/* keepSearchingWord 값은  searchingWord에 value 값으로 입력 */
+		var keepSearchingWord = "${keepSearchingWord}";
+		console.log("keepSearchingWord: " + keepSearchingWord);
+	</script>	
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

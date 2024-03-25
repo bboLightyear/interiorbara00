@@ -67,15 +67,15 @@
 					</tr>					
 				</table>
 				
-				<label for="category">#category</label>
-				<select name="pb_category" id="category">
+				<label for="pb_category">#category</label>
+				<select name="pb_category" id="pb_category">
 					<option value="">선택</option>
 					<option value="#그냥">#그냥</option>
 					<option value="#내돈내산">#내돈내산</option>
 				</select>				
 				
-				<label for="residence">주거형태</label>
-				<select name="pb_residence" id="residence">
+				<label for="pb_residence">주거형태</label>
+				<select name="pb_residence" id="pb_residence">
 					<option value="">선택</option>
 					<option value="원룸&오피스텔">원룸&amp;오피스텔</option>
 					<option value="아파트">아파트</option>
@@ -86,8 +86,8 @@
 					<option value="기타">기타</option>
 				</select>					
 				
-				<label for="room">공간</label>
-				<select name="pb_room" id="room">
+				<label for="pb_room">공간</label>
+				<select name="pb_room" id="pb_room">
 					<option value="">선택</option>
 					<option value="원룸">원룸</option>
 					<option value="거실">거실</option>
@@ -105,8 +105,8 @@
 					<option value="외관&기타">외관&amp;기타</option>
 				</select>					
 				
-				<label for="style">스타일</label>
-				<select name="pb_style" id="style">
+				<label for="pb_style">스타일</label>
+				<select name="pb_style" id="pb_style">
 					<option value="">선택</option>
 					<option value="모던">모던</option>
 					<option value="북유럽">북유럽</option>
@@ -118,8 +118,8 @@
 					<option value="유니크">유니크</option>
 				</select>					
 				
-				<label for="skill">셀프/전문가</label>
-				<select name="pb_skill" id="skill">
+				<label for="pb_skill">셀프/전문가</label>
+				<select name="pb_skill" id="pb_skill">
 					<option value="">선택</option>
 					<option value="셀프">셀프</option>
 					<option value="전문가">전문가</option>
