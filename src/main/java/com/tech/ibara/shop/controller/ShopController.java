@@ -39,11 +39,6 @@ public class ShopController {
 		shopService = new ProductViewService(sqlSession);
 		shopService.execute(model);
 		
-		int result = (Integer) model.asMap().get("result");
-		if (result == -1) {
-			return "redirect:/shop/list";
-		}
-		
 		return "shop/product";
 	}
 }
