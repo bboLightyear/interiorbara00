@@ -32,12 +32,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
-	 <!-- Main CSS mapping -->
-   <resources mapping="/mainCSS/**" location="/resources/css/main/" />
-   <!-- Main Image view Mapping -->
-   <resources mapping="/mainImagesOH/**" location="/resources/upload/oh/"/>
-	
+	</beans:bean>	
 
 	<context:component-scan
 		base-package="com.tech.ibara" />

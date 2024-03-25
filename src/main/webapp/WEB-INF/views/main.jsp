@@ -115,7 +115,7 @@
 		<!-- 캐러셀 작동 js -->
 		<script>
 			
-		<%-- JSP scriptlet to generate JavaScript code dynamically --%>
+		JSP scriptlet to generate JavaScript code dynamically
 			var swiper = document.querySelector('.carousel_wrapper');
 			var prevButtons = document.querySelectorAll('.carousel_prev');
 			var nextButtons = document.querySelectorAll('.carousel_next');

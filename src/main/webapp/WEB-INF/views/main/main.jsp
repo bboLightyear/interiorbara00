@@ -166,12 +166,12 @@
 			<button id="openModal" class="category_button category_1">
 				<span>퀵견적</span>
 			</button>
-			<jsp:include page="../modal/mmain.jsp" />
+			<jsp:include page="../modal/mMain.jsp" />
 			<button onclick="location.href='shop/list'"
 				class="category_button category_2">
 				<span>소품 샵</span>
 			</button>
-			<button class="category_button category_3">
+			<button onclick="location.href='biz/magazine/bizMgzList'"  class="category_button category_3">
 				<span>업체 <br> 둘러보기
 				</span>
 			</button>
