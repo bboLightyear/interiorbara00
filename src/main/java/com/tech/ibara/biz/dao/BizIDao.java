@@ -7,7 +7,7 @@ import com.tech.ibara.biz.dto.BizMgzImgDto;
 
 public interface BizIDao {
 
-	public ArrayList<BizMgzDto> bizMgzList(int rowStart, int rowEnd, String searchKeyword, String string);
+	public ArrayList<BizMgzDto> bizMgzList(int rowStart, int rowEnd, String searchKeyword, String selNum);
 
 	public BizMgzDto bizMgzContentView(String bm_no);
 
@@ -15,9 +15,11 @@ public interface BizIDao {
 
 	public void bizMgzMod(String bm_no, String bm_title, String bm_content);
 
-	public void bizMgzDelView(String bm_no);
+	public BizMgzDto bizMgzDelView(String bm_no);
 	
 	public void bizMgzDel(String bm_no);
+	
+	public void bizMgzImgDel(String bm_no);
 
 	public void bizMgzWrite(String bm_title, String bm_content, String bm_writer, String user_idno);
 
@@ -32,8 +34,12 @@ public interface BizIDao {
 	public int selBm_no();
 	
 	public void bizMgzImgWrite(int bm_no, String originFile, String changeFile);
-
+	
 	public ArrayList<BizMgzImgDto> selectBizMgzImg(String bm_no);
+
+
+
+
 
 	
 }

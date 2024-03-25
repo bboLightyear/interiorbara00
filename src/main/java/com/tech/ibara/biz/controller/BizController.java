@@ -186,12 +186,15 @@ public class BizController {
 		return "/biz/magazine/bizMgzDelView";
 	}
 	
-	@RequestMapping("/biz/magazine/bizMgzDelete") 
-	public String bizMgzDelete(HttpServletRequest request,Model model) {
-		System.out.println("controller bizMgzDelete();");	
+	@RequestMapping("/biz/magazine/bizMgzDel") 
+	public String bizMgzDel(HttpServletRequest request,Model model) {
+		System.out.println("controller bizMgzDel();");	
 		
 		model.addAttribute("request",request);
 		
+		String bm_no=request.getParameter("bm_no");
+		
+		System.out.println("bm_no: "+bm_no);
 		bizServiceInter=new BizMgzDelService(sqlSession);
 		bizServiceInter.execute(model);
 		

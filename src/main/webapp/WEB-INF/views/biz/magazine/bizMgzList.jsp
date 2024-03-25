@@ -33,10 +33,10 @@
 		
 			<tr class="">
 				<td class="">${dto.bm_no }</td>
+				<td class="">${dto.bm_writer }</td>
 				<td class="">
 					<a href="bizMgzContentView?bm_no=${dto.bm_no }">${dto.bm_title }</a>
 				</td>
-				<td class="">${dto.bm_writer }</td>
 				<td class="">${dto.bm_date }</td>
 				<td class="">${dto.bm_hit }</td>
 			</tr>		

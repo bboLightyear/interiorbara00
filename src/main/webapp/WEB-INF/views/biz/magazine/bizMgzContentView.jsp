@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,27 @@
 		</tr>		
 		<tr class="">
 			<td class="">내용</td>
-			<td>${bizMgzContentView.bm_content }</td>
+			<td>
+			
+ 				<c:forEach items="${imglist }" var="imgdto">
+					
+					<c:if test="${imgdto.bmimg_cgn ne null }">
+						<c:set value="${imgdto.bmimg_cgn }" var="filename" />
+						<c:set value="${fn:toLowerCase(filename) }" var="fileNm" />
+						<c:forTokens items="${fileNm }" delims="." var="token" varStatus="status">
+						<c:if test="${status.last }">
+							<c:choose>
+								<c:when test="${token eq 'jpg' || token eq 'png'}">
+									<img src="../../resources/upload/biz/${imgdto.bmimg_cgn }" alt="${imgdto.bmimg_cgn }" width="200" />
+								</c:when>
+							<c:otherwise>그림이 아닌 다른 형식 파일입니다.</c:otherwise>		
+							</c:choose>
+						</c:if>
+						</c:forTokens>
+					</c:if>			
+				</c:forEach>	
+				<br />
+			${bizMgzContentView.bm_content }</td>
 		</tr>
 		<tr class="">
 			<td class="">첨부</td>

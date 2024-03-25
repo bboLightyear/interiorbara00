@@ -35,6 +35,7 @@ public class BizMgzDelService implements BizServiceInter {
 		System.out.println(bm_no);
 		
 		dao.bizMgzDel(bm_no);
+		dao.bizMgzImgDel(bm_no);
 	}
 
 }

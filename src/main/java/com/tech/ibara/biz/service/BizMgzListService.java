@@ -31,8 +31,8 @@ public class BizMgzListService implements BizServiceInter {
 		Map<String, Object> map=model.asMap();
 		
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		BizIDao dao=sqlSession.getMapper(BizIDao.class);
 		BizSearchVO searchVO=(BizSearchVO) map.get("searchVO");
+		BizIDao dao=sqlSession.getMapper(BizIDao.class);
 		
 		String bm_title="";
 		String bm_content="";
@@ -50,7 +50,7 @@ public class BizMgzListService implements BizServiceInter {
 		if (brdtitle!=null) {
 			//위 변수의 체크상태 저장
 			for (String var : brdtitle) {
-				if (var.equals("bmtitle")) {
+				if (var.equals("bm_title")) {
 					bm_title="bm_title";
 					model.addAttribute("bm_title","true");
 				}else if (var.equals("bm_content")) {
@@ -80,24 +80,22 @@ public class BizMgzListService implements BizServiceInter {
 		
 		//sk값 가져오기
 		String searchKeyword=request.getParameter("sk");
-		if (searchKeyword==null) { //검색문자 null처리
+		if (searchKeyword==null) {
 			searchKeyword="";
 		}
-		model.addAttribute("searchKeyword",searchKeyword);
-		System.out.println("searchKeyword : "+searchKeyword); //searchKeyword 확인하는 출력문
+		model.addAttribute("resk", searchKeyword);
+		System.out.println("skkkk: "+searchKeyword);		
 		
-		
-//		페이징
+//		<paging---->
 		String strPage=request.getParameter("page");
-		//null처리
-		if (strPage==null) {
+		
+		//검색어 아무것도 입력 안해줬을 때의 null처리
+		if(strPage==null)
 			strPage="1";
-		}
 		
 		int page=Integer.parseInt(strPage);
 		searchVO.setPage(page);
-		//토탈 글 갯수 
-		//검색에 적용
+
 		
 		int total=0;
 		if (bm_title.equals("bm_title") && bm_content.equals("")) { //제목만 검색
@@ -112,41 +110,41 @@ public class BizMgzListService implements BizServiceInter {
 		
 		System.out.println("total : "+total);
 		
-//		total count 찍히게
 		
 		searchVO.pageCalculate(total);
 		
 		//계산된 값
-		System.out.println("total"+total);
-		System.out.println("clickpage"+strPage);
-		System.out.println("pagestart"+searchVO.getPageStart());
-		System.out.println("pageend"+searchVO.getPageEnd());
-		System.out.println("rowstart"+searchVO.getRowStart());
-		System.out.println("rowend"+searchVO.getRowEnd());
+		System.out.println("totRow : "+total);
+		System.out.println("clickpage : "+strPage);
+		System.out.println("pageStart : "+searchVO.getPageStart());
+		System.out.println("pageEnd : "+searchVO.getPageEnd());
+		System.out.println("rowStart : "+searchVO.getRowStart());
+		System.out.println("rowEnd : "+searchVO.getRowEnd());
 		
 		int rowStart=searchVO.getRowStart();
 		int rowEnd=searchVO.getRowEnd();
 		
-		
 		ArrayList<BizMgzDto> bizMgzList = null;
+		
 		if (bm_title.equals("bm_title") && bm_content.equals("")) { //제목만 검색
-//			list = dao.list(rowStart,rowEnd,searchKeyword,"1");
-			model.addAttribute("bizMgzList",dao.bizMgzList(rowStart,rowEnd,searchKeyword,"1"));
+			bizMgzList = dao.bizMgzList(rowStart,rowEnd,searchKeyword,"1");
+//			model.addAttribute("bizMgzList",dao.bizMgzList(rowStart,rowEnd,searchKeyword,"1"));
 		}else if (bm_title.equals("") && bm_content.equals("bm_content")) { //내용만 검색
-//			list = dao.list(rowStart,rowEnd,searchKeyword,"2");
-			model.addAttribute("bizMgzList",dao.bizMgzList(rowStart,rowEnd,searchKeyword,"2"));
+			bizMgzList = dao.bizMgzList(rowStart,rowEnd,searchKeyword,"2");
+//			model.addAttribute("bizMgzList",dao.bizMgzList(rowStart,rowEnd,searchKeyword,"2"));
 		}else if (bm_title.equals("bm_title") && bm_content.equals("bm_content")) { //둘 다 검색
-//			list = dao.list(rowStart,rowEnd,searchKeyword,"3");
-			model.addAttribute("bizMgzList",dao.bizMgzList(rowStart,rowEnd,searchKeyword,"3"));
+			bizMgzList = dao.bizMgzList(rowStart,rowEnd,searchKeyword,"3");
+//			model.addAttribute("bizMgzList",dao.bizMgzList(rowStart,rowEnd,searchKeyword,"3"));
 		}else if (bm_title.equals("") && bm_content.equals("")) { //아무것도 체크 안 함
 			bizMgzList = dao.bizMgzList(rowStart,rowEnd,searchKeyword,"4");
-			model.addAttribute("bizMgzList",dao.bizMgzList(rowStart,rowEnd,searchKeyword,"4"));
+//			model.addAttribute("bizMgzList",dao.bizMgzList(rowStart,rowEnd,searchKeyword,"4"));
 		}	
 				
 		
 		System.out.println(bizMgzList);
-		model.addAttribute("totalRowcnt",total);
-		model.addAttribute("searchVo",searchVO);
+		model.addAttribute("bizMgzList", bizMgzList);
+		model.addAttribute("totRowcnt", total);
+		model.addAttribute("searchVO", searchVO);
 		
 	}
 

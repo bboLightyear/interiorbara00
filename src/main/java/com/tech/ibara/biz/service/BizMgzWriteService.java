@@ -49,7 +49,7 @@ public class BizMgzWriteService implements BizServiceInter {
 		System.out.println("bm_no: "+bm_no);
 		
 		//show in sys explorer로 열어서 주소복사함
-		String path="C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\upload\\biz";
+		String path="C:\\23setspring\\springwork23\\interiorbara00\\src\\main\\webapp\\resources\\upload\\biz";
 //		MultipartRequest req=
 //				new MultipartRequest(mftRequest, path, 1024*1024*10,"utf-8", new DefaultFileRenamePolicy());
 //		
@@ -63,16 +63,18 @@ public class BizMgzWriteService implements BizServiceInter {
 			System.out.println("변형된 파일 이름: "+changeFile);
 			String pathfile=path+"\\"+changeFile;
 			try {
-				if(!originFile.equals("")) {
-					mf.transferTo(new File(pathfile));
-					/* db에 file 이름 insert */
-					dao.bizMgzImgWrite(bm_no, originFile, changeFile);
-					System.out.println("다중 업로드 성공");
-				}
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-		}
+		            if(!originFile.equals("")) {
+		               mf.transferTo(new File(pathfile));
+		               // setFileUpload() 함수 실행 -> DB에 파일명 INSERT
+		               dao.bizMgzImgWrite(bm_no, originFile, changeFile);
+		               System.out.println("다중 파일 업로드 성공");
+		            }
+		         } catch (Exception e) {
+		            // TODO: handle exception
+		        	 e.printStackTrace();
+		         }
+		      }
+
 		
 	}
 
