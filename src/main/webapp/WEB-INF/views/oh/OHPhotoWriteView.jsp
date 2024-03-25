@@ -42,6 +42,10 @@
 				
 				<input type="submit" value="올리기" />
 				
+				&nbsp;&nbsp;&nbsp;
+				
+				<button><a href="OHPhotoView">취소하기</a></button>
+				
 				<hr />
 				
 				<input type="file" name="pa_attach" multiple />
@@ -58,7 +62,7 @@
 					<tr>
 						<td>내용</td>
 						<td>
-							<textarea name="pb_content" rows="10" cols="30" placeholder="내용을 입력하세요."></textarea>
+							<textarea name="pb_content" rows="10" cols="30" placeholder="내용을 입력하세요." ></textarea>
 						</td>
 					</tr>					
 				</table>
@@ -73,9 +77,9 @@
 				<label for="residence">주거형태</label>
 				<select name="pb_residence" id="residence">
 					<option value="">선택</option>
-					<option value="원룸&오피스텔">원룸&오피스텔</option>
+					<option value="원룸&오피스텔">원룸&amp;오피스텔</option>
 					<option value="아파트">아파트</option>
-					<option value="빌라&연립">빌라&연립</option>
+					<option value="빌라&연립">빌라&amp;연립</option>
 					<option value="단독주택">단독주택</option>
 					<option value="사무공간">사무공간</option>
 					<option value="상업공간">상업공간</option>
@@ -92,13 +96,13 @@
 					<option value="욕실">욕실</option>
 					<option value="아이방">아이방</option>
 					<option value="드레스룸">드레스룸</option>
-					<option value="서재&작업실">서재&작업실</option>
+					<option value="서재&작업실">서재&amp;작업실</option>
 					<option value="베란다">베란다</option>
 					<option value="사무공간">사무공간</option>
 					<option value="상업공간">상업공간</option>
-					<option value="가구&소품">가구&소품</option>
+					<option value="가구&소품">가구&amp;소품</option>
 					<option value="현관">현관</option>
-					<option value="외관&기타">외관&기타</option>
+					<option value="외관&기타">외관&amp;기타</option>
 				</select>					
 				
 				<label for="style">스타일</label>
@@ -108,9 +112,9 @@
 					<option value="북유럽">북유럽</option>
 					<option value="빈티지">빈티지</option>
 					<option value="내추럴">내추럴</option>
-					<option value="프로방스&로맨틱">프로방스&로맨틱</option>
-					<option value="클래식&앤틱">클래식&앤틱</option>
-					<option value="한국&아시아">한국&아시아</option>
+					<option value="프로방스&로맨틱">프로방스&amp;로맨틱</option>
+					<option value="클래식&앤틱">클래식&amp;앤틱</option>
+					<option value="한국&아시아">한국&amp;아시아</option>
 					<option value="유니크">유니크</option>
 				</select>					
 				
