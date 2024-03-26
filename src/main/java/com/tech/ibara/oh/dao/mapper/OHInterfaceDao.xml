@@ -33,29 +33,45 @@
 	</resultMap>	
 	<!-- OHPhotoView.jsp -->
 	<select id="ohPhotoView" resultType="com.tech.ibara.oh.dto.OHPhotoBoard" resultMap="OHPhotoBoard">
-		SELECT 
-		    * 
-		FROM 
-		    OH_PHOTO_BOARD OH1 
-		LEFT OUTER JOIN 
-			(SELECT 
-                 * 
-             FROM 
-                 OH_PHOTO_ATTACH 
-             WHERE 
-	             PA_NO IN (
-	                       SELECT 
-	                           MIN(PA_NO) 
-	                       FROM 
-	                           OH_PHOTO_ATTACH 
-	                       GROUP BY 
-	                           PB_NO
-	                      ) 
-             ORDER BY 
-                 PA_NO
-            ) OH2
-		ON
-			OH1.PB_NO = OH2.PB_NO		
+		SELECT
+		    *
+		FROM
+		    (SELECT
+		         ROWNUM NO, N.*
+		     FROM
+		         (SELECT 
+		              * 
+		          FROM 
+		              OH_PHOTO_BOARD OH1 
+		          LEFT OUTER JOIN 
+		              (SELECT 
+		                   * 
+		               FROM 
+		                   OH_PHOTO_ATTACH 
+		               WHERE 
+		                   PA_NO IN (
+		                             SELECT 
+		                                 MIN(PA_NO) 
+		                             FROM 
+		                                 OH_PHOTO_ATTACH 
+		                             GROUP BY 
+		                                 PB_NO
+		                            ) 
+		               ORDER BY 
+		                   PA_NO
+		              ) OH2
+		          ON
+		              OH1.PB_NO = OH2.PB_NO
+		         ) N
+		     WHERE
+		        PB_TITLE LIKE '%부기%'   
+		    )    
+		WHERE
+		    NO BETWEEN 1 AND 3
+		ORDER BY
+		    PB_DATE DESC	
+	
+
 	</select>
 	
 	<select id="getPostTotalCount" resultType="Integer">

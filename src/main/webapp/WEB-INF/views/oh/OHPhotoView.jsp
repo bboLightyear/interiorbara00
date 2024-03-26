@@ -106,8 +106,8 @@
 				</select>
 				<label for="orderingMethod">정렬방식</label>
 				<select name="orderingMethod" id="orderingMethod">
-					<option value="ascending">오름차순</option>
-					<option value="descending">내림차순</option>
+					<option value="desc">내림차순</option>
+					<option value="asc">오름차순</option>
 				</select>
 				<!-- sorting End -->
 				

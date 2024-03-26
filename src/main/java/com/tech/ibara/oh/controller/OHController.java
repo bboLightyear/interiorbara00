@@ -81,8 +81,8 @@ public class OHController {
 		
 		// 정렬기준 - orderingMethod, null Check
 		if(orderingMethod == null) {
-			orderingMethod = "ascending";
-			System.out.println("orderingMethod is null therefore assigned [ascending] to it");
+			orderingMethod = "desc";
+			System.out.println("orderingMethod is null therefore assigned [desc] to it");
 		}
 		// 정렬기준 - orderingMethod, model 저장, attributeName is keepOrderingMethod		
 		model.addAttribute("keepOrderingMethod", orderingMethod);		
@@ -161,14 +161,34 @@ public class OHController {
 					   						 searchingType, searchingWord);		
 		// 전체 게시글 수, 출력
 		System.out.println("postTotalNum: " + postTotalNum);
+		ohPageVO.pageAndPostCalculate(postTotalNum);
+		// ohPageVO 객체, 변수들 값 출력
+		// 게시글 - Post
+		System.out.println("--- 게시글 - Post ---");
+		System.out.println("출력할 게시글 수, displayPostCount: " + ohPageVO.getDiplayPostCount());
+		System.out.println("전체 게시글 수, postTotalNum: " + ohPageVO.getPostTotalNum());
+		System.out.println("시작 게시글 번호, postStartNum: " + ohPageVO.getPostStrartNum());
+		System.out.println("종료 게시글 번호, postEndNum: " + ohPageVO.getPostEndNum());
+		// 페이지 - Page
+		System.out.println("--- 페이지 - Page ---");
+		System.out.println("페이지 그룹당 페이지 수, groupPageCount: " + ohPageVO.getGroupPageCount());
+		System.out.println("전체 페이지 수, pageTotalNum: " + ohPageVO.getPageTotalNum());
+		System.out.println("현재 페이지 번호, pageSelectedNum: " + ohPageVO.getPageSelectedNum());
+		System.out.println("시작 페이지 번호, pageStartNum: " + ohPageVO.getPageStartNum());
+		System.out.println("종료 페이지 번호, pageEndNum: " + ohPageVO.getPageEndNum());
+		// 시작 게시글 번호, postStartNum
+		int postStartNum = ohPageVO.getPostStrartNum();
+		// 종료 게시글 번호, postEndNum		
+		int postEndNum = ohPageVO.getPostEndNum();		
 		
-			
-		
-		
-		// ohPhotoView() 함수 실행
-		ArrayList<OHPhotoBoard> dtoList = dao.ohPhotoView();
+		// dtoList, 게시판에 나타낼 게시글 담을 변수선언, ohPhotoView() 함수 실행
+		ArrayList<OHPhotoBoard> dtoList = dao.ohPhotoView(postStartNum, postEndNum, 
+														  orderingBy, orderingMethod,														  
+														  pb_category, pb_residence, pb_room, pb_style, pb_skill,
+														  searchingType, searchingWord);		
 		// model 값 전달
 		model.addAttribute("ohPhotoView", dtoList);
+		
 		return "oh/OHPhotoView";
 	}
 	// ---------- OHPhotoWriteView.jsp ---------- 

@@ -8,7 +8,10 @@ import com.tech.ibara.oh.dto.OHPhotoBoard;
 public interface OHInterfaceDao {
 	
 	// ---------- OHPhotoView.jsp ---------- 
-	public ArrayList<OHPhotoBoard> ohPhotoView();
+	public ArrayList<OHPhotoBoard> ohPhotoView(int postStartNum, int postEndNum,
+											   String orderingBy, String orderingMethod,	
+			  								   String pb_category, String pb_residence, String pb_room, String pb_style, String pb_skill,
+			  								   String searchingType, String searchingWord);
 	public int getPostTotalCount(String pb_category, String pb_residence, String pb_room, String pb_style, String pb_skill, 
 			                     String searchingType, String searchingWord);
 	// ---------- OHPhotoWriteExecute ----------

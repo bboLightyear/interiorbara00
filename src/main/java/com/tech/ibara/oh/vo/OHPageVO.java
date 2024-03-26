@@ -48,8 +48,8 @@ public class OHPageVO {
 		// *** 게시글 - Post ***
 		// 시작 게시글 번호 = ((현재 페이지 번호  - 1) * 출력할 게시글 수) + 1
 		postStartNum = ((pageSelectedNum - 1) * displayPostCount) + 1;
-		// 종료 페이지 번호 = 시작 게시글 번호 + 출력할 게시글 수 - 1
-		pageEndNum = postStartNum + displayPostCount - 1;
+		// 종료 게시글 번호 = 시작 게시글 번호 + 출력할 게시글 수 - 1
+		postEndNum = postStartNum + displayPostCount - 1;
 	}
 	
 	public Integer getDiplayPostCount() {
