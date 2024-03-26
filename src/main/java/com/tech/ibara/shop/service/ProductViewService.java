@@ -12,6 +12,7 @@ import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.CategoryDto;
 import com.tech.ibara.shop.dto.OptionDto;
 import com.tech.ibara.shop.dto.OptionSetDto;
+import com.tech.ibara.shop.dto.ProductDataDto;
 import com.tech.ibara.shop.dto.ProductDto;
 import com.tech.ibara.shop.dto.ProductImgDto;
 
@@ -28,11 +29,7 @@ public class ProductViewService implements ShopService {
 		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);
 		
-		String product_idStr = request.getParameter("product_id");
-		int product_id = -1;
-		if (product_idStr != null) {
-			product_id = Integer.parseInt(product_idStr);
-		}
+		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		
 		ProductDto productDto = dao.selectProductById(product_id);
 		
@@ -54,9 +51,7 @@ public class ProductViewService implements ShopService {
 		OptionSetDto optionSetDto = dao.selectOptionSetByProduct(product_id);
 		int optionSetId = optionSetDto.getOption_set_id();
 		
-		ArrayList<OptionDto> optionDtoList = dao.selectOptionsByOptionSetId(optionSetId);
 		
-<<<<<<< HEAD
 		OptionDto nonOptionDto = null;
 		OptionSetDto subOptionSetDto = null;
 		
@@ -82,14 +77,6 @@ public class ProductViewService implements ShopService {
 		model.addAttribute("nonOption", nonOptionDto);
 		model.addAttribute("options", optionDtoList);
 		model.addAttribute("subOptionSet", subOptionSetDto);
-=======
-		System.out.println(optionSetDto.getOption_set_id());
-		System.out.println(optionSetDto.getName());
-		
-		model.addAttribute("optionSet1", optionSetDto);
-		model.addAttribute("result", product_id);
-		model.addAttribute("product", productDto);
->>>>>>> bogeun00
 	}
 
 }
