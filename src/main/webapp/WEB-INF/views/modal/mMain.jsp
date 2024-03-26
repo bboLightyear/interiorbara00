@@ -74,7 +74,7 @@
                         <img src="resources/img/modalimg/company.png" alt="Icon 1" class="icon1"> <span>업체 먼저 둘러보기</span>
                     </div>
                     </a>
-                    <a href="#" class="openSizeModal" data-option="custom" data-service="스탠다드 커스텀 인테리어 ">
+                    <a href="#" class="openSizeModal" data-option="standard" data-service="스탠다드 커스텀 인테리어 ">
                     <div class="item2">
                         <img src="resources/img/modalimg/custom.png" alt="Icon 2" class="icon2"> <span>스탠다드 커스텀 인테리어 시공하기</span>
                     </div>
@@ -130,15 +130,24 @@ $(document).ready(function() {
 
     openSizeModalBtn.click(function() {
         var service = $(this).data('service');
+        var option = $(this).data('option');
         $('#selectedService').text(service);
-
+        $('.selectedService span').text(service);
+        
+        localStorage.setItem('selectedOption', option);
+        
         modal.css('display', 'none');
         $('#sizeModal').css('display', 'block');
     });
     
     openServiceCheckModalBtn.click(function() {
         var service = $(this).data('service');
+        var option = $(this).data('option');
         $('#selectedService').text(service);
+        $('.selectedService span').text(service);
+        $('.selectedService').show();
+
+        $('#serviceCheckModal').attr('data-prev-modal', option === 'kitchen' || option === 'bath' ? 'myModal' : 'sizeModal');
 
         modal.css('display', 'none');
         $('#serviceCheckModal').css('display', 'block');

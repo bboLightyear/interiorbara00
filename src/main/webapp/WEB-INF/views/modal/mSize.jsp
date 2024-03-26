@@ -107,6 +107,8 @@
 			</div>
 		</div>
 </div>
+<%-- <jsp:include page="mServiceCheck.jsp" /> --%>
+
 <script>
 $(document).ready(function() {
     var sizeModal = $('#sizeModal');
@@ -115,6 +117,7 @@ $(document).ready(function() {
     var decreaseBtn = $('#decreaseSize');
     var increaseBtn = $('#increaseSize');
     var privBtn = $('#privBtn');
+    var openServiceCheckModalBtn = $('.openServiceCheckModal');
 
     closeSizeModalBtn.click(function() {
         sizeModal.css('display', 'none');
@@ -137,6 +140,7 @@ $(document).ready(function() {
     $('#nextBtn').click(function() {
         var selectedSize = $('#sizeInput').val();
         var selectedService = $('#selectedService').text();
+        
 
         $('.selectedSize').text(selectedSize + '평');
         $('.selectedService').text(selectedService);
@@ -144,13 +148,16 @@ $(document).ready(function() {
         $('.selectedSize, .selectedService').show(); 
 
         $('#sizeModal').css('display', 'none');
-        //다음 단계로 이동하는 로직 추가
+        $('#serviceCheckModal').css('display', 'block');
+        $('#serviceCheckModal').attr('data-prev-modal', 'sizeModal'); 
     });
 
     privBtn.click(function() {
         sizeModal.css('display', 'none');
         $('#myModal').css('display', 'block');
     });
+    
+    
 });
 </script>
 

@@ -8,8 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <!-- 평수 선택 모달 창 영역 -->
-<div id="serviceCheckModal" class="modal">
+<div id="serviceCheckModal" class="modal" data-prev-modal="">
     <div class="modal_content">
         <div class="modal_leftside">
             <div class=modal_leftside_progress>
@@ -74,13 +75,13 @@
 				</div>
 				
 				<div class="modal_center_footer">
-					<button id="privBtn">이전</button>
-					<button id="nextBtn">다음</button>	
+					<button id="privBtn2">이전</button>
+					<button id="nextBtn2">다음</button>	
 						
 				</div>			
 			</div>
 			
-			<div class="modal_rightside">
+			 <div class="modal_rightside">
 				<div class="modal_rightside_header">
 				<p>요약</p>
 				</div>
@@ -96,48 +97,20 @@
 </div>
 <script>
 $(document).ready(function() {
-    var sizeModal = $('#sizeModal');
-    var closeSizeModalBtn = $('#closeSizeModal');
-    var sizeInput = $('#sizeInput');
-    var decreaseBtn = $('#decreaseSize');
-    var increaseBtn = $('#increaseSize');
-    var privBtn = $('#privBtn');
-
-    closeSizeModalBtn.click(function() {
-        sizeModal.css('display', 'none');
+    var serviceCheckModal = $('#serviceCheckModal');
+    
+    $(document).on('click', '#closeServiceCheckModal', function() {
+        serviceCheckModal.css('display', 'none');
     });
 
-    decreaseBtn.click(function() {
-        var currentSize = parseInt(sizeInput.val());
-        if (currentSize > 1) {
-            sizeInput.val(currentSize - 1);
-        }
+    $(document).on('click', '#privBtn2', function() {
+        var prevModal = serviceCheckModal.attr('data-prev-modal');
+        serviceCheckModal.css('display', 'none');
+        $('#' + prevModal).css('display', 'block');
+        console.log('이전 버튼 클릭');
     });
 
-    increaseBtn.click(function() {
-        var currentSize = parseInt(sizeInput.val());
-        if (currentSize < 99) {
-            sizeInput.val(currentSize + 1);
-        }
-    });
-
-    $('#nextBtn').click(function() {
-        var selectedSize = $('#sizeInput').val();
-        var selectedService = $('#selectedService').text();
-
-        $('.selectedSize').text(selectedSize + '평');
-        $('.selectedService').text(selectedService);
-
-        $('.selectedSize, .selectedService').show(); 
-
-        $('#sizeModal').css('display', 'none');
-        //다음 단계로 이동하는 로직 추가
-    });
-
-    privBtn.click(function() {
-        sizeModal.css('display', 'none');
-        $('#myModal').css('display', 'block');
-    });
+    console.log('mServiceCheck.jsp 로드 완료');
 });
 </script>
 </body>
