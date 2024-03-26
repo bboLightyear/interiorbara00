@@ -5,6 +5,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tech.ibara.oh.dao.OHInterfaceDao;
+import com.tech.ibara.oh.dto.OHPhotoAttach;
 import com.tech.ibara.oh.dto.OHPhotoBoard;
 import com.tech.ibara.oh.vo.OHPageVO;
 
@@ -204,8 +207,12 @@ public class OHController {
 		// getRecentPb_no() 함수 실행 -> 가장 최근 작성된 게시글 번호 
 		int pb_no = dao.getRecentPb_no();
 		System.out.println("가장 최근 작성된 게시글 번호: " + pb_no);
-		// 경로 변수
+		// 업로드 파일 - 저장할 폴더 경로, path 변수에 저장
+		// 스프링 STS - upload 폴더 경로
+		// 글쓰기 후 이미지가 바로 출력되지 않는 문제가 있다.
 		String path = "C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\upload\\oh";
+		// 톰캣 server - upload 폴더 경로
+		// String path = "C:\\23setspring\\springwork23\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\interiorbara\\resources\\upload\\oh";		
 		// 업로드 파일, List 저장
 		List<MultipartFile> pa_attachList = mftRequest.getFiles("pa_attach");
 		// 파일 저장
@@ -231,7 +238,6 @@ public class OHController {
 			}
 		}
 		return "redirect:OHPhotoView";
-<<<<<<< HEAD
 	}
 	// ---------- OHPhotoDetailView.jsp ---------- 
 	@RequestMapping("oh/OHPhotoDetailView")
@@ -407,17 +413,9 @@ public class OHController {
 		System.out.println("DB - OH_PHOTO_BOARD, pb_no: " + pb_no + " 삭제완료");
 		// DB - OH_PHOTO_ATTACH, pb_no - Foreign Key, ON DELETE CASCADE 
 		return "redirect:OHPhotoView";
-=======
->>>>>>> bogeun00
 	}	
 
 	
 	
 	
 }
-
-
-
-
-
-
