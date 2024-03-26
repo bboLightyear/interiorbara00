@@ -255,9 +255,9 @@
 		console.log("keepSearchingType: " + keepSearchingType);
 		$("#searchingType").val(keepSearchingType).prop("selected", true);
 		
-		/* keepSearchingWord 값은  searchingWord에 value 값으로 입력 */
 		var keepSearchingWord = "${keepSearchingWord}";
 		console.log("keepSearchingWord: " + keepSearchingWord);
+		/* keepSearchingWord 값은  searchingWord에 value 값으로 입력 */
 	</script>	
 </html>
 

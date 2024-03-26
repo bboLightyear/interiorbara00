@@ -154,9 +154,15 @@ public class OHController {
 		int pageSelectedNum = Integer.parseInt(stringPageSelectedNum);
 		// ohPageVO 객체, 현재 페이지 번호 저장
 		ohPageVO.setPageSelectedNum(pageSelectedNum);
-
+		// 전체 게시글 수, 검색에 적용할 변수
+		int postTotalNum = 0;
+		// getPostTotalCount() 함수 실행, (filtering, searching) 조건에 맞게 전체 게시글 수를 구한다.		
+		postTotalNum = dao.getPostTotalCount(pb_category, pb_residence, pb_room, pb_style, pb_skill,
+					   						 searchingType, searchingWord);		
+		// 전체 게시글 수, 출력
+		System.out.println("postTotalNum: " + postTotalNum);
 		
-		
+			
 		
 		
 		// ohPhotoView() 함수 실행
