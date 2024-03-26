@@ -18,34 +18,29 @@
 			<when test="param4==3">
 				WHERE BM_CONTENT LIKE '%'||#{param3}||'%' OR BM_TITLE LIKE '%'||#{param3}||'%'
 			</when>
-			<otherwise>
-			
-			
-			</otherwise>
+			<otherwise></otherwise>
 		</choose>
 	</sql>
 
 	
-	<select id="bizMgzList"
-		resultType="com.tech.ibara.biz.dto.BizMgzDto">
-		SELECT BM_NO,BM_TITLE,BM_CONTENT,BM_WRITER,BM_DATE,BM_HIT,USER_IDNO,BM_IMG 
-		FROM (SELECT ROWNUM NUM,N.* 
-				FROM (SELECT BM_NO,BM_TITLE,BM_CONTENT,BM_WRITER,BM_DATE,BM_HIT,USER_IDNO,BM_IMG 
-		FROM BIZ_MGZ
-		ORDER BY BM_NO)N
+	<select id="bizMgzList" resultType="com.tech.ibara.biz.dto.BizMgzDto">
+		SELECT BM_NO,BM_TITLE,BM_CONTENT,BM_WRITER,BM_DATE,BM_HIT,USER_IDNO FROM 
+		(SELECT ROWNUM NUM,N.* FROM (SELECT BM_NO,BM_TITLE,BM_CONTENT,BM_WRITER,BM_DATE,BM_HIT,USER_IDNO 
+		FROM BIZ_MGZ ORDER BY BM_NO DESC) N
 		<include refid="includlist" />
 		)WHERE NUM BETWEEN #{param1} AND #{param2}
 	</select>
 
 	<select id="bizMgzContentView"
 		resultType="com.tech.ibara.biz.dto.BizMgzDto">
-		SELECT BM_NO,BM_TITLE,BM_CONTENT,BM_WRITER,BM_DATE,BM_HIT,USER_IDNO,BM_IMG  
+		SELECT BM_NO,BM_TITLE,BM_CONTENT,BM_WRITER,BM_DATE,BM_HIT,USER_IDNO  
 		FROM BIZ_MGZ
 		WHERE BM_NO=#{param1}
 	</select>
 	
-	<select id="bizMgzDelView">
-		SELECT BM_TITLE 
+	<select id="bizMgzDelView"
+		resultType="com.tech.ibara.biz.dto.BizMgzDto">
+		SELECT BM_NO, BM_TITLE 
 		FROM BIZ_MGZ
 		WHERE BM_NO=#{param1}
 	</select>
@@ -64,10 +59,14 @@
 	<update id="bizMgzDel">
 		DELETE FROM BIZ_MGZ WHERE BM_NO=#{param1}
 	</update>
+	
+	<update id="bizMgzImgDel">
+		DELETE FROM BIZ_MGZ_IMG WHERE BM_NO=#{param1}
+	</update>
 
 	<insert id="bizMgzWrite" >
-		INSERT INTO BIZ_MGZ(BM_NO,BM_TITLE,BM_CONTENT,BM_WRITER,BM_DATE,BM_HIT,USER_IDNO,BM_IMG) 
-    	VALUES(BIZ_MGZ_SEQ.NEXTVAL,#{param1},#{param2},#{param3},SYSDATE,0,#{param4},#{param5})
+		INSERT INTO BIZ_MGZ(BM_NO,BM_TITLE,BM_CONTENT,BM_WRITER,BM_DATE,BM_HIT,USER_IDNO) 
+    	VALUES(BIZ_MGZ_SEQ.NEXTVAL,#{param1},#{param2},#{param3},SYSDATE,0,#{param4})
 	</insert>
 	
 	<insert id="bizMgzImgWrite">

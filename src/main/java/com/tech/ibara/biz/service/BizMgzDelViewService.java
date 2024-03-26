@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.tech.ibara.biz.dao.BizIDao;
+import com.tech.ibara.biz.dto.BizMgzDto;
 
 @Service
 public class BizMgzDelViewService implements BizServiceInter {
@@ -33,6 +34,11 @@ public class BizMgzDelViewService implements BizServiceInter {
 		
 		String bm_no=request.getParameter("bm_no");
 		System.out.println(bm_no);
+		
+		BizMgzDto dto=dao.bizMgzDelView(bm_no);
+		
+		
+		model.addAttribute("bizMgzDelView", dto);
 		
 	}
 

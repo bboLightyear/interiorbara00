@@ -6,28 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/nstyle.css" />
 </head>
 <body>
-<h3>write_view.jsp</h3>
+<h3>bizMgzWriteView.jsp</h3>
 
-<form action="write" method="post" enctype="multipart/form-data">
+<form action="bizMgzWrite" method="post" enctype="multipart/form-data">
+<input type="hidden" name="user_idno" value="1000<%-- ${sessionUser_Idno } --%>" />
 	<table>
 		<tr>
-			<td class="left">이름</td>
-			<td><input type="text" name="bname" value="sm" /></td>
+			<td class="">이름</td>
+			<td><input type="text" name="bm_writer" value="닉네임" /><%-- ${sessionNickname } --%></td>
 		</tr>
 		<tr>
-			<td class="left">제목</td>
-			<td><input type="text" name="btitle" value="smtitle" /></td>
+			<td class="">제목</td>
+			<td><input type="text" name="bm_title" value="제목을 입력해 주세요" /></td>
 		</tr>
 		<tr>
-			<td class="left">내용</td>
-			<td><textarea type="text" name="bcontent" rows="5" cols="35">bcontent</textarea></td>
+			<td class="">내용</td>
+			<td><textarea type="text" name="bm_content" rows="5" cols="35">내용을 입력해 주세요.</textarea></td>
 		</tr>
 		<tr>
-			<td class="left">첨부</td>
-			<td><input type="file" name="file" /></td>
+			<td class="">첨부</td>
+			<td><input type="file" name="file" multiple="multiple"/></td>
 		</tr>		
 		<tr>
 			<td colspan="2">
