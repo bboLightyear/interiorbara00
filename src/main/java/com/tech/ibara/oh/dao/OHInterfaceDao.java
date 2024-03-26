@@ -2,7 +2,6 @@ package com.tech.ibara.oh.dao;
 
 import java.util.ArrayList;
 
-import com.tech.ibara.oh.dto.OHPhotoAttach;
 import com.tech.ibara.oh.dto.OHPhotoBoard;
 
 public interface OHInterfaceDao {
@@ -16,8 +15,7 @@ public interface OHInterfaceDao {
 									String pb_skill);
 	public int getRecentPb_no();
 	public void setFileUpload(int pb_no, String changeFile);
-	// ---------- OHPhotoDetailView.jsp ----------
-	public OHPhotoBoard getDtoOHPhotoBoard(String pb_no);
-	public ArrayList<OHPhotoAttach> getDtoOHPhotoAttach(String pa_no);
+	
+	
 	
 }

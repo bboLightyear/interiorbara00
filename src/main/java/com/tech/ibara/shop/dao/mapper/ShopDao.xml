@@ -85,11 +85,11 @@
 	
 	<select id="selectAllCategories" resultType="String">
 		SELECT
-		    LPAD(' ', 3 * (LEVEL - 1)) || NAME
+		    LPAD('a  a', 3 * (LEVEL - 1)) || NAME
 		FROM
 		    SHOP_CATEGORY
 		START WITH
-		    UP_CATEGORY_ID IS NULL
+		    UP_CATEGORY_ID = -1
 		CONNECT BY
 		    PRIOR CATEGORY_ID = UP_CATEGORY_ID
 	</select>
@@ -100,7 +100,7 @@
 		FROM
 		    SHOP_CATEGORY
 		START WITH
-		    UP_CATEGORY_ID IS NULL
+		    UP_CATEGORY_ID = -1
 		CONNECT BY
 		    PRIOR CATEGORY_ID = UP_CATEGORY_ID
 	</select>
@@ -145,66 +145,6 @@
 		    SHOP_OPTION
 		WHERE
 		    OPTION_SET_ID = #{param1}
-	</select>
-	
-	<select id="selectOptionById" resultType="com.tech.ibara.shop.dto.OptionDto">
-		SELECT
-		    OPTION_ID, OPTION_SET_ID, SUB_OPTION_SET_ID, PRODUCT_DATA_ID, NAME
-		FROM
-		    SHOP_OPTION
-		WHERE
-		    OPTION_ID = #{param1}
-	</select>
-	
-	<select id="selectProductDataById" resultType="com.tech.ibara.shop.dto.ProductDataDto">
-		SELECT
-		    PRODUCT_DATA_ID, STOCK, PRICE, DISCOUNTED_PRICE
-		FROM
-		    SHOP_PRODUCT_DATA
-		WHERE
-		    PRODUCT_DATA_ID = #{param1}
-	</select>
-	
-	<resultMap type="com.tech.ibara.shop.dto.ProductDataDto" id="ProductDataDto">
-		<result column="PRODUCT_DATA_ID" property="product_data_id" />
-		<result column="STOCK" property="stock" />
-		<result column="PRICE" property="price" />
-		<result column="DISCOUNTED_PRICE" property="discounted_price" />
-	</resultMap>
-	
-	<resultMap type="com.tech.ibara.shop.dto.OptionDto" id="OptionDto">
-		<result column="OPTION_ID" property="option_id" />
-		<result column="OPTION_SET_ID" property="option_set_id" />
-		<result column="SUB_OPTION_SET_ID" property="sub_option_set_id" />
-		<result column="PRODUCT_DATA_ID" property="product_data_id" />
-		<result column="NAME" property="name" />
-		<collection property="product_data_dto" resultMap="ProductDataDto"></collection>
-	</resultMap>
-	
-	<select id="selectOptionJoinProductDataByOptionSetId" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
-		SELECT
-			O.OPTION_ID, O.OPTION_SET_ID, O.NAME, D.STOCK, D.PRICE, D.DISCOUNTED_PRICE
-		FROM
-			SHOP_OPTION O
-		JOIN
-			SHOP_PRODUCT_DATA D
-		ON
-			O.PRODUCT_DATA_ID = D.PRODUCT_DATA_ID
-		WHERE
-			O.OPTION_SET_ID = #{param1}
-	</select>
-	
-	<select id="selectOptionsJoinProductDataByOptionSetId" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
-		SELECT
-			O.OPTION_ID, O.OPTION_SET_ID, O.NAME, D.STOCK, D.PRICE, D.DISCOUNTED_PRICE
-		FROM
-			SHOP_OPTION O
-		JOIN
-			SHOP_PRODUCT_DATA D
-		ON
-			O.PRODUCT_DATA_ID = D.PRODUCT_DATA_ID
-		WHERE
-			O.OPTION_SET_ID = #{param1}
 	</select>
 	
 </mapper>

@@ -3,15 +3,14 @@ package com.tech.ibara.shop.dto;
 public class CategoryDto {
 
 	private int category_id;
-	private Integer up_category_id;
+	private int up_category_id;
 	private String name;
 
 	public CategoryDto() {
 
 	}
-
-	public CategoryDto(int category_id, Integer up_category_id, String name) {
-		super();
+	
+	public CategoryDto(int category_id, int up_category_id, String name) {
 		this.category_id = category_id;
 		this.up_category_id = up_category_id;
 		this.name = name;
@@ -25,11 +24,11 @@ public class CategoryDto {
 		this.category_id = category_id;
 	}
 
-	public Integer getUp_category_id() {
+	public int getUp_category_id() {
 		return up_category_id;
 	}
 
-	public void setUp_category_id(Integer up_category_id) {
+	public void setUp_category_id(int up_category_id) {
 		this.up_category_id = up_category_id;
 	}
 
