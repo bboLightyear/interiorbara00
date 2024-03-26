@@ -87,8 +87,8 @@
 				</div>
 				
 				<div class="modal_center_footer">
-					<button id="privBtn">이전</button>
-					<button id="nextBtn">다음</button>	
+					<button id="sizePrivBtn">이전</button>
+					<button id="sizeNextBtn">다음</button>	
 						
 				</div>			
 			</div>
@@ -112,15 +112,22 @@
 <script>
 $(document).ready(function() {
     var sizeModal = $('#sizeModal');
-    var closeSizeModalBtn = $('#closeSizeModal');
+    var closeSizeModalBtn = $('.close');
     var sizeInput = $('#sizeInput');
     var decreaseBtn = $('#decreaseSize');
     var increaseBtn = $('#increaseSize');
-    var privBtn = $('#privBtn');
-    var openServiceCheckModalBtn = $('.openServiceCheckModal');
+    var privBtn = $('#sizePrivBtn');
+
+    function openModal(modalId) {
+        $(modalId).css('display', 'block');
+    }
+
+    function closeModal(modalId) {
+        $(modalId).css('display', 'none');
+    }
 
     closeSizeModalBtn.click(function() {
-        sizeModal.css('display', 'none');
+        closeModal('#sizeModal');
     });
 
     decreaseBtn.click(function() {
@@ -137,27 +144,28 @@ $(document).ready(function() {
         }
     });
 
-    $('#nextBtn').click(function() {
+    $('#sizeNextBtn').click(function() {
         var selectedSize = $('#sizeInput').val();
         var selectedService = $('#selectedService').text();
-        
 
         $('.selectedSize').text(selectedSize + '평');
         $('.selectedService').text(selectedService);
 
-        $('.selectedSize, .selectedService').show(); 
+        $('.selectedSize, .selectedService').show();
+        
+        localStorage.setItem('selectedSize', selectedSize);
 
-        $('#sizeModal').css('display', 'none');
-        $('#serviceCheckModal').css('display', 'block');
-        $('#serviceCheckModal').attr('data-prev-modal', 'sizeModal'); 
+        closeModal('#sizeModal');
+        openModal('#serviceCheckModal');
+        $('#serviceCheckModal').attr('data-prev-modal', 'sizeModal');
     });
 
     privBtn.click(function() {
-        sizeModal.css('display', 'none');
-        $('#myModal').css('display', 'block');
+    	
+        closeModal('#sizeModal');
+        openModal('#myModal');
+     
     });
-    
-    
 });
 </script>
 

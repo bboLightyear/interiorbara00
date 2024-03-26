@@ -75,8 +75,8 @@
 				</div>
 				
 				<div class="modal_center_footer">
-					<button id="privBtn2">이전</button>
-					<button id="nextBtn2">다음</button>	
+					<button id="SCPrivBtn">이전</button>
+					<button id="SCNextBtn">다음</button>	
 						
 				</div>			
 			</div>
@@ -98,19 +98,24 @@
 <script>
 $(document).ready(function() {
     var serviceCheckModal = $('#serviceCheckModal');
-    
-    $(document).on('click', '#closeServiceCheckModal', function() {
-        serviceCheckModal.css('display', 'none');
+
+    function openModal(modalId) {
+        $(modalId).css('display', 'block');
+    }
+
+    function closeModal(modalId) {
+        $(modalId).css('display', 'none');
+    }
+
+    $(document).on('click', '.close', function() {
+        closeModal('#serviceCheckModal');
     });
 
-    $(document).on('click', '#privBtn2', function() {
+    $(document).on('click', '#SCPrivBtn', function() {
         var prevModal = serviceCheckModal.attr('data-prev-modal');
-        serviceCheckModal.css('display', 'none');
-        $('#' + prevModal).css('display', 'block');
-        console.log('이전 버튼 클릭');
+        closeModal('#serviceCheckModal');
+        openModal('#' + prevModal);
     });
-
-    console.log('mServiceCheck.jsp 로드 완료');
 });
 </script>
 </body>

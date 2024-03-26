@@ -112,45 +112,53 @@ $(document).ready(function() {
     var span = $('.close');
     var openSizeModalBtn = $('.openSizeModal');
     var openServiceCheckModalBtn = $('.openServiceCheckModal');
-    
-    
+
+    function openModal(modalId) {
+        $(modalId).css('display', 'block');
+    }
+
+    function closeModal(modalId) {
+        $(modalId).css('display', 'none');
+    }
+
     btn.click(function() {
-        modal.css('display', 'block');
+        openModal('#myModal');
     });
 
     span.click(function() {
-        modal.css('display', 'none');
+        closeModal('#myModal');
     });
 
     $(window).click(function(event) {
         if (event.target == modal[0]) {
-            modal.css('display', 'none');
+            closeModal('#myModal');
         }
     });
 
-    openSizeModalBtn.click(function() {
-        var service = $(this).data('service');
-        var option = $(this).data('option');
-        $('#selectedService').text(service);
-        $('.selectedService span').text(service);
-        
-        localStorage.setItem('selectedOption', option);
-        
-        modal.css('display', 'none');
-        $('#sizeModal').css('display', 'block');
-    });
-    
-    openServiceCheckModalBtn.click(function() {
-        var service = $(this).data('service');
-        var option = $(this).data('option');
+    function updateSelectedService(service) {
         $('#selectedService').text(service);
         $('.selectedService span').text(service);
         $('.selectedService').show();
+    }
+    
+ 
+    openSizeModalBtn.click(function() {
+        var service = $(this).data('service');
+        var option = $(this).data('option');
+        updateSelectedService(service);
+        localStorage.setItem('selectedService', service);
+        localStorage.setItem('selectedOption', option);
+        closeModal('#myModal');
+        openModal('#sizeModal');
+    });
 
+    openServiceCheckModalBtn.click(function() {
+        var service = $(this).data('service');
+        var option = $(this).data('option');
+        updateSelectedService(service);
         $('#serviceCheckModal').attr('data-prev-modal', option === 'kitchen' || option === 'bath' ? 'myModal' : 'sizeModal');
-
-        modal.css('display', 'none');
-        $('#serviceCheckModal').css('display', 'block');
+        closeModal('#myModal');
+        openModal('#serviceCheckModal');
     });
 });
      
