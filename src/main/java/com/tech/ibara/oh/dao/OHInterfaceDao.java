@@ -9,6 +9,8 @@ public interface OHInterfaceDao {
 	
 	// ---------- OHPhotoView.jsp ---------- 
 	public ArrayList<OHPhotoBoard> ohPhotoView();
+	public int getPostTotalCount(String pb_category, String pb_residence, String pb_room, String pb_style, String pb_skill, 
+			                     String searchingType, String searchingWord);
 	// ---------- OHPhotoWriteExecute ----------
 	public void ohPhotoWriteExecute(String pb_title, String pb_content, 
 									String pb_category, String pb_residence,

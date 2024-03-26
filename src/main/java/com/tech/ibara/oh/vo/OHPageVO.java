@@ -88,7 +88,9 @@ public class OHPageVO {
 	public void setPageTotalNum(Integer pageTotalNum) {
 		this.pageTotalNum = pageTotalNum;
 	}
+	
 	// getPageSelectedNum() 함수는 18행에 정의되어 있다.
+	
 	public void setPageSelectedNum(Integer pageSelectedNum) {
 		this.pageSelectedNum = pageSelectedNum;
 	}
@@ -104,4 +106,5 @@ public class OHPageVO {
 	public void setPageEndNum(Integer pageEndNum) {
 		this.pageEndNum = pageEndNum;
 	}
+	
 }
