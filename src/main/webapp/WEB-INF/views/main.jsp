@@ -379,7 +379,7 @@
 <p>test</p>
 	<!-- 모달 창 열기 버튼 -->
     <button id="openModal">퀵견적</button>
-	<jsp:include page="modal/mmain.jsp"/>
+	<jsp:include page="modal/mMain.jsp"/>
 
 
 >>>>>>> bogeun00
