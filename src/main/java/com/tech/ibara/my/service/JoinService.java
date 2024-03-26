@@ -31,7 +31,6 @@ public class JoinService implements SService {
    public String execute(Model model) {
       Map<String, Object> map=model.asMap();
       HttpServletRequest request=(HttpServletRequest) map.get("request");
-//      String email=request.getParameter("email");
       String user_email=request.getParameter("user_email");
       String email_address=request.getParameter("email_address");
       String pw=request.getParameter("pw1");

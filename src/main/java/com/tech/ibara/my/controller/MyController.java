@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tech.ibara.my.service.EmailCheckService;
 import com.tech.ibara.my.service.JoinService;
 import com.tech.ibara.my.service.LoginService;
+import com.tech.ibara.my.service.MyModifyService;
 import com.tech.ibara.my.service.MyPageService;
+import com.tech.ibara.my.service.MyProfileUpdateService;
 import com.tech.ibara.my.service.SService;
 import com.tech.ibara.my.service.VService;
 
@@ -84,6 +88,7 @@ public class MyController {
 	}
 	@RequestMapping("my/logout")
 	public String logout(HttpServletRequest request) {
+		System.out.println("logout()");
 		HttpSession session=request.getSession();
 		session.invalidate();		
 		return "redirect:/main";
@@ -91,9 +96,37 @@ public class MyController {
 	@RequestMapping("my/mypagemain")
 	public String mypagemain(HttpServletRequest request,Model model) {
 		System.out.println("mypagemain()");
+		model.addAttribute("request", request);
 		vservice =new MyPageService(sqlSession);
+		vservice.execute(model);
 		return "my/mypagemain";
 	}
+	@RequestMapping("my/mypageinfoedit")
+	public String mypageinfoedit(HttpServletRequest request,Model model) {
+		System.out.println("mypageinfoedit()");
+		model.addAttribute("request",request);
+		vservice =new MyPageService(sqlSession);
+		vservice.execute(model);		
+		return "my/mypageinfoedit";
+	}
+	@RequestMapping("my/profile")
+	public String updateprofile(HttpServletRequest request,Model model) {
+		System.out.println("updateprofile()");
+		model.addAttribute("request",request);
+		vservice =new MyProfileUpdateService(sqlSession);
+		vservice.execute(model);
+		return "redirect:mypagemain";
+	}
+	@RequestMapping(method=RequestMethod.POST,value="/modify")
+	public String modify(HttpServletRequest request,Model model) {
+		System.out.println("modify()");
+		model.addAttribute("request",request);
+		vservice =new MyModifyService(sqlSession);
+		vservice.execute(model);
+		return "";
+	}
+	
+	
 	@RequestMapping("my/nonmember")
 	public String nonmember() {
 		System.out.println("nonmember()");
