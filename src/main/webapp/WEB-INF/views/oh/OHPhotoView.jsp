@@ -5,12 +5,80 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+<<<<<<< HEAD
 	<title>OH - OHPhotoView.jsp</title>
 	<link rel="stylesheet" href="../resources/css/oh.css" />	
 	<script src="https://code.jquery.com/jquery-3.7.1.js" ></script>
+=======
+	<title>Insert title here</title>
+	<style>
+		header {
+			border: 1px solid #333;
+			height: 130px;
+			text-align: center;
+		}
+		#sideBar {
+			float: left;
+			background-color: powderblue;
+			padding: 20px;
+			margin: auto;
+			height: 800px;
+			width: 200px
+		}
+		#sideBar ul {
+			text-align: center;
+			padding: 0px;
+		}
+		#sideBar ul li {
+			list-style-type: none;
+			background-color: #FF6347;
+			border: 1px solid #333;
+		}
+		#sideBar ul li a {
+			text-decoration: none;
+		}
+		#sideBar ul li a:hover {
+		
+		}
+		#contents {
+			float: left;
+			text-align: center;
+		}
+		.flexContainer {
+	        display:flex;
+	        justify-content: center;
+	        align-content: center;
+	        flex-direction: row;
+	        flex-wrap: wrap;
+	        background-color:#adbbf7;
+	        border:1px solid #222;
+	        /* margin-bottom:30px;	 */	
+		}
+		.box {
+	        padding: 5px;
+	        margin: 5px;   
+		    width: 500px;
+		    height: 500px;
+	        background-color: #f6f7ad; 		
+			/* 	        
+			flex-basis: auto;
+	        flex-grow: 1;
+	        flex-shrink: 1; 
+	        */
+		}
+		footer {
+			clear: both;
+			border: 1px solid #333;
+			height: 130px;
+			text-align: center;
+		}				
+	</style>	
+>>>>>>> bogeun00
 </head>
+
 <body>
 
+<<<<<<< HEAD
 	<!-- 데이터 표시 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	<h3>OHPhotoDetailView.jsp</h3>
 	<table border="1">
@@ -79,8 +147,17 @@
 		</header>
 		
 		<div class="contents">
+=======
+	<div id="container">
+>>>>>>> bogeun00
 	
-			<div class="sideBar">
+	<header>
+		<h1>header</h1>
+	</header>
+		
+		<div id="contents">
+	
+			<div id="sideBar">
 				<ul >
 					<li><a href="OHMainView">우리집 자랑하기</a></li>
 					<li><a href="OHPhotoView">집사진</a></li>
@@ -187,10 +264,36 @@
 			
 			</form>
 			
+<<<<<<< HEAD
 			<div class="OHPhotoViewflexContainer">				
+=======
+			<div class = "flexContainer">
+				<!-- 1번 <div class="box"> 테이블 표현 -->			
+				<div class="box">
+					<table width="500" border="1">
+						<!-- 테이블 제목 -->
+						<tr>
+							<th>번호</th>
+							<th>사용자</th>
+							<th>제목</th>
+							<th>내용</th>
+						</tr>
+						<!-- 테이블 내용 -->
+						<c:forEach items="${ohPhotoView }" var="dto">
+							<tr>
+								<td>${dto.pb_no }</td>
+								<td>${dto.pb_user }</td>
+								<td>${dto.pb_title }</td>
+								<td>${dto.pb_content }</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+>>>>>>> bogeun00
 				<!-- 전체 <div class="box"> 반복문 사용, 게시물 표현 -->
-				<c:forEach items="${ohPhotoView }" var="dto" varStatus="status">
+				<c:forEach items="${ohPhotoView }" var="dto">
 					<div class="box">
+<<<<<<< HEAD
 						<div>pb_no: ${dto.pb_no }</div>
 						<div>pb_user: ${dto.pb_user }</div>	
 						<div>pb_title: ${dto.pb_title }</div>	
@@ -204,6 +307,19 @@
 						</a>
 					</div>
 				</c:forEach>
+=======
+						<div>${dto.pb_no }</div>
+						<div>${dto.pb_user }</div>	
+						<div>${dto.pb_title }</div>	
+						<div>${dto.pb_content }</div>
+						<div>${dto.ohPhotoAttach.pa_no }</div>
+						<div>${dto.ohPhotoAttach.pa_attach }</div>
+						<div>${dto.ohPhotoAttach.pb_no }</div>
+						<img src="../resources/upload/oh/${dto.ohPhotoAttach.pa_attach }" alt="해당 게시글 대표사진" />
+					</div>
+				</c:forEach>
+				
+>>>>>>> bogeun00
 			</div>
 			
 			<hr />
@@ -219,7 +335,6 @@
 			<h1>footer</h1>
 		</footer>
 	</div>	
-	
 </body>
 	<!-- HTML Parsing 순서에 따라 body element 아래에 배치 -->
 	<script>

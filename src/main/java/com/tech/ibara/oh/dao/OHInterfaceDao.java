@@ -2,7 +2,6 @@ package com.tech.ibara.oh.dao;
 
 import java.util.ArrayList;
 
-import com.tech.ibara.oh.dto.OHPhotoAttach;
 import com.tech.ibara.oh.dto.OHPhotoBoard;
 
 public interface OHInterfaceDao {
@@ -18,6 +17,7 @@ public interface OHInterfaceDao {
 									String pb_skill);
 	public int getRecentPb_no();
 	public void setFileUpload(int pb_no, String changeFile);
+<<<<<<< HEAD
 	// ---------- OHPhotoDetailView.jsp ----------
 	public void updatePb_hit(String pb_no);
 	public OHPhotoBoard getDtoOHPhotoBoard(String pb_no);
@@ -33,4 +33,9 @@ public interface OHInterfaceDao {
 	// ---------- OHPhotoDeleteExecute ----------
 	// 사용한 함수 - public ArrayList<String> getPAFileNames(String pb_no);
 	public void ohPBDelete(String pb_no);
+=======
+	
+	
+	
+>>>>>>> bogeun00
 }

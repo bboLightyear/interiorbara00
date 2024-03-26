@@ -7,7 +7,6 @@ import com.tech.ibara.shop.dto.CategoryDto;
 import com.tech.ibara.shop.dto.LevelCategoryDto;
 import com.tech.ibara.shop.dto.OptionDto;
 import com.tech.ibara.shop.dto.OptionSetDto;
-import com.tech.ibara.shop.dto.ProductDataDto;
 import com.tech.ibara.shop.dto.ProductDto;
 import com.tech.ibara.shop.dto.ProductImgDto;
 
@@ -31,6 +30,7 @@ public interface ShopDao {
 	public OptionSetDto selectOptionSetByProduct(int product_id);
 	public OptionSetDto selectOptionSetById(int option_set_id);
 	
+<<<<<<< HEAD
 	public ArrayList<OptionDto> selectOptionsBySet(int option_set_id);
 	public OptionDto selectOptionById(int option_id);
 	public OptionDto selectJoinOptionById(int option_id);
@@ -42,4 +42,7 @@ public interface ShopDao {
 	public ArrayList<ProductImgDto> selectProductImgsByProduct(int product_id);
 	
 	public ArrayList<BasketDto> selectBasketsByUser(int user_id);
+=======
+	public ArrayList<OptionDto> selectOptionsByOptionSetId(int option_set_id);
+>>>>>>> bogeun00
 }

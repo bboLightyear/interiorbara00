@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
 
 	<script>
 		function loadSubOptionSet() {
@@ -126,10 +126,12 @@
 			width: 100%;
 		}
 	</style>
+=======
+>>>>>>> bogeun00
 </head>
 <body>
-	
 	<h3>product.jsp</h3>
+<<<<<<< HEAD
 	<h4>user_id: <%= session.getAttribute("user_id") %></h4>
 	<a href="basket">장바구니</a>
 	<br />
@@ -207,5 +209,13 @@
 			총 금액 : <span id="totalPrice" data-total-price="0">0</span>원
 		</section>
 	</main>
+=======
+	
+	id: ${product.product_id } <br />
+	이름: ${product.name } <br />
+	
+	옵션셋id: ${optionSet1.option_set_id } <br />
+	옵션이름: ${optionSet1.name }
+>>>>>>> bogeun00
 </body>
 </html>

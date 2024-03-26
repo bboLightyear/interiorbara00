@@ -39,20 +39,20 @@
 		    OH_PHOTO_BOARD OH1 
 		LEFT OUTER JOIN 
 			(SELECT 
-                 * 
+                * 
              FROM 
-                 OH_PHOTO_ATTACH 
+                OH_PHOTO_ATTACH 
              WHERE 
-	             PA_NO IN (
-	                       SELECT 
-	                           MIN(PA_NO) 
-	                       FROM 
-	                           OH_PHOTO_ATTACH 
-	                       GROUP BY 
-	                           PB_NO
-	                      ) 
+             PA_NO IN (
+                       SELECT 
+                           MIN(PA_NO) 
+                       FROM 
+                           OH_PHOTO_ATTACH 
+                       GROUP BY 
+                           PB_NO
+                      ) 
              ORDER BY 
-                 PA_NO
+                PA_NO
             ) OH2
 		ON
 			OH1.PB_NO = OH2.PB_NO		
@@ -127,6 +127,7 @@
 		    OH_PHOTO_ATTACH_SEQ.NEXTVAL, #{param2}, #{param1} 
 		)
 	</insert>
+<<<<<<< HEAD
 	<!-- OHPhotoDetailView -->
 	<update id="updatePb_hit">
 		UPDATE
@@ -195,4 +196,6 @@
 		WHERE
 			PB_NO = #{param1}
 	</delete>	
+=======
+>>>>>>> bogeun00
 </mapper>

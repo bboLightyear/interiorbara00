@@ -1,16 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="resources/css/main.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<title>Main</title>
+	<title>Main</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<!-- 헤더 -->
 	<header>
 		<!-- header_top : 헤더 윗부분 -->
@@ -374,21 +370,25 @@
         </div>
 		<hr />
 	</div>
+=======
+<h1> INTERIORBARA </h1>
+
+<P> &#x1F606; TeamProject CheerUp &#x1F44D; </P>
+<P> &#x1F606; 모두 화이팅!! &#x1F44D; </P>
+<p>test</p>
+<p>test</p>
+	<!-- 모달 창 열기 버튼 -->
+    <button id="openModal">퀵견적</button>
+	<jsp:include page="modal/mmain.jsp"/>
+
+
+>>>>>>> bogeun00
 	<br />
+	<a href="shop/list">list</a>
 	<br />
-	<!-- 푸터 -->
-	<footer>
-		<!-- 푸터 로고 -->
-		<div class="footer_logo">logo</div>
-		<!-- 푸터 내용 -->
-		<div class="footer_content">(주) 카피바라 주소 : 대한민국 서울시 양천구 목동 655-19
-			대표 : 조보근 전화번호 : 010-3017-5283</div>
-		<!-- sns 아이콘 -->
-		<div class="footer_sns">
-			<i class="fab fa-facebook fa-lg"></i> <i class="fab fa-youtube fa-lg"></i>
-			<i class="fab fa-twitter fa-lg"></i> <i class="fab fa-twitch fa-lg"></i>
-			<i class="fab fa-instagram fa-lg"></i>
-		</div>
-	</footer>
+	
+	<a href="cshome">고객센터</a>
+	
+	<img src="resources/upload/oh/star.png" alt="f" />
 </body>
 </html>
