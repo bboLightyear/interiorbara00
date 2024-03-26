@@ -171,7 +171,7 @@
 				class="category_button category_2">
 				<span>소품 샵</span>
 			</button>
-			<button class="category_button category_3">
+			<button class="category_button category_3" onclick="location.href='biz/magazine/bizMgzList'" >
 				<span>업체 <br> 둘러보기
 				</span>
 			</button>
