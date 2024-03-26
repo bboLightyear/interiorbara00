@@ -29,9 +29,10 @@ public class CsQnaController {
 	public String qnalist(HttpServletRequest request, SearchVO searchVO, Model model) {
 		System.out.println("qnaList()controller");
 
+		//dao 선언
 		QnaBoardIDao dao = sqlSession.getMapper(QnaBoardIDao.class);
 
-//		서칭
+//		서칭 처리
 		String qq = "";
 		String all = "";
 		String oh = "";
@@ -39,14 +40,17 @@ public class CsQnaController {
 		String pf = "";
 		String sh = "";
 
+		//글 분류 확인
 		String qnadiv = request.getParameter("qnadiv");
 
-		if (qnadiv==null) {   //처음 리스트 들어왔을 떄 셀렉트 박스 널값 체크 해결 if 문
+		//처음 리스트 들어왔을 떄 셀렉트 박스 널값 체크 해결 if 문
+		if (qnadiv==null) {   
 			qnadiv="all";
 		}
 		System.out.println("qnadiv : " + qnadiv);
 		
-		if (qnadiv != null) { // 위 변수의 체크상태 저장
+		// 위 변수의 체크상태 저장
+		if (qnadiv != null) { 
 			if (qnadiv.equals("qq")) {
 				qq = "qq";
 				model.addAttribute("qq", "true");
@@ -118,17 +122,21 @@ public class CsQnaController {
 			}
 		}
 
-		// sk값 가져오기
+		// sk값 가져오기(검색 키워드)
 		String searchKeyword = request.getParameter("sk");
-		if (searchKeyword == null) { // 검색문자 null처리
+		
+		// 검색문자 null처리
+		if (searchKeyword == null) { 
 			searchKeyword = "";
 		}
 		model.addAttribute("searchKeyword", searchKeyword);
-		System.out.println("searchKeyword : " + searchKeyword); // searchKeyword 확인하는 출력문
+		
+		// searchKeyword 확인하는 출력문
+		System.out.println("searchKeyword : " + searchKeyword); 
 
 //		페이징
 		String strPage = request.getParameter("page");
-		// null처리
+		// 처음 들어왔을 떄 페이지 null처리
 		if (strPage == null) {
 			strPage = "1";
 		}
@@ -195,7 +203,9 @@ public class CsQnaController {
 		} else if (sh.equals("sh")) { // 소품샵 검색
 			model.addAttribute("list", dao.qnalist(rowStart, rowEnd, searchKeyword, "6"));
 		}
-
+		
+		System.out.println("=======================");
+		
 		model.addAttribute("totalRowcnt", total);
 		model.addAttribute("searchVo", searchVO);
 
@@ -277,6 +287,25 @@ public class CsQnaController {
 		model.addAttribute("qna_content", dto);
 
 		return "csnotice/qnacontent";
+	}
+	
+	@RequestMapping("/qnadelete")
+	public String qnadelete(HttpServletRequest request, Model model) {
+		System.out.println("qnadelete()controller");
+		
+		
+		QnaBoardIDao dao = sqlSession.getMapper(QnaBoardIDao.class);
+		
+		String nbno=request.getParameter("nbno");
+		System.out.println("delete : "+nbno);
+		
+		int filecode=dao.selfilecode(nbno);
+		
+		System.out.println("filecode : "+filecode);
+		dao.imgdelete(filecode);
+		dao.qnadelete(nbno);
+		
+		return "redirect:qnalist";
 	}
 
 }

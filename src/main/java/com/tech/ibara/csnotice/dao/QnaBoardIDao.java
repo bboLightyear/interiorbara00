@@ -25,4 +25,10 @@ public interface QnaBoardIDao {
 
 	public QnaDto qnacontent(String nbno);
 
+	public int selfilecode(String nbno);
+
+	public void imgdelete(int filecode);
+
+	public void qnadelete(String nbno);
+
 }

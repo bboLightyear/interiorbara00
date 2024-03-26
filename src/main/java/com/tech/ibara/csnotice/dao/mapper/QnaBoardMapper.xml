@@ -6,6 +6,10 @@
 
 <mapper namespace="com.tech.ibara.csnotice.dao.QnaBoardIDao">
 
+
+<!-- 
+리스트 검색 결과 include문 qq일때 검색, 전체 검색, 우리집 자랑 검색 등등
+ -->
 	<sql id="includqnalist">
 		<choose>
 			<when test="param4==1">
@@ -41,11 +45,9 @@
 
 	<select id="qnalist"
 		resultType="com.tech.ibara.csnotice.dto.QnaDto">
-		SELECT
-		NBNO,NBWRITER,NBTITLE,NBCONTENT,NBDATE,NBHIT,NBGROUP,NBSTEP,NBINDENT,NBQNADIV
+		SELECT NBNO,NBWRITER,NBTITLE,NBCONTENT,NBDATE,NBHIT,NBGROUP,NBSTEP,NBINDENT,NBQNADIV
 		FROM (SELECT ROWNUM NUM,N.*
-		FROM (SELECT
-		NBNO,NBWRITER,NBTITLE,NBCONTENT,NBDATE,NBHIT,NBGROUP,NBSTEP,NBINDENT,NBQNADIV
+				FROM (SELECT NBNO,NBWRITER,NBTITLE,NBCONTENT,NBDATE,NBHIT,NBGROUP,NBSTEP,NBINDENT,NBQNADIV
 		FROM CS_NOTICEBOARD
 		ORDER BY NBGROUP DESC,NBSTEP ASC)N
 		<include refid="includqnalist" />
@@ -118,4 +120,17 @@
 		WHERE NBNO=#{param1}
 	</select>
 
+	<select id="selfilecode" resultType="Integer">
+		SELECT NBFILECODE 
+		FROM CS_NOTICEBOARD
+		WHERE NBNO=#{param1}
+	</select>
+	
+	<update id="imgdelete" >
+		DELETE FROM CS_NOTICEBOARD_IMG WHERE NBFILECODE=#{param1}
+	</update>
+	
+	<update id="qnadelete" >
+		DELETE FROM CS_NOTICEBOARD WHERE NBNO=#{param1}
+	</update>
 </mapper>
