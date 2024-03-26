@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tech.ibara.modal.service.ModalService;
 @Controller
-public class MController {
+public class ModalController {
 	@Autowired
 	private SqlSession sqlSession;
 	@Autowired
@@ -26,12 +26,16 @@ public class MController {
 		return "/modal/mMain";
 	}
 	
-	@RequestMapping("/modal/mStandard")
-	public String mStandard(@RequestParam("selectedSize") String selectedSize, @RequestParam("selectedService") String selectedService, Model model) {
-		modalService.processModalData(selectedSize, selectedService);
-	    model.addAttribute("selectedSize", selectedSize);
-	    model.addAttribute("selectedService", selectedService);
-	    return "modal/mStandard";
+	@RequestMapping("/modal/mSize")
+	public String mSize(Model model) {
+		
+		return "/modal/mSize";
 	}
 	
+	@RequestMapping("/modal/mServiceCheck")
+	public String mServiceCheck(Model model) {
+		
+		return "/modal/mServiceCheck";
+	
+	}
 }
