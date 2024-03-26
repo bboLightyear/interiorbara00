@@ -10,7 +10,6 @@
     <title>회원가입</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="${path}/resources/css/my/my_style.css" />
-    <%-- <script src="${path}/resources/js/my/my_script.js"></script> --%>   
     <script src="${path}/resources/js/my/my_script.js"></script>
 </head>
 <body>

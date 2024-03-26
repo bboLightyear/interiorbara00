@@ -18,6 +18,7 @@ public class MyPageService implements VService {
 	}
 	@Override
 	public void execute(Model model) {
+		System.out.println("MyPageService");
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		HttpSession session=request.getSession();

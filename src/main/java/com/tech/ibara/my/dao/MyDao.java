@@ -10,6 +10,7 @@ public interface MyDao {
 	public void setMemberEmailChecked(String nickname);
 	public MyMemberInfoDto getMemberFromEmail(String email);
 	public MyMemberInfoDto getMemberFromNickname(String nickname);
+	public int updateProfileimg(String profileimg,String nickname);
 	
 
 }

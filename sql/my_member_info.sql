@@ -9,7 +9,8 @@ birth varchar2(8),
 gender varchar(10),
 phone varchar(15),
 joindate timestamp,
-memtype varchar2(15));
+memtype varchar2(15),
+profileimg varchar2(300));
 
 create sequence memno_seq;
 
