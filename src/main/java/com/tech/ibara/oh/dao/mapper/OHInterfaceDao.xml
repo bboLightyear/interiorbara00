@@ -63,17 +63,41 @@
 		          ON
 		              OH1.PB_NO = OH2.PB_NO
 		         ) N
-		     WHERE
-		        PB_TITLE LIKE '%부기%'   
+			 <trim prefix="WHERE" prefixOverrides="AND">
+			 	 <if test='param1 != "default"' >
+				 	 AND PB_CATEGORY = #{param5}
+				 </if>
+				 <if test='param2 != "default"' >
+					 AND PB_RESIDENCE = #{param6}
+				 </if>
+				 <if test='param3 != "default"' >
+					 AND PB_ROOM = #{param7}
+				 </if>						
+				 <if test='param4 != "default"' >
+					 AND PB_STYLE = #{param8}
+				 </if>
+				 <if test='param5 != "default"' >
+					 AND PB_SKILL = #{param9}
+				 </if>
+				 <choose>						
+					 <when test='param10 == "default"'>
+						 AND (PB_TITLE LIKE '%'||#{param11}||'%' OR PB_CONTENT LIKE '%'||#{param11}||'%')
+					 </when>	
+					 <when test='param10 == "pb_title"'>
+						 AND (PB_TITLE LIKE '%'||#{param11}||'%')
+					 </when>
+					 <when test='param10 == "pb_content"'>
+						 AND (PB_CONTENT LIKE '%'||#{param11}||'%')
+					 </when>
+					 <otherwise></otherwise>				
+				 </choose>													
+			 </trim>		               
 		    )    
 		WHERE
-		    NO BETWEEN 1 AND 3
+		    NO BETWEEN #{param1} AND #{param2}
 		ORDER BY
-		    PB_DATE DESC	
-	
-
+		    #{param3} #{param4}	
 	</select>
-	
 	<select id="getPostTotalCount" resultType="Integer">
 		SELECT 
 			COUNT(*) 
@@ -108,18 +132,7 @@
 				<otherwise></otherwise>				
 			</choose>													
 		</trim>
-	</select>
-	
-	<!-- 	<if test='param6 = "default"'>
-				AND (PB_TITLE LIKE '%'||#{param7}||'%' OR PB_CONTENT LIKE '%'||#{param7}||'%')
-			</if>	
-			<if test='param6 = "pb_title"'>
-				AND (PB_TITLE LIKE '%'||#{param7}||'%')
-			</if>
-			<if test='param6 = "pb_content"'>
-				AND (PB_CONTENT LIKE '%'||#{param7}||'%')
-			</if> -->	
-	
+	</select>	
 	<!-- OHPhotoWriteExecute -->
 	<insert id="ohPhotoWriteExecute">
 		INSERT INTO 
