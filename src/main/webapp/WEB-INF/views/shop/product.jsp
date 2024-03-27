@@ -182,11 +182,11 @@
 			</script>
 			<div id="imageSideBar">
 				<c:forEach items="${images }" var="i" varStatus="s">
-					<img class="imageList" src="../resources/img/shop/${i.file_src }" alt="${s.index }" onmouseenter="changeMainImg()"/>
+					<img class="imageList" src="../resources/upload/shop/${i.file_src }" alt="${s.index }" onmouseenter="changeMainImg()"/>
 				</c:forEach>
 			</div>
 			<div id="imageMain">
-				<img id="imageRepresent" src="../resources/img/shop/${images[0].file_src }" alt="대표이미지" />
+				<img id="imageRepresent" src="../resources/upload/shop/${images[0].file_src }" alt="대표이미지" />
 			</div>
 		</section>
 		<section id="summary">

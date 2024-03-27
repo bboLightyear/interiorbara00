@@ -333,4 +333,15 @@
 			#{option_set_id}, #{detail_info_id}, #{name})
 	</insert>
 	
+	<insert id="insertProductImg" parameterType="com.tech.ibara.shop.dto.ProductImgDto">
+		INSERT INTO
+			SHOP_PRODUCT_IMG (
+				PRODUCT_IMG_ID,
+				PRODUCT_ID,
+				FILE_SRC)
+		VALUES (
+			SEQ_PRODUCT_IMG.NEXTVAL,
+			#{product_id},
+			#{file_src})
+	</insert>
 </mapper>

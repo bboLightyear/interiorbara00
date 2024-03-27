@@ -1,15 +1,19 @@
 package com.tech.ibara.shop.service;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.OptionDto;
 import com.tech.ibara.shop.dto.OptionSetDto;
 import com.tech.ibara.shop.dto.ProductDataDto;
 import com.tech.ibara.shop.dto.ProductDto;
+import com.tech.ibara.shop.dto.ProductImgDto;
 import com.tech.ibara.shop.util.ShopUtil;
 
 public class ProductRegService implements ShopService {
@@ -22,15 +26,22 @@ public class ProductRegService implements ShopService {
 	
 	@Override
 	public void execute(Model model) {
-		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
+		MultipartHttpServletRequest mpRequest = (MultipartHttpServletRequest) model.asMap().get("mpRequest");
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);
 		
-		String product_name = request.getParameter("productName");
-		int seller_id = Integer.parseInt(request.getParameter("sellerId"));
-		int category_id = request.getParameter("lv4Category") == null ? 
-				Integer.parseInt(request.getParameter("lv3Category")) :
-				Integer.parseInt(request.getParameter("lv4Category"));
-		int optionType = Integer.parseInt(request.getParameter("optionType"));
+		ProductDto productDto = null;
+		
+		String product_name = mpRequest.getParameter("productName");
+		int seller_id = Integer.parseInt(mpRequest.getParameter("sellerId"));
+		
+		// category
+		int category_id = mpRequest.getParameter("lv4Category") == null ? 
+				Integer.parseInt(mpRequest.getParameter("lv3Category")) :
+				Integer.parseInt(mpRequest.getParameter("lv4Category"));
+
+
+		// option
+		int optionType = Integer.parseInt(mpRequest.getParameter("optionType"));
 		
 		switch (optionType) {
 		case 0: {
@@ -38,19 +49,19 @@ public class ProductRegService implements ShopService {
 			dao.insertOptionSet(optionSetDto);
 			
 			ProductDataDto productDataDto = new ProductDataDto(
-					Integer.parseInt(request.getParameter("optionStock")),
-					Integer.parseInt(request.getParameter("optionPrice")),
-					ShopUtil.parseInt(request.getParameter("optionDPrice")));
+					Integer.parseInt(mpRequest.getParameter("optionStock")),
+					Integer.parseInt(mpRequest.getParameter("optionPrice")),
+					ShopUtil.parseInt(mpRequest.getParameter("optionDPrice")));
 			dao.insertProductData(productDataDto);
 
 			OptionDto optionDto = new OptionDto(
 					optionSetDto.getOption_set_id(),
 					null,
 					productDataDto.getProduct_data_id(),
-					request.getParameter("optionName"));
+					mpRequest.getParameter("optionName"));
 			dao.insertOption(optionDto);
 			
-			ProductDto productDto = new ProductDto(
+			productDto = new ProductDto(
 					seller_id,
 					category_id,
 					optionSetDto.getOption_set_id(),
@@ -68,7 +79,7 @@ public class ProductRegService implements ShopService {
 			String setKey = String.format("set%d", setNum);
 			String setNameKey = setKey + "Name";
 			
-			OptionSetDto optionSetDto = new OptionSetDto(request.getParameter(setNameKey));
+			OptionSetDto optionSetDto = new OptionSetDto(mpRequest.getParameter(setNameKey));
 			dao.insertOptionSet(optionSetDto);
 			
 			while (true) {
@@ -76,7 +87,7 @@ public class ProductRegService implements ShopService {
 				
 				String optionNameKey = setKey + optionKey + "Name";
 
-				String optionName = request.getParameter(optionNameKey);
+				String optionName = mpRequest.getParameter(optionNameKey);
 				if (optionName == null) {
 					break;
 				}
@@ -86,9 +97,9 @@ public class ProductRegService implements ShopService {
 				String optionDPriceKey = setKey + optionKey + "DPrice";
 				
 				ProductDataDto productDataDto = new ProductDataDto(
-						Integer.parseInt(request.getParameter(optionStockKey)),
-						Integer.parseInt(request.getParameter(optionPriceKey)),
-						ShopUtil.parseInt(request.getParameter(optionDPriceKey)));
+						Integer.parseInt(mpRequest.getParameter(optionStockKey)),
+						Integer.parseInt(mpRequest.getParameter(optionPriceKey)),
+						ShopUtil.parseInt(mpRequest.getParameter(optionDPriceKey)));
 				dao.insertProductData(productDataDto);
 
 				OptionDto optionDto = new OptionDto(
@@ -101,7 +112,7 @@ public class ProductRegService implements ShopService {
 				++optionNum;
 			}
 			
-			ProductDto productDto = new ProductDto(
+			productDto = new ProductDto(
 					seller_id,
 					category_id,
 					optionSetDto.getOption_set_id(),
@@ -113,7 +124,7 @@ public class ProductRegService implements ShopService {
 		}
 			
 		case 2: {
-			String upSetName = request.getParameter("upSetName");
+			String upSetName = mpRequest.getParameter("upSetName");
 			
 			OptionSetDto upOptionSetDto = new OptionSetDto(upSetName);
 			dao.insertOptionSet(upOptionSetDto);
@@ -124,7 +135,7 @@ public class ProductRegService implements ShopService {
 				int optionNum = 1;
 				
 				String upOptionNameKey = String.format("upOption%dName", setNum);
-				String upOptionName = request.getParameter(upOptionNameKey);
+				String upOptionName = mpRequest.getParameter(upOptionNameKey);
 				
 				if (upOptionName == null) {
 					break;
@@ -133,7 +144,7 @@ public class ProductRegService implements ShopService {
 				String setKey = String.format("set%d", setNum);
 				String setNameKey = setKey + "Name";
 				
-				OptionSetDto optionSetDto = new OptionSetDto(request.getParameter(setNameKey));
+				OptionSetDto optionSetDto = new OptionSetDto(mpRequest.getParameter(setNameKey));
 				dao.insertOptionSet(optionSetDto);
 				
 				OptionDto upOptionDto = new OptionDto(
@@ -148,7 +159,7 @@ public class ProductRegService implements ShopService {
 					
 					String optionNameKey = setKey + optionKey + "Name";
 	
-					String optionName = request.getParameter(optionNameKey);
+					String optionName = mpRequest.getParameter(optionNameKey);
 					if (optionName == null) {
 						break;
 					}
@@ -158,9 +169,9 @@ public class ProductRegService implements ShopService {
 					String optionDPriceKey = setKey + optionKey + "DPrice";
 					
 					ProductDataDto productDataDto = new ProductDataDto(
-							Integer.parseInt(request.getParameter(optionStockKey)),
-							Integer.parseInt(request.getParameter(optionPriceKey)),
-							ShopUtil.parseInt(request.getParameter(optionDPriceKey)));
+							Integer.parseInt(mpRequest.getParameter(optionStockKey)),
+							Integer.parseInt(mpRequest.getParameter(optionPriceKey)),
+							ShopUtil.parseInt(mpRequest.getParameter(optionDPriceKey)));
 					dao.insertProductData(productDataDto);
 	
 					OptionDto optionDto = new OptionDto(
@@ -176,7 +187,7 @@ public class ProductRegService implements ShopService {
 				++setNum;
 			}
 			
-			ProductDto productDto = new ProductDto(
+			productDto = new ProductDto(
 					seller_id,
 					category_id,
 					upOptionSetDto.getOption_set_id(),
@@ -186,6 +197,32 @@ public class ProductRegService implements ShopService {
 			break;
 		}
 		}
+		
+		// product images
+//		String path = mpRequest.getSession().getServletContext().getRealPath("resources/upload/shop");
+		String path = "C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\upload\\shop";
+		
+		List<MultipartFile> fileList = mpRequest.getFiles("productImgs");
+		
+		for (int i = 0; i < fileList.size(); ++i) {
+			MultipartFile file = fileList.get(i);
+			String originalName = file.getOriginalFilename();
+			long longtime = System.currentTimeMillis();
+			System.out.println("originalName: " + longtime);
+			String extension = originalName.substring(originalName.lastIndexOf("."));
+			String newName = longtime + String.valueOf(i) + extension;
+			System.out.println("newName: " + newName);
+			String filePath = path + "\\" + newName;
+			try {
+				if (!originalName.equals("")) {
+					file.transferTo(new File(filePath));
+					dao.insertProductImg(new ProductImgDto(productDto.getProduct_id(), newName));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 }

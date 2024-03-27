@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tech.ibara.shop.service.BasketViewService;
 import com.tech.ibara.shop.service.ManagementViewService;
@@ -31,7 +32,7 @@ public class ShopController {
 		
 		shopService = new ProductListService(sqlSession);
 		shopService.execute(model);
-		
+
 		return "shop/list";
 	}
 	
@@ -68,9 +69,9 @@ public class ShopController {
 	}
 	
 	@RequestMapping("/shop/management/regProduct")
-	public String regProduct(HttpServletRequest request, Model model) {
+	public String regProduct(MultipartHttpServletRequest mpRequest, Model model) {
 		
-		model.addAttribute("request", request);
+		model.addAttribute("mpRequest", mpRequest);
 		
 		shopService = new ProductRegService(sqlSession);
 		shopService.execute(model);

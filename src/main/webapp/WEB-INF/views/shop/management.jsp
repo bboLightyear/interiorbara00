@@ -267,7 +267,7 @@
 <body>
 	<h3>management.jsp</h3>
 	상품 등록 <br />
-	<form action="management/regProduct" method="POST">
+	<form action="management/regProduct" method="post" enctype="multipart/form-data">
 		상품 이름: <input type="text" name="productName" value="상품이름" required="required" /> <br />
 		판매자ID: <input type="number" name="sellerId" value="1" required="required" /> <br />
 		카테고리:
@@ -279,6 +279,8 @@
 				</c:forEach>
 			</select>
 		</span>
+		<br />
+		상품 이미지: <input type="file" name="productImgs" multiple="multiple" required="required" />
 		<br />
 		옵션: 
 		<input type="radio" name="optionType" value="0" onchange="changeOptionField()" checked/> 없음
