@@ -31,7 +31,6 @@ public interface ShopDao {
 	public OptionSetDto selectOptionSetByProduct(int product_id);
 	public OptionSetDto selectOptionSetById(int option_set_id);
 	
-
 	public ArrayList<OptionDto> selectOptionsBySet(int option_set_id);
 	public OptionDto selectOptionById(int option_id);
 	public OptionDto selectJoinOptionById(int option_id);
@@ -43,5 +42,9 @@ public interface ShopDao {
 	public ArrayList<ProductImgDto> selectProductImgsByProduct(int product_id);
 	
 	public ArrayList<BasketDto> selectBasketsByUser(int user_id);
-
+	
+	public void insertProductData(ProductDataDto productDataDto);
+	public void insertOptionSet(OptionSetDto optionSetDto);
+	public void insertOption(OptionDto optionDto);
+	public void insertProduct(ProductDto productDto);
 }

@@ -14,6 +14,13 @@ public class OptionDto {
 
 	}
 
+	public OptionDto(int option_set_id, Integer sub_option_set_id, Integer product_data_id, String name) {
+		this.option_set_id = option_set_id;
+		this.sub_option_set_id = sub_option_set_id;
+		this.product_data_id = product_data_id;
+		this.name = name;
+	}
+
 	public ProductDataDto getProduct_data_dto() {
 		return product_data_dto;
 	}

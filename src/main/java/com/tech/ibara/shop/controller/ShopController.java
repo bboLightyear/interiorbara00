@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.tech.ibara.shop.service.BasketViewService;
 import com.tech.ibara.shop.service.ManagementViewService;
 import com.tech.ibara.shop.service.ProductListService;
+import com.tech.ibara.shop.service.ProductRegService;
 import com.tech.ibara.shop.service.ProductViewService;
 import com.tech.ibara.shop.service.ShopService;
 
@@ -42,11 +43,6 @@ public class ShopController {
 		shopService = new ProductViewService(sqlSession);
 		shopService.execute(model);
 		
-		int result = (Integer) model.asMap().get("result");
-		if (result == -1) {
-			return "redirect:/shop/list";
-		}
-		
 		return "shop/product";
 	}
 	
@@ -69,5 +65,16 @@ public class ShopController {
 		shopService.execute(model);
 		
 		return "shop/management";
+	}
+	
+	@RequestMapping("/shop/management/regProduct")
+	public String regProduct(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		shopService = new ProductRegService(sqlSession);
+		shopService.execute(model);
+		
+		return "redirect:/shop/management";
 	}
 }

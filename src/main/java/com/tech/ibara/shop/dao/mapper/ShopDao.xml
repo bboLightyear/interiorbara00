@@ -8,7 +8,7 @@
 	
 	<select id="selectProductsByCategory" resultType="com.tech.ibara.shop.dto.ProductDto">
 		SELECT
-			PRODUCT_ID, CATEGORY_ID, OPTION_SET_ID, NAME
+			PRODUCT_ID, SELLER_ID, CATEGORY_ID, OPTION_SET_ID, DETAIL_INFO_ID, NAME
 		FROM
 			SHOP_PRODUCT
 		WHERE
@@ -19,7 +19,7 @@
 	
 	<select id="selectProductsByCategories" resultType="com.tech.ibara.shop.dto.ProductDto">
 		SELECT
-			PRODUCT_ID, CATEGORY_ID, OPTION_SET_ID, NAME
+			PRODUCT_ID, SELLER_ID, CATEGORY_ID, OPTION_SET_ID, DETAIL_INFO_ID, NAME
 		FROM
 			SHOP_PRODUCT
 		WHERE
@@ -107,7 +107,7 @@
 	
 	<select id="selectProductById" resultType="com.tech.ibara.shop.dto.ProductDto">
 		SELECT
-			PRODUCT_ID, CATEGORY_ID, OPTION_SET_ID, NAME
+			PRODUCT_ID, SELLER_ID, CATEGORY_ID, OPTION_SET_ID, DETAIL_INFO_ID, NAME
 		FROM
 			SHOP_PRODUCT
 		WHERE
@@ -279,4 +279,45 @@
 		WHERE
 			USER_ID = #{param1}
 	</select>
+	
+	<!-- ===================== INSERT ===================== -->
+	
+	<insert id="insertProductData" parameterType="com.tech.ibara.shop.dto.ProductDataDto"
+		useGeneratedKeys="true" keyColumn="PRODUCT_DATA_ID" keyProperty="product_data_id" >
+		INSERT INTO
+			SHOP_PRODUCT_DATA (
+				PRODUCT_DATA_ID,
+				STOCK,
+				PRICE,
+				DISCOUNTED_PRICE)
+		VALUES (
+			SEQ_SHOP_PRODUCT_DATA.NEXTVAL, #{stock}, #{price}, #{discounted_price, jdbcType=INTEGER})
+	</insert>
+	
+	<insert id="insertOptionSet" parameterType="com.tech.ibara.shop.dto.OptionSetDto"
+		useGeneratedKeys="true" keyColumn="OPTION_SET_ID" keyProperty="option_set_id" >
+		INSERT INTO
+			SHOP_OPTION_SET
+		VALUES (
+			SEQ_SHOP_OPTION_SET.NEXTVAL, #{name, jdbcType=VARCHAR2})
+	</insert>
+	
+	<insert id="insertOption" parameterType="com.tech.ibara.shop.dto.OptionDto"
+		useGeneratedKeys="true" keyProperty="option_id" >
+		INSERT INTO
+			SHOP_OPTION
+		VALUES (
+			SEQ_SHOP_OPTION.NEXTVAL, #{option_set_id}, #{sub_option_set_id, jdbcType=INTEGER},
+			#{product_data_id, jdbcType=INTEGER}, #{name})
+	</insert>
+	
+	<insert id="insertProduct" parameterType="com.tech.ibara.shop.dto.ProductDto"
+		useGeneratedKeys="true" keyProperty="product_id" >
+		INSERT INTO
+			SHOP_PRODUCT
+		VALUES (
+			SEQ_SHOP_PRODUCT.NEXTVAL, #{seller_id}, #{category_id},
+			#{option_set_id}, #{detail_info_id}, #{name})
+	</insert>
+	
 </mapper>

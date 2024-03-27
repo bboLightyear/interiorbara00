@@ -11,6 +11,12 @@ public class ProductDataDto {
 
 	}
 
+	public ProductDataDto(int stock, int price, Integer discounted_price) {
+		this.stock = stock;
+		this.price = price;
+		this.discounted_price = discounted_price;
+	}
+
 	public int getProduct_data_id() {
 		return product_data_id;
 	}
