@@ -11,11 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tech.ibara.csnotice.dao.QnaBoardIDao;
 import com.tech.ibara.csnotice.dto.QnaDto;
+import com.tech.ibara.csnotice.dto.QnaImgDto;
+import com.tech.ibara.csnotice.dto.QnaReplyDto;
 import com.tech.ibara.csnotice.vo.SearchVO;
 
 @Controller
@@ -302,6 +305,12 @@ public class CsQnaController {
 		QnaDto dto = dao.qnacontent(nbno);
 		// model에 담아서 뷰단에 보내줌
 		model.addAttribute("qna_content", dto);
+		
+		//답글 셀렉트 해서 출력
+		ArrayList<QnaReplyDto> replylist=dao.replylist(nbno);
+		System.out.println("replylist : "+replylist);
+		
+		model.addAttribute("replylist",replylist);
 
 		return "csnotice/qnacontent";
 	}
@@ -313,9 +322,12 @@ public class CsQnaController {
 		
 		QnaBoardIDao dao = sqlSession.getMapper(QnaBoardIDao.class);
 		
-		QnaDto dto = dao.qnacontent(nbno);
+		QnaDto qna = dao.qnacontentview(nbno);
 		
-		model.addAttribute("qna_content",dto);
+		ArrayList<QnaImgDto> qnaimg =dao.qnacontentimgview(nbno);
+		
+		model.addAttribute("qna_content",qna);
+		model.addAttribute("qnaimg",qnaimg);
 		
 		return "csnotice/qnaeditview";
 	}
@@ -342,6 +354,23 @@ public class CsQnaController {
 		dao.qnadelete(nbno);
 		
 		return "redirect:qnalist";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST,value = "/qnareply")
+	public String qnareply(HttpServletRequest request,Model model) {
+		System.out.println("qnareply()");
+		
+		QnaBoardIDao dao=sqlSession.getMapper(QnaBoardIDao.class);
+
+		String nbno=request.getParameter("nbno");
+		String qnareply=request.getParameter("qnareply");		
+		String qnarewriter=request.getParameter("qnarewriter");		
+
+		// 전체 답글 달기
+		dao.qnareply(nbno,qnareply,qnarewriter);
+
+		
+		return "redirect:qnacontent?nbno="+nbno;
 	}
 
 }

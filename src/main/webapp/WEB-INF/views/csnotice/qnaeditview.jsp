@@ -29,61 +29,13 @@
 			<tr>
 				<td class="left">글분류</td>
 				<td>
-				${qna_content.nbqnadiv }
 				<select name="qnadiv">
-						<c:choose>
-							<c:when test="${qna_content.nbqnadiv }=">
-								<option value="all" selected="selected">전체</option>
-							</c:when>
-							<c:otherwise>
-								<option value="all">전체</option>
-							</c:otherwise>
-						</c:choose>
-
-						<c:choose>
-							<c:when test="${qna_content.nbqnadiv }=='qq'">
-								<option value="qq" selected="selected">퀵견적</option>
-							</c:when>
-							<c:otherwise>
-								<option value="qq">퀵견적</option>
-							</c:otherwise>
-						</c:choose>
-
-						<c:choose>
-							<c:when test="${qna_content.nbqnadiv }=oh">
-								<option value="oh" selected="selected">우리집 자랑하기</option>
-							</c:when>
-							<c:otherwise>
-								<option value="oh">우리집 자랑하기</option>
-							</c:otherwise>
-						</c:choose>
-
-						<c:choose>
-							<c:when test="${qna_content.nbqnadiv }=biz">
-								<option value="biz" selected="selected">업체 관련</option>
-							</c:when>
-							<c:otherwise>
-								<option value="biz">업체 관련</option>
-							</c:otherwise>
-						</c:choose>
-
-						<c:choose>
-							<c:when test="${qna_content.nbqnadiv }=pf">
-								<option value="pf" selected="selected">로그인/회원정보</option>
-							</c:when>
-							<c:otherwise>
-								<option value="pf">로그인/회원정보</option>
-							</c:otherwise>
-						</c:choose>
-
-						<c:choose>
-							<c:when test="${qna_content.nbqnadiv }=sh">
-								<option value="sh" selected="selected">소품샵</option>
-							</c:when>
-							<c:otherwise>
-								<option value="sh">소품샵</option>
-							</c:otherwise>
-						</c:choose>
+					<option value="all" ${qna_content.nbqnadiv eq 'all' ? 'selected' : '' }>전체</option>
+					<option value="qq" ${qna_content.nbqnadiv eq 'qq' ? 'selected' : '' }>퀵견적</option>
+					<option value="oh" ${qna_content.nbqnadiv eq 'all' ? 'selected' : '' }>우리집 자랑하기</option>
+					<option value="biz" ${qna_content.nbqnadiv eq 'all' ? 'selected' : '' }>업체 관련</option>
+					<option value="pf" ${qna_content.nbqnadiv eq 'all' ? 'selected' : '' }>로그인/회원정보</option>
+					<option value="sh" ${qna_content.nbqnadiv eq 'all' ? 'selected' : '' }>소품샵</option>
 				</select>
 				</td>
 			</tr>
@@ -102,7 +54,7 @@
 			</tr>
 			<tr>
 				<td class="left">파일</td>
-				<td><a href=""></a></td>
+				<td><input type="file" name="nbfile" multiple="multiple"/></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="수정" /></td>
