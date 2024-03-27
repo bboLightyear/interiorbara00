@@ -297,9 +297,11 @@
 	<insert id="insertOptionSet" parameterType="com.tech.ibara.shop.dto.OptionSetDto"
 		useGeneratedKeys="true" keyColumn="OPTION_SET_ID" keyProperty="option_set_id" >
 		INSERT INTO
-			SHOP_OPTION_SET
+			SHOP_OPTION_SET (
+				OPTION_SET_ID,
+				NAME)
 		VALUES (
-			SEQ_SHOP_OPTION_SET.NEXTVAL, #{name, jdbcType=VARCHAR2})
+			SEQ_SHOP_OPTION_SET.NEXTVAL, #{name, jdbcType=VARCHAR})
 	</insert>
 	
 	<insert id="insertOption" parameterType="com.tech.ibara.shop.dto.OptionDto"
