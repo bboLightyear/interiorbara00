@@ -153,9 +153,9 @@
 						<button class="addSet" type="button" onclick="addSet()">옵션 추가</button>\
 						<button class="deleteSet" type="button" onclick="deleteSet()">옵션 삭제</button>\
 						<hr />\
-						<div id="upSetOption1">\
+						<div id="upOption1">\
 							옵션1 <br />\
-							이름: <input type="text" name="upSetOption1Name" required="required" /> <br />\
+							이름: <input type="text" name="upOption1Name" required="required" /> <br />\
 							<hr />\
 							<div id="set1" data-set-num="1" data-option-cnt="2">\
 								하위옵션세트이름: <input type="text" class="setName" name="set1Name" required="required" onchange="syncSetName()" />\
@@ -178,9 +178,9 @@
 							</div>\
 							<hr />\
 						</div>\
-						<div id="upSetOption2">\
+						<div id="upOption2">\
 							옵션2 <br />\
-							이름: <input type="text" name="upSetOption2Name" required="required" /> <br />\
+							이름: <input type="text" name="upOption2Name" required="required" /> <br />\
 							<hr />\
 							<div id="set2" data-set-num="2" data-option-cnt="2">\
 								하위옵션세트이름: <input type="text" class="setName" name="set2Name" required="required" onchange="syncSetName()" />\
@@ -222,12 +222,12 @@
 			$("#upSet").data("setCnt", ++setCnt);
 			
 			var htmlText =
-				'<div id="upSetOption' + setCnt + '">\
+				'<div id="upOption' + setCnt + '">\
 					옵션' + setCnt + ' <br />\
-					이름: <input type="text" name="upSetOption' + setCnt + 'Name" required="required" /> <br />\
+					이름: <input type="text" name="upOption' + setCnt + 'Name" required="required" /> <br />\
 					<hr />\
 					<div id="set' + setCnt + '" data-set-num="' + setCnt + '" data-option-cnt="2">\
-						하위옵션세트이름: <input type="text" class="setName" name="set1Name" required="required" onchange="syncSetName()" />\
+						하위옵션세트이름: <input type="text" class="setName" name="set' + setCnt + 'Name" required="required" onchange="syncSetName()" />\
 						<button class="addOption" type="button" onclick="addOption()">옵션 추가</button>\
 						<button class="deleteOption" type="button" onclick="deleteOption()">옵션 삭제</button>\
 						<div id="set' + setCnt + 'Option1">\

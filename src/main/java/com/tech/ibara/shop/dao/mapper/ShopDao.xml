@@ -305,18 +305,29 @@
 	</insert>
 	
 	<insert id="insertOption" parameterType="com.tech.ibara.shop.dto.OptionDto"
-		useGeneratedKeys="true" keyProperty="option_id" >
+		useGeneratedKeys="true" keyColumn="OPTION_ID" keyProperty="option_id" >
 		INSERT INTO
-			SHOP_OPTION
+			SHOP_OPTION (
+				OPTION_ID,
+				OPTION_SET_ID,
+				SUB_OPTION_SET_ID,
+				PRODUCT_DATA_ID,
+				NAME)
 		VALUES (
 			SEQ_SHOP_OPTION.NEXTVAL, #{option_set_id}, #{sub_option_set_id, jdbcType=INTEGER},
 			#{product_data_id, jdbcType=INTEGER}, #{name})
 	</insert>
 	
 	<insert id="insertProduct" parameterType="com.tech.ibara.shop.dto.ProductDto"
-		useGeneratedKeys="true" keyProperty="product_id" >
+		useGeneratedKeys="true" keyColumn="PRODUCT_ID" keyProperty="product_id" >
 		INSERT INTO
-			SHOP_PRODUCT
+			SHOP_PRODUCT (
+				PRODUCT_ID,
+				SELLER_ID,
+				CATEGORY_ID,
+				OPTION_SET_ID,
+				DETAIL_INFO_ID,
+				NAME)
 		VALUES (
 			SEQ_SHOP_PRODUCT.NEXTVAL, #{seller_id}, #{category_id},
 			#{option_set_id}, #{detail_info_id}, #{name})

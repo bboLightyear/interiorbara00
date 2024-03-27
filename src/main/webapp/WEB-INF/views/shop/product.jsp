@@ -34,8 +34,8 @@
 			});
 		}
 		
-		function addSelectedProductCard() {
-			var select = $("#finalOptionSet")[0];
+		function addOneOptionCard() {
+			var select = event.target;
 			var option_id = select.value;
 			
 			$.ajax({
@@ -46,21 +46,56 @@
 					"option_id" : option_id
 				},
 				success: function(data) {
-					var firstOption = "";
-					var finalOption = "";
-					
-					if ($("#optionSet").length) {
-						firstOption = $("#optionSet").find("option:first-child").text() + ": " +
-							$("#optionSet option:selected").text() +' / ';
-					}
-					
-					finalOption = $("#finalOptionSet").find("option:first-child").text() + ": "
+					var optionText = "";
+
+					optionText = $("#finalOptionSet").find("option:first-child").text() + ": "
 						+ data.name;
 					
-					var htmlText = '<div class="selectedProductCard" data-option-id="' + data.option_id + '">' + 
-									firstOption + finalOption +
-									'<br /><span>' + data.product_data_dto.price + '</span>원' +
-									'</div>';
+					var htmlText =
+						'<div class="selectedProductCard" data-option-id="' + data.option_id + '">' + 
+							optionText + '<br />\
+							<span>' + data.product_data_dto.price + '</span>원\
+						</div>';
+						
+					$("#optionWrap").append(htmlText);
+					
+					$("#finalOptionSet").prop("selectedIndex", 0);
+				
+					
+					var price = parseInt($("#totalPrice").data("totalPrice"), 10);
+					price += parseInt(data.product_data_dto.price, 10);
+					
+					$("#totalPrice").data("totalPrice", price);
+					$("#totalPrice").text($("#totalPrice").data("totalPrice"));
+				}
+			});
+		}
+		
+		function addTwoOptionCard() {
+			var select = event.target;
+			var option_id = select.value;
+			
+			$.ajax({
+				type: "get",
+				async: true,
+				url: "loadProductData",
+				data: {
+					"option_id" : option_id
+				},
+				success: function(data) {
+					var optionText = "";
+
+					optionText = $("#optionSet").find("option:first-child").text() + ": " +
+						$("#optionSet option:selected").text() +' / ' +
+						$("#finalOptionSet").find("option:first-child").text() + ": "
+						+ data.name;
+					
+					var htmlText =
+						'<div class="selectedProductCard" data-option-id="' + data.option_id + '">' + 
+							optionText + '<br />\
+							<span>' + data.product_data_dto.price + '</span>원\
+						</div>';
+						
 					$("#optionWrap").append(htmlText);
 					
 					$("option", "#finalOptionSet").not(":eq(0)").remove();
@@ -75,9 +110,6 @@
 					$("#totalPrice").text($("#totalPrice").data("totalPrice"));
 				}
 			});
-			
-			
-
 		}
 	</script>
 	<style>
@@ -178,14 +210,14 @@
 									<option value="${o.option_id }">${o.name }</option>
 								</c:forEach>
 							</select>
-							<select name="finalOptionSet" id="finalOptionSet" text="asdf" onchange="addSelectedProductCard()">
+							<select name="finalOptionSet" id="finalOptionSet" onchange="addTwoOptionCard()">
 								<option selected disabled>${subOptionSet.name }</option>
 								<!-- ajax -->
 							</select>
 						</c:when>
 						
 						<c:otherwise>
-							<select name="finalOptionSet" id="finalOptionSet" onchange="addSelectedProductCard()">
+							<select name="finalOptionSet" id="finalOptionSet" onchange="addOneOptionCard()">
 								<option selected disabled>${optionSet.name }</option>
 								<c:forEach items="${options }" var="o">
 									<option value="${o.option_id }">${o.name } (${o.product_data_dto.price }원)</option>
