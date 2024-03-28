@@ -168,8 +168,8 @@ public class ProductRegService extends SqlSessionBase implements ShopService {
 		}
 
 		// product images
-//		String path = mpRequest.getSession().getServletContext().getRealPath("resources/upload/shop");
-		String path = "C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\upload\\shop";
+		String path = mpRequest.getSession().getServletContext().getRealPath("resources/upload/shop");
+//		String path = "C:\\23setspring\\springwork23\\interiorbara\\src\\main\\webapp\\resources\\upload\\shop";
 
 		List<MultipartFile> fileList = mpRequest.getFiles("productImgs");
 
