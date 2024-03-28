@@ -67,9 +67,9 @@
 		</table>
 	</form>
 <hr />
-<h3>답글</h3>
+<h3>답글  개</h3>
 
-	<table border="1px">
+<%-- 	<table border="1px">
 		<tr>
 			<td class="left">작성자</td>
 			<td class="left">답글</td>
@@ -81,9 +81,20 @@
 				<td><input type="button" value="답글달기" /></td>
 			</tr>
 		</c:forEach>
-		<tr>
-			<td><input type="text" /></td>
-		</tr>
-	</table>
+	</table> --%>
+	
+	<c:forEach items="${replylist }" var="dto">
+	<div>
+		<span><h3> 작성자 : ${dto.rnbwriter }</h3></span>
+		<p> 답글 : ${dto.rnbcontent }</p>
+		<button>답글달기</button>
+	</div>
+	<form action="">
+		<div contenteditable="true" style="padding: 15px; background: #eee; border-radius: 5px; width: 600px;">
+			<p>@${dto.rnbwriter }&nbsp;</p> 
+		</div>
+		<input type="submit" value="입력" />
+	</form>
+	</c:forEach>
 </body>
 </html>
