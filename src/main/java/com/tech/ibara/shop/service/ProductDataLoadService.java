@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.OptionDto;
 
-public class ProductDataLoadService implements ShopService {
+public class ProductDataLoadService implements ShopRestService<OptionDto> {
 
 	private SqlSession sqlSession;
+	
+	private OptionDto optionDto;
 	
 	public ProductDataLoadService(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
@@ -23,9 +25,12 @@ public class ProductDataLoadService implements ShopService {
 		
 		int option_id = Integer.parseInt(request.getParameter("option_id"));
 		
-		OptionDto optionDto = dao.selectJoinOptionById(option_id);
-		
-		model.addAttribute("selectedOption", optionDto);
+		optionDto = dao.selectJoinOptionById(option_id);
+	}
+
+	@Override
+	public OptionDto getData() {
+		return optionDto;
 	}
 
 }

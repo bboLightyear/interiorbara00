@@ -2,7 +2,6 @@ package com.tech.ibara.shop.service;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,7 +21,7 @@ public class BasketViewService implements ShopService {
 	
 	@Override
 	public void execute(Model model) {
-		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
+//		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
 		HttpSession session = (HttpSession) model.asMap().get("session");
 		
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);

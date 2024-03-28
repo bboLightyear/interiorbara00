@@ -15,7 +15,6 @@ import com.tech.ibara.shop.dto.CategoryDto;
 import com.tech.ibara.shop.dto.OptionDto;
 import com.tech.ibara.shop.service.ProductDataLoadService;
 import com.tech.ibara.shop.service.ProductSubOptionSetService;
-import com.tech.ibara.shop.service.ShopService;
 import com.tech.ibara.shop.service.SubCategoryLoadService;
 
 @RestController
@@ -24,17 +23,16 @@ public class ShopRestController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private ShopService shopService;
-	
+//	@SuppressWarnings("unchecked")
 	@RequestMapping(method = RequestMethod.GET, value = "/shop/loadSubOptionSet")
 	public ArrayList<OptionDto> loadSubOptionSet(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request", request);
 		
-		shopService = new ProductSubOptionSetService(sqlSession);
+		ProductSubOptionSetService shopService = new ProductSubOptionSetService(sqlSession);
 		shopService.execute(model);
 		
-		return (ArrayList<OptionDto>) model.asMap().get("subOptions");
+		return shopService.getData();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/shop/loadProductData")
@@ -42,20 +40,21 @@ public class ShopRestController {
 		
 		model.addAttribute("request", request);
 		
-		shopService = new ProductDataLoadService(sqlSession);
+		ProductDataLoadService shopService = new ProductDataLoadService(sqlSession);
 		shopService.execute(model);
 		
-		return (OptionDto) model.asMap().get("selectedOption");
+		return shopService.getData();
 	}
 	
+//	@SuppressWarnings("unchecked")
 	@RequestMapping(method = RequestMethod.GET, value = "/shop/loadSubCategories")
 	public ArrayList<CategoryDto> loadSubCategory(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request", request);
 		
-		shopService = new SubCategoryLoadService(sqlSession);
+		SubCategoryLoadService shopService = new SubCategoryLoadService(sqlSession);
 		shopService.execute(model);
 		
-		return (ArrayList<CategoryDto>) model.asMap().get("subCategories");
+		return shopService.getData();
 	}
 }

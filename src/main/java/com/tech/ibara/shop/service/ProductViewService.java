@@ -1,7 +1,6 @@
 package com.tech.ibara.shop.service;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +11,6 @@ import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.CategoryDto;
 import com.tech.ibara.shop.dto.OptionDto;
 import com.tech.ibara.shop.dto.OptionSetDto;
-import com.tech.ibara.shop.dto.ProductDataDto;
 import com.tech.ibara.shop.dto.ProductDto;
 import com.tech.ibara.shop.dto.ProductImgDto;
 

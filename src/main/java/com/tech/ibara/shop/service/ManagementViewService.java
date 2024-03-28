@@ -2,8 +2,6 @@ package com.tech.ibara.shop.service;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
