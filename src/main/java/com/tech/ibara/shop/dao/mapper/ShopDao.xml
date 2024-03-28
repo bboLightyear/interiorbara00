@@ -291,7 +291,10 @@
 				PRICE,
 				DISCOUNTED_PRICE)
 		VALUES (
-			SEQ_SHOP_PRODUCT_DATA.NEXTVAL, #{stock}, #{price}, #{discounted_price, jdbcType=INTEGER})
+			SEQ_SHOP_PRODUCT_DATA.NEXTVAL,
+			#{stock},
+			#{price},
+			#{discounted_price, jdbcType=INTEGER})
 	</insert>
 	
 	<insert id="insertOptionSet" parameterType="com.tech.ibara.shop.dto.OptionSetDto"
@@ -301,7 +304,8 @@
 				OPTION_SET_ID,
 				NAME)
 		VALUES (
-			SEQ_SHOP_OPTION_SET.NEXTVAL, #{name, jdbcType=VARCHAR})
+			SEQ_SHOP_OPTION_SET.NEXTVAL,
+			#{name, jdbcType=VARCHAR})
 	</insert>
 	
 	<insert id="insertOption" parameterType="com.tech.ibara.shop.dto.OptionDto"
@@ -314,8 +318,11 @@
 				PRODUCT_DATA_ID,
 				NAME)
 		VALUES (
-			SEQ_SHOP_OPTION.NEXTVAL, #{option_set_id}, #{sub_option_set_id, jdbcType=INTEGER},
-			#{product_data_id, jdbcType=INTEGER}, #{name})
+			SEQ_SHOP_OPTION.NEXTVAL,
+			#{option_set_id},
+			#{sub_option_set_id, jdbcType=INTEGER},
+			#{product_data_id, jdbcType=INTEGER},
+			#{name})
 	</insert>
 	
 	<insert id="insertProduct" parameterType="com.tech.ibara.shop.dto.ProductDto"
@@ -329,8 +336,12 @@
 				DETAIL_INFO_ID,
 				NAME)
 		VALUES (
-			SEQ_SHOP_PRODUCT.NEXTVAL, #{seller_id}, #{category_id},
-			#{option_set_id}, #{detail_info_id}, #{name})
+			SEQ_SHOP_PRODUCT.NEXTVAL,
+			#{seller_id},
+			#{category_id},
+			#{option_set_id},
+			#{detail_info_id},
+			#{name})
 	</insert>
 	
 	<insert id="insertProductImg" parameterType="com.tech.ibara.shop.dto.ProductImgDto">
@@ -343,5 +354,22 @@
 			SEQ_PRODUCT_IMG.NEXTVAL,
 			#{product_id},
 			#{file_src})
+	</insert>
+	
+	<insert id="insertBasket" parameterType="com.tech.ibara.shop.dto.BasketDto">
+		INSERT INTO
+			SHOP_BASKET (
+				BASKET_ID,
+				USER_ID,
+				PRODUCT_ID,
+				OPTION_ID,
+				QUANTITY)
+		VALUES (
+			SEQ_SHOP_BASKET.NEXTVAL,
+			#{basket_id},
+			#{user_id},
+			#{product_id},
+			#{option_id},
+			#{quantity})
 	</insert>
 </mapper>

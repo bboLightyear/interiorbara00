@@ -6,13 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.tech.ibara.shop.dao.ShopDao;
-import com.tech.ibara.shop.dto.OptionDto;
 
-public class ProductDataLoadService extends SqlSessionBase implements ShopRestService<OptionDto> {
+public class BasketAddService extends SqlSessionBase implements ShopService {
 
-	private OptionDto optionDto;
-
-	public ProductDataLoadService(SqlSession sqlSession) {
+	public BasketAddService(SqlSession sqlSession) {
 		super(sqlSession);
 	}
 
@@ -20,15 +17,8 @@ public class ProductDataLoadService extends SqlSessionBase implements ShopRestSe
 	public void execute(Model model) {
 		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);
-
-		int option_id = Integer.parseInt(request.getParameter("option_id"));
-
-		optionDto = dao.selectJoinOptionById(option_id);
-	}
-
-	@Override
-	public OptionDto getData() {
-		return optionDto;
+		
+		
 	}
 
 }

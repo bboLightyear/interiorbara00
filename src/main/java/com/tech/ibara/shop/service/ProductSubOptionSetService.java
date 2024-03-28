@@ -11,23 +11,21 @@ import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.OptionDto;
 import com.tech.ibara.shop.dto.OptionSetDto;
 
-public class ProductSubOptionSetService implements ShopRestService<ArrayList<OptionDto>> {
+public class ProductSubOptionSetService extends SqlSessionBase implements ShopRestService<ArrayList<OptionDto>> {
 
-	private SqlSession sqlSession;
-	
 	private ArrayList<OptionDto> optionDtoList;
-	
+
 	public ProductSubOptionSetService(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
+		super(sqlSession);
 	}
-	
+
 	@Override
 	public void execute(Model model) {
 		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);
-		
+
 		int option_id = Integer.parseInt(request.getParameter("option_id"));
-		
+
 		OptionDto optionDto = dao.selectOptionById(option_id);
 		OptionSetDto subOptionSetDto = dao.selectOptionSetById(optionDto.getSub_option_set_id());
 		optionDtoList = dao.selectJoinOptionsBySet(subOptionSetDto.getOption_set_id());

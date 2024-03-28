@@ -11,14 +11,12 @@ import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.BasketDto;
 import com.tech.ibara.shop.dto.ProductDto;
 
-public class BasketViewService implements ShopService {
+public class BasketViewService extends SqlSessionBase implements ShopService {
 
-	private SqlSession sqlSession;
-	
 	public BasketViewService(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
+		super(sqlSession);
 	}
-	
+
 	@Override
 	public void execute(Model model) {
 //		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");

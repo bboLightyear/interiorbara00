@@ -48,4 +48,5 @@ public interface ShopDao {
 	public void insertOption(OptionDto optionDto);
 	public void insertProduct(ProductDto productDto);
 	public void insertProductImg(ProductImgDto productImgDto);
+	public void insertBasket(BasketDto basketDto);
 }

@@ -14,23 +14,21 @@ import com.tech.ibara.shop.dto.OptionSetDto;
 import com.tech.ibara.shop.dto.ProductDto;
 import com.tech.ibara.shop.dto.ProductImgDto;
 
-public class ProductViewService implements ShopService {
+public class ProductViewService extends SqlSessionBase implements ShopService {
 
-	private SqlSession sqlSession;
-	
 	public ProductViewService(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
+		super(sqlSession);
 	}
-	
+
 	@Override
 	public void execute(Model model) {
 		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);
-		
+
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
-		
+
 		ProductDto productDto = dao.selectProductById(product_id);
-		
+
 		// category
 		ArrayList<CategoryDto> categories = new ArrayList<CategoryDto>();
 		CategoryDto categoryDto = dao.selectCategoryById(productDto.getCategory_id());
@@ -39,24 +37,21 @@ public class ProductViewService implements ShopService {
 			categoryDto = dao.selectCategoryById(categoryDto.getUp_category_id());
 			categories.add(0, categoryDto);
 		}
-		
-		
+
 		// image
 		ArrayList<ProductImgDto> productImgs = dao.selectProductImgsByProduct(product_id);
-		
-		
+
 		// option
 		OptionSetDto optionSetDto = dao.selectOptionSetByProduct(product_id);
 		int optionSetId = optionSetDto.getOption_set_id();
-		
-		
+
 		OptionDto nonOptionDto = null;
 		OptionSetDto subOptionSetDto = null;
-		
+
 		ArrayList<OptionDto> optionDtoList = null;
-		
+
 		optionDtoList = dao.selectOptionsBySet(optionSetId);
-		
+
 		if (optionDtoList.size() == 1) {
 			nonOptionDto = dao.selectJoinOptionBySet(optionSetId);
 		} else {
@@ -67,7 +62,7 @@ public class ProductViewService implements ShopService {
 				subOptionSetDto = dao.selectOptionSetById(optionDto.getSub_option_set_id());
 			}
 		}
-		
+
 		model.addAttribute("product", productDto);
 		model.addAttribute("categories", categories);
 		model.addAttribute("images", productImgs);
